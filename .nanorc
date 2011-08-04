@@ -1,0 +1,16 @@
+unset autoindent
+unset backup
+set const
+set historylog
+set multibuffer
+unset noconvert
+set nowrap
+set regexp
+set smooth
+set tabsize 4
+#set mouse
+unset nonewlines
+set quickblank
+set undo
+#set cut
+#set tabstospaces
