@@ -1,7 +1,7 @@
 # if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# load auto-completion
+# Load auto-completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
 # Source global definitions
@@ -43,14 +43,14 @@ then
 fi
 
 # apps
-#which nano &>/dev/null && export EDITOR="nano -w" && export VISUAL=$EDITOR
+#which nano &>/dev/null && export EDITOR=nano && export VISUAL=$EDITOR
 #which emacs &>/dev/null && export EDITOR="emacs -nw" && export VISUAL=$EDITOR
 which vim &>/dev/null && export EDITOR=vim && export VISUAL=$EDITOR
 which less &>/dev/null && export PAGER=less
 which most &>/dev/null && export PAGER=most
-which lynx &>/dev/null && export BROWSER=lynx
+#which lynx &>/dev/null && export BROWSER=lynx
 which firefox &>/dev/null && export BROWSER=firefox
-which firefox-nightly &>/dev/null && export BROWSER=firefox-nightly
+#which firefox-nightly &>/dev/null && export BROWSER=firefox-nightly
 which mplayer &>/dev/null && export PLAYER=mplayer
 
 ### Aliases ###
@@ -60,10 +60,10 @@ alias ll="ls -l"
 alias lsb="ls -ail"
 alias du="du -h"
 alias df="df -h"
-alias ftree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
-alias emc="emacs -nw"
+alias psc="ps xawf -eo pid,user,cgroup,args"
+alias em="emacs -nw"
 alias pysh="ipython -p sh"
-alias httpserver="python -m http.server"
+alias http_server="python3 -m http.server"
 alias screenshot="xwd -root > ~/screenshot_$RANDOM.xwd"
 alias screencast="ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/screencast_$RANDOM.mpg"
 alias is_spam="bogofilter -s -B -v"
@@ -101,9 +101,10 @@ img2txt() {
 }
 
 smc2sfc() {
-	for file in *.smc
+	for file in *.smc *.swc
 	do
-		dd if="$file" of="`echo $file | cut -d '.' -f 1`.sfc" bs=512 skip=1
+		basename=`basename $file`
+		[ -f $basename.sfc ] && dd if="$file" of="$basename.sfc" bs=512 skip=1
 	done
 }
 
@@ -124,9 +125,11 @@ random_mac() {
 }
 
 function numerical_rename() {
-	[ "$1" == "" ] &&
-		echo "Usage: numerical_rename fixed_lenght_of_numbers [filenames prefix] [filenames suffix] (specify quoted empty prefix if no prefix wanted but suffix wanted)" &&
+	if [ "$1" == "" ]
+	then
+		echo "Usage: numerical_rename min_numbers_lenght prefix suffix"
 		return 1
+	fi
 	i=0
 	for filename in `ls -v`
 	do
@@ -142,9 +145,11 @@ function numerical_rename() {
 }
 
 function thumbnail_all() {
-	[ "$1" == "" ] &&
-		echo "Usage: thumbnail_all destination_directory" &&
+	if [ "$1" == "" ]
+	then
+		echo "Usage: thumbnail_all destination_directory"
 		return 1
+	fi
 	for filename in **
 	do
 		totem-video-thumbnailer -g 20 -j -s 300 "$filename" "$1/$filename.jpg"
@@ -190,8 +195,7 @@ get_flash_videos()
 
 # prompt
 [[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-#export PS1='\[\033[`echo $USER_COLOR`m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]`get_git_branch` \[\033[31m\]\$\[\033[0m\] '
-export PS1='\[\033[`echo $USER_COLOR`m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\] \[\033[31m\]\$\[\033[0m\] '
+export PS1='\[\033[`echo $USER_COLOR`m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
 
 # color
 export CLICOLOR=true
@@ -204,6 +208,7 @@ then
 	alias fgrep="fgrep --color=auto"
 	alias most="most -c"
 	alias less="less -R"
+	alias tree="tree -C"
 	which colordiff &>/dev/null && alias diff=colordiff
 	export KDE_COLOR_DEBUG=true
 fi
