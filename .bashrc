@@ -100,6 +100,13 @@ img2txt() {
 	cat ocr.txt | xsel -i -b
 }
 
+smc2sfc() {
+	for file in *.smc
+	do
+		dd if="$file" of="`echo $file | cut -d '.' -f 1`.sfc" bs=512 skip=1
+	done
+}
+
 random_mac() {
 	if [ "$1" == "" ]
 	then
@@ -172,6 +179,11 @@ set_title() {
 	fi
 	#TITLE="$TITLE ($USER@`hostname``pwd`)"
 	echo -ne "\e]0;$TITLE\007"
+}
+
+get_flash_videos()
+{
+        cd /proc/`pgrep -f flash`/fd && ls -l | grep /tmp/Flash
 }
 
 ### Display ###
