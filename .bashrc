@@ -64,7 +64,7 @@ alias psc="ps xawf -eo pid,user,cgroup,args"
 alias em="emacs -nw"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
-alias screenshot="xwd -root > ~/screenshot_$RANDOM.xwd"
+alias screenshot="import -screen ~/screenshot_$RANDOM.png"
 alias screencast="ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/screencast_$RANDOM.mpg"
 alias is_spam="bogofilter -s -B -v"
 alias is_not_spam="bogofilter -n -B -v"
@@ -109,10 +109,10 @@ smc2sfc() {
 }
 
 random_mac() {
-	if [ "$1" == "" ]
+	if [ "$1" == "" ] || [ "$1" == "--help" ]
 	then
 		echo "Usage: random_mac interface"
-		return 1
+		return
 	fi
 	MAC=`echo $RANDOM | md5sum | sed -r 's/^(.{12}).*$/\1/; s/([0-9a-f]{2})/\1:/g; s/:$//;'`
 	sudo ifconfig $1 down
@@ -124,31 +124,39 @@ random_mac() {
 	sudo ifconfig $1 up
 }
 
-function numerical_rename() {
-	if [ "$1" == "" ]
+function nb_rename() {
+	if [ "$1" == "--help" ]
 	then
-		echo "Usage: numerical_rename min_numbers_lenght prefix suffix"
-		return 1
+		echo "Usage: nb_rename [min_number_lenght] [prefix] [suffix]"
+		return
 	fi
 	i=0
-	for filename in `ls -v`
+	IFS=$'\n'
+	for filename in `ls -1v`
 	do
+		lenght=${1-3}
+		prefix=$2
+		suffix=${3-$(extname $filename)}
 		i=$(($i +1))
 		newname=$i
-		while [[ `echo -n $newname|wc -m` <$1 ]]
+		while [[ `echo -n $newname | wc -m` <$lenght ]]
 		do
 			newname=0$newname
 		done
-		newname=$2$newname$3
+		newname=$prefix$newname$suffix
 		mv $filename $newname && echo "$filename > $newname" || return 1
 	done
 }
 
+function extname() {
+	echo .$(echo "$1" | awk -F. '{print $NF}' -)
+}
+
 function thumbnail_all() {
-	if [ "$1" == "" ]
+	if [ "$1" == "" ] || [ "$1" == "--help" ]
 	then
 		echo "Usage: thumbnail_all destination_directory"
-		return 1
+		return
 	fi
 	for filename in **
 	do
