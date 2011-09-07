@@ -1,15 +1,14 @@
 # if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Load auto-completion
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-
 # Source global definitions
 [ -f /etc/bashrc ] && source /etc/bashrc
 
+# Source auto-completion
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+
 # Source local definitions
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
-
 
 # set useful options
 shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist nocaseglob nocasematch globstar checkjobs histappend
@@ -31,10 +30,6 @@ HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
 # mail
 export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
 
-# manpath
-#export MANPATH=`manpath`
-#export MANPATH=~/Applications/pkg-toolkit-linux-i386/pkg/man:$MANPATH
-
 # locale
 if [[ `locale -a | grep fr_FR.utf8` ]]
 then
@@ -43,15 +38,22 @@ then
 fi
 
 # apps
-#which nano &>/dev/null && export EDITOR=nano && export VISUAL=$EDITOR
-#which emacs &>/dev/null && export EDITOR="emacs -nw" && export VISUAL=$EDITOR
-which vim &>/dev/null && export EDITOR=vim && export VISUAL=$EDITOR
-which less &>/dev/null && export PAGER=less
-which most &>/dev/null && export PAGER=most
-#which lynx &>/dev/null && export BROWSER=lynx
-which firefox &>/dev/null && export BROWSER=firefox
-#which firefox-nightly &>/dev/null && export BROWSER=firefox-nightly
-which mplayer &>/dev/null && export PLAYER=mplayer
+function get_first_available() {
+	for app in $@
+	do
+		if [[ $(which $app 2>/dev/null) ]]
+		then
+			echo $app
+			break
+		fi
+	done
+}
+
+export EDITOR=`get_first_available vim nano emacs`
+export VISUAL=$EDITOR
+export PAGER=`get_first_available less most`
+export BROWSER=firefox
+export PLAYER=mplayer
 
 ### Aliases ###
 
@@ -72,6 +74,7 @@ alias say="espeak --stdin"
 alias dire="espeak --stdin -v fr"
 alias lire="xsel -o | espeak --stdin -v fr"
 alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
+alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias radio_Dogmazic="$PLAYER http://radio.musique-libre.org:8000/radio_dogmazic.ogg"
 alias radio_404="$PLAYER http://www.erreur404.org/radio404.pls"
@@ -124,7 +127,7 @@ random_mac() {
 	sudo ifconfig $1 up
 }
 
-function nb_rename() {
+function nbrename() {
 	if [ "$1" == "--help" ]
 	then
 		echo "Usage: nb_rename [min_number_lenght] [prefix] [suffix]"
@@ -139,7 +142,7 @@ function nb_rename() {
 		suffix=${3-$(extname $filename)}
 		i=$(($i +1))
 		newname=$i
-		while [[ `echo -n $newname | wc -m` <$lenght ]]
+		while [[ $(echo -n $newname | wc -m) <$lenght ]]
 		do
 			newname=0$newname
 		done
@@ -152,25 +155,13 @@ function extname() {
 	echo .$(echo "$1" | awk -F. '{print $NF}' -)
 }
 
-function thumbnail_all() {
-	if [ "$1" == "" ] || [ "$1" == "--help" ]
-	then
-		echo "Usage: thumbnail_all destination_directory"
-		return
-	fi
-	for filename in **
-	do
-		totem-video-thumbnailer -g 20 -j -s 300 "$filename" "$1/$filename.jpg"
-	done
-}
-
 function chroot_init() {
+	[ $1 ] && cd "$1"
 	[[ $PWD == "/" || ! -d dev || ! -d proc || ! -d sys || ! -x bin/bash ]] && echo "Not in a chrootable place" && return
 	sudo mount -o bind /dev dev
 	sudo mount -o bind /proc proc
 	sudo mount -o bind /sys sys
 	sudo sh -c 'cat /etc/resolv.conf > etc/resolv.conf'
-	sudo sh -c 'grep -v rootfs /proc/mounts > etc/mtab'
 	sudo chroot .
 }
 
@@ -190,7 +181,7 @@ set_title() {
 		[ -n "$2" ] && MATCH="$(echo $2 | sed 's/^%\([0-9]*\)/^\\[\1\\]/')"
 		TITLE="$(jobs | grep "$MATCH" | sed 's/^[^ ]* *[^ ]* *//')"
 	fi
-	#TITLE="$TITLE ($USER@`hostname``pwd`)"
+	TITLE="[$USER@`hostname``pwd`] $TITLE"
 	echo -ne "\e]0;$TITLE\007"
 }
 
@@ -203,7 +194,7 @@ get_flash_videos()
 
 # prompt
 [[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-export PS1='\[\033[`echo $USER_COLOR`m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
+export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
 
 # color
 export CLICOLOR=true
