@@ -181,11 +181,11 @@ set_title() {
 		[ -n "$2" ] && MATCH="$(echo $2 | sed 's/^%\([0-9]*\)/^\\[\1\\]/')"
 		TITLE="$(jobs | grep "$MATCH" | sed 's/^[^ ]* *[^ ]* *//')"
 	fi
-	TITLE="[$USER@`hostname``pwd`] $TITLE"
+	TITLE="[$USER@`hostname`] $TITLE"
 	echo -ne "\e]0;$TITLE\007"
 }
 
-get_flash_videos()
+flash_videos()
 {
         cd /proc/`pgrep -f flash`/fd && ls -l | grep /tmp/Flash
 }
@@ -194,7 +194,8 @@ get_flash_videos()
 
 # prompt
 [[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
+#export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
+export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\] \[\033[31m\]\$\[\033[0m\] '
 
 # color
 export CLICOLOR=true
