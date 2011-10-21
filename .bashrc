@@ -181,7 +181,7 @@ set_title() {
 		[ -n "$2" ] && MATCH="$(echo $2 | sed 's/^%\([0-9]*\)/^\\[\1\\]/')"
 		TITLE="$(jobs | grep "$MATCH" | sed 's/^[^ ]* *[^ ]* *//')"
 	fi
-	TITLE="[$USER@`hostname`] $TITLE"
+	[ ! -z "$SSH_CONNECTION" ] && TITLE="[$USER@`hostname`] $TITLE"
 	echo -ne "\e]0;$TITLE\007"
 }
 
