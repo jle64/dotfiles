@@ -84,7 +84,11 @@ alias radio_OxyRadio="$PLAYER http://www.oxyradio.net/listen/hd-ogg.pls"
 ### Functions ###
 
 mkcd() {
-	mkdir -p "$@" && cd "$@"
+	mkdir -p "$1" && cd "$1"
+}
+
+mkbak() {
+	cp -r "$1" "$1".bak-`date +%Y-%m-%d`
 }
 
 man2pdf() {
@@ -103,6 +107,7 @@ img2txt() {
 	cat ocr.txt | xsel -i -b
 }
 
+# Strip headers from S-NES roms
 smc2sfc() {
 	for file in *.smc *.swc
 	do
