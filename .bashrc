@@ -15,6 +15,7 @@ shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglo
 
 # make less more friendly for non-text input files, see lesspipe(1)
 which lesspipe &>/dev/null && eval "$(SHELL=/bin/sh lesspipe)"
+which lesspipe.sh &>/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
 
 # history
 HISTCONTROL=ignoreboth
@@ -54,6 +55,9 @@ export VISUAL=$EDITOR
 export PAGER=`get_first_available less most`
 export BROWSER=firefox
 export PLAYER=mplayer
+
+# less
+export LESS=-FSRX
 
 ### Aliases ###
 
@@ -212,7 +216,6 @@ then
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
 	alias most="most -c"
-	alias less="less -R"
 	alias tree="tree -C"
 	which colordiff &>/dev/null && alias diff=colordiff
 	export KDE_COLOR_DEBUG=true
