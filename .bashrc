@@ -57,7 +57,7 @@ export BROWSER=firefox
 export PLAYER=mplayer
 
 # less
-export LESS=-FSRX
+export LESS=-wR
 
 ### Aliases ###
 
