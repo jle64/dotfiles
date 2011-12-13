@@ -8,7 +8,7 @@
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
 # Source local definitions
-[ -f ~/.bashrc_local ] && source ~/.bashrc_local
+source ~/.bashrc_*
 
 # set useful options
 shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist nocaseglob nocasematch globstar checkjobs histappend
