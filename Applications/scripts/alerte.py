@@ -35,7 +35,8 @@ class Alerte():
 
     def get_hostname(self, alerte):
         try:
-            hostname = 'fr' + re.match(r'.*fr(.*) .*', alerte.lower()).group(1)
+            hostname = 'fr' + re.match(r'.*fr(.*?) .*', alerte.lower()).group(1)
+            if hostname[-1] == ")": hostname = hostname[:-1]
             if hostname == '': raise
         except:
             hostname = 'fr' + re.match(r'.*fr(.*)\).*', alerte.lower()).group(1)
