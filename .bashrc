@@ -7,9 +7,6 @@
 # Source auto-completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
-# Source local definitions
-source ~/.bashrc_*
-
 # set useful options
 shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist nocaseglob nocasematch globstar checkjobs histappend
 
@@ -50,9 +47,9 @@ function get_first_available() {
 	done
 }
 
-export EDITOR=`get_first_available vim nano emacs`
+export EDITOR=`get_first_available vim vi nano emacs`
 export VISUAL=$EDITOR
-export PAGER=`get_first_available less most`
+export PAGER=`get_first_available less most more`
 export BROWSER=firefox
 export PLAYER=mplayer
 
@@ -92,7 +89,7 @@ mkcd() {
 }
 
 mkbak() {
-	cp -r "$1" "$1".bak-`date +%Y-%m-%d`
+	cp -r "$1"{,.bak-`date +%F`}
 }
 
 man2pdf() {
@@ -233,8 +230,8 @@ PROMPT_COMMAND="set_title $SHELL"
 
 ### Debian stuff ###
 
-export DEBFULLNAME="Jonathan Lestrelin"
-export DEBEMAIL="zanko@daemontux.org"
+#export DEBFULLNAME="Jonathan Lestrelin"
+#export DEBEMAIL="zanko@daemontux.org"
 
 ### ArchLinux stuff ###
 
@@ -277,3 +274,6 @@ function pacman-disowned() {
 
 #export PKG_PATH=ftp://ftp.arcane-networks.fr/pub/OpenBSD/4.4/packages/i386/
 #export FETCH_PACKAGES=yes
+
+### Source local definitions ###
+source ~/.bashrc_*
