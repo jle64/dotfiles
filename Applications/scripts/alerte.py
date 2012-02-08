@@ -26,21 +26,22 @@ class Alerte():
         result = handle.read()
         return result
 
-    def show_error_dialog(self, text):
+    def show_error_dialog(self, primarytext, secondarytext):
         error_dialog = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, \
-            gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, text)
+            gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, primarytext)
+        error_dialog.format_secondary_text(secondarytext)
         response = error_dialog.run()
         if response == gtk.RESPONSE_CLOSE:
             error_dialog.destroy()
 
     def get_hostname(self, alerte):
         try:
-            hostname = 'fr' + re.match(r'.*fr(.*?) .*', alerte.lower()).group(1)
-            if hostname[-1] == ")": hostname = hostname[:-1]
-            if hostname == '': raise
+            self.hostname = 'fr' + re.match(r'.*fr(.*?) .*', alerte.lower()).group(1)
+            if self.hostname[-1] == ")": self.hostname = self.hostname[:-1]
+            if self.hostname == '': raise
         except:
-            hostname = 'fr' + re.match(r'.*fr(.*)\).*', alerte.lower()).group(1)
-        return hostname
+            self.hostname = 'fr' + re.match(r'.*fr(.*)\).*', alerte.lower()).group(1)
+        return self.hostname
 
     def callback(self, n, action):
         if action == "ssh":
@@ -56,22 +57,29 @@ class Alerte():
             subprocess.Popen(process)
         except Exception as e:
             self.show_error_dialog(\
-                "Erreur en tentant d'exécuter le processus :\n\n" + e.strerror)
+                "Erreur en tentant d'exécuter le processus :\n\n", e.strerror)
         n.show()
 
     def main(self):
         alerte = self.get_last_alerte()
-        if alerte != self.previous_alerte and self.previous_alerte != 'a':
+#        alerte = "frd141p01feu tout cassé"
+#        if alerte != self.previous_alerte and self.previous_alerte != 'a':
+        if alerte != self.previous_alerte and self.previous_alerte != '':
             print "Alerte : " + alerte
-            n = pynotify.Notification(alerte)
-            hostname = self.get_hostname(alerte)
-            print "Host : " + hostname
-            n.set_category("device")
-            if hostname[11] == 'u':
+#            alerte += "<a href='https://intranet.itc.integra.fr/crdi/'>CRDI</a>"
+            try:
+                self.hostname = self.get_hostname(alerte)
+                print "Host : " + self.hostname
+#                alerte += "<a href='https://centreon.itc.integra.fr/main.php?p=201&o=hd&host_name=" + self.hostname + "'>Centreon</a>" 
+            except Exception as e:
+                self.show_error_dialog(\
+                    "Erreur en tentant de parser le self.hostname :\n\n", e.message)
+            n = pynotify.Notification('Alerte', alerte)
+            if self.hostname[11] == 'u':
                 n.add_action("ssh", "SSH", self.callback)
-            if hostname[11] == 'w':
+            if self.hostname[11] == 'w':
                 n.add_action("rdp", "RDP", self.callback)
-            if hostname[9] == 'v':
+            if self.hostname[9] == 'v':
                 n.set_urgency(pynotify.URGENCY_CRITICAL)
             else:
                 n.set_urgency(pynotify.URGENCY_NORMAL)
