@@ -100,6 +100,14 @@ man2html() {
 	man -Thtml $@ >${TMPDIR-/tmp}/$1.html && ${BROWSER-xdg-open} ${TMPDIR-/tmp}/$1.html
 }
 
+get_redirs() {
+	for url in $@;
+		do echo $url;
+		( wget -O /dev/null -S $url 3>&1 1>&2- 2>&3- ) | egrep "HTTP/|Location";
+		echo "";
+	done
+}
+
 img2txt() {
 	cd ${TMPDIR-/tmp}
 
