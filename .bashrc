@@ -26,6 +26,7 @@ HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
 ### Environment ###
 
 # mail
+export EMAIL="zanko@daemontux.org"
 export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
 
 # locale
@@ -89,7 +90,7 @@ mkcd() {
 }
 
 mkbak() {
-	cp -r "$1"{,.bak-`date +%F`}
+	cp -r "`echo $1 | sed "s/\/$//"`"{,.bak-`date +%F`}
 }
 
 man2pdf() {
@@ -239,7 +240,7 @@ PROMPT_COMMAND="set_title $SHELL"
 ### Debian stuff ###
 
 #export DEBFULLNAME="Jonathan Lestrelin"
-#export DEBEMAIL="zanko@daemontux.org"
+#export DEBEMAIL="$EMAIL"
 
 ### ArchLinux stuff ###
 
