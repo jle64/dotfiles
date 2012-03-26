@@ -6,6 +6,7 @@
 
 # Source auto-completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+[ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
 # set useful options
 shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist nocaseglob nocasematch globstar checkjobs histappend
