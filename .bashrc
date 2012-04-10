@@ -98,10 +98,6 @@ man2pdf() {
 	man -Tps $@ | ps2pdf - >${TMPDIR-/tmp}/$1.pdf && xdg-open ${TMPDIR-/tmp}/$1.pdf
 }
 
-man2html() {
-	man -Thtml $@ >${TMPDIR-/tmp}/$1.html && ${BROWSER-xdg-open} ${TMPDIR-/tmp}/$1.html
-}
-
 get_redirs() {
 	for url in $@;
 		do echo $url;
