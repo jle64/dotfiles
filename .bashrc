@@ -98,6 +98,15 @@ man2pdf() {
 	man -Tps $@ | ps2pdf - >${TMPDIR-/tmp}/$1.pdf && xdg-open ${TMPDIR-/tmp}/$1.pdf
 }
 
+smv() {
+	scp $1 $2 && rm $1
+}
+
+sscp() {
+	filename=$(echo $1 | cut -d ':' -f2)
+	scp $1 . && scp $filename $2 && rm $filename 
+}
+
 get_redirs() {
 	for url in $@;
 		do echo $url;
