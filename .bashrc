@@ -26,6 +26,9 @@ HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
 
 ### Environment ###
 
+# more colors to xterm
+[[ $TERM==xterm ]] && export TERM=xterm-256color
+
 # mail
 export EMAIL="zanko@daemontux.org"
 export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
