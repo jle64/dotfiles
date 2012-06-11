@@ -55,6 +55,7 @@ function get_first_available() {
 export EDITOR=`get_first_available vim vi nano emacs`
 export VISUAL=$EDITOR
 export PAGER=`get_first_available less most more`
+export SYSTEMD_PAGER=cat
 export BROWSER=firefox
 export PLAYER=mplayer
 
