@@ -66,11 +66,9 @@ class Alerte():
 #        if alerte != self.previous_alerte and self.previous_alerte != 'a':
         if alerte != self.previous_alerte and self.previous_alerte != '':
             print "Alerte : " + alerte
-#            alerte += "<a href='https://intranet.itc.integra.fr/crdi/'>CRDI</a>"
             try:
                 self.hostname = self.get_hostname(alerte)
                 print "Host : " + self.hostname
-#                alerte += "<a href='https://centreon.itc.integra.fr/main.php?p=201&o=hd&host_name=" + self.hostname + "'>Centreon</a>" 
             except Exception as e:
                 self.show_error_dialog(\
                     "Erreur en tentant de parser le self.hostname :\n\n", e.message)
