@@ -90,6 +90,7 @@ alias radio_Dogmazic="$PLAYER http://radio.musique-libre.org:8000/radio_dogmazic
 alias radio_404="$PLAYER http://www.erreur404.org/radio404.pls"
 alias radio_FockNiouzes="$PLAYER http://www.fockniouzes.org/m3u/fockniouzes-ogg-128.m3u"
 alias radio_OxyRadio="$PLAYER http://www.oxyradio.net/listen/hd-ogg.pls"
+alias dmesg="dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'"
 
 ### Functions ###
 
