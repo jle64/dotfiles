@@ -201,7 +201,7 @@ function get_git_branch() {
 # set title
 # adapted from http://v3.sk/~lkundrak/blog/entries/bashrc.html
 set_title() {
-	[ "$TERM" != "xterm" ] && return
+	[ "$TERM" != "xterm-256color" ] && return
 	TITLE="$@"
 
 	if [ "$1" = fg ]
