@@ -9,9 +9,9 @@ class Alerte():
         pynotify.init('Alertes')
         self.previous_alerte = ''
         self.hostname = ''
-        #gobject.timeout_add(0, self.main)
-        #gtk.main()
-        self.main()
+	self.notifications = []
+        gobject.timeout_add(0, self.main)
+        gtk.main()
 
     def get_last_alerte(self):
         url = 'http://nagios.integra.fr/nagios/lastPage.txt'
@@ -62,8 +62,6 @@ class Alerte():
 
     def main(self):
         alerte = self.get_last_alerte()
-#        alerte = "frd141p01feu tout cassé"
-#        if alerte != self.previous_alerte and self.previous_alerte != 'a':
         if alerte != self.previous_alerte and self.previous_alerte != '':
             print "Alerte : " + alerte
             try:
@@ -73,7 +71,8 @@ class Alerte():
                 self.show_error_dialog(\
                     "Erreur en tentant de parser le self.hostname :\n\n", e.message)
             n = pynotify.Notification('Alerte', alerte)
-            if self.hostname[11] == 'u':
+            self.notifications.append(n) 
+            if self.hostname[11] == 'u' or self.hostname[11] == 'l':
                 n.add_action("ssh", "SSH", self.callback)
             if self.hostname[11] == 'w':
                 n.add_action("rdp", "RDP", self.callback)
@@ -86,7 +85,6 @@ class Alerte():
             n.show()
         self.previous_alerte = alerte
         gobject.timeout_add(10000, self.main)
-        gtk.main()
 
 if __name__ == '__main__':
     Alerte()
