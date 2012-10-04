@@ -72,6 +72,7 @@ alias df="df -h"
 alias rm="rm -i"
 alias cp="cp -i"
 alias psc="ps xawf -eo pid,user,cgroup,args"
+alias dmesg="dmesg -T"
 alias em="emacs -nw"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
@@ -84,6 +85,7 @@ alias say="espeak --stdin"
 alias speak="xsel -o | espeak --stdin"
 alias dire="espeak --stdin -v fr"
 alias lire="xsel -o | espeak --stdin -v fr"
+alias chromium_tor="chromium --proxy-server=socks://localhost:9050 --incognito"
 alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
 alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -91,7 +93,6 @@ alias radio_Dogmazic="$PLAYER http://radio.musique-libre.org:8000/radio_dogmazic
 alias radio_404="$PLAYER http://www.erreur404.org/radio404.pls"
 alias radio_FockNiouzes="$PLAYER http://www.fockniouzes.org/m3u/fockniouzes-ogg-128.m3u"
 alias radio_OxyRadio="$PLAYER http://www.oxyradio.net/listen/hd-ogg.pls"
-alias dmesg="dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'"
 
 ### Functions ###
 
