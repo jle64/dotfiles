@@ -12,3 +12,9 @@ autocmd BufReadPost *
   \ endif
 set hidden
 map <TAB> :e#<CR>
+"if has('gui_running')
+ "   set background=light
+"else
+ "   set background=dark
+"endif
+"colorscheme solarized

@@ -9,7 +9,7 @@
 [ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
 # set useful options
-shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist nocaseglob nocasematch globstar checkjobs histappend
+shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist globstar checkjobs histappend
 
 # make less more friendly for non-text input files, see lesspipe(1)
 which lesspipe &>/dev/null && eval "$(SHELL=/bin/sh lesspipe)"
@@ -55,7 +55,7 @@ function get_first_available() {
 export EDITOR=`get_first_available vim vi nano emacs`
 export VISUAL=$EDITOR
 export PAGER=`get_first_available less most more`
-export SYSTEMD_PAGER=cat
+#export SYSTEMD_PAGER=cat
 export BROWSER=firefox
 export PLAYER=mplayer
 
@@ -74,6 +74,7 @@ alias cp="cp -i"
 alias psc="ps xawf -eo pid,user,cgroup,args"
 alias dmesg="dmesg -T"
 alias em="emacs -nw"
+alias vless="/usr/share/vim/vim73/macros/less.sh"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
 alias smtp_server="python3 -m smtpd -n -c DebuggingServer"
