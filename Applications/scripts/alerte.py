@@ -1,15 +1,22 @@
 #!/usr/bin/env python2
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
-import re, subprocess, urllib2 as u
-import pynotify, gobject, gtk
+import re
+import subprocess
+import urllib2 as u
+import pynotify
+import gobject
+import gtk
 
-class Alerte():
+
+class Alerte:
+
     def __init__(self):
         pynotify.init('Alertes')
         self.previous_alerte = ''
         self.hostname = ''
-	self.notifications = []
+        self.alerte = ''
+        self.notifications = []
         gobject.timeout_add(0, self.main)
         gtk.main()
 
@@ -26,64 +33,72 @@ class Alerte():
         result = handle.read()
         return result
 
+    def get_hostname(self):
+        try:
+            hostname = re.match(r'.*([f,s,r][r,o,d,0-9][d,m,i][0-9]{3}[p,d,t,s,e,b][0-9]{2,3}[a-z]{2}[u,w,l,o,a,n]).*',
+                                self.alerte.lower()).group(1)
+        except (IndexError, AttributeError) as e:
+            self.show_error_dialog("Incapable d'identifier le nom de la machine :\n\n",
+                                   e.message)
+            hostname = 'Machine non identifiée'
+        return hostname
+
     def show_error_dialog(self, primarytext, secondarytext):
-        error_dialog = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT, \
-            gtk.MESSAGE_ERROR, gtk.BUTTONS_CLOSE, primarytext)
+        error_dialog = gtk.MessageDialog(None,
+                gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR,
+                gtk.BUTTONS_CLOSE, primarytext)
         error_dialog.format_secondary_text(secondarytext)
         response = error_dialog.run()
         if response == gtk.RESPONSE_CLOSE:
             error_dialog.destroy()
 
-    def get_hostname(self, alerte):
-        try:
-            self.hostname = 'fr' + re.match(r'.*fr(.*?) .*', alerte.lower()).group(1)
-            if self.hostname[-1] == ")": self.hostname = self.hostname[:-1]
-            if self.hostname == '': raise
-        except:
-            self.hostname = 'fr' + re.match(r'.*fr(.*)\).*', alerte.lower()).group(1)
-        return self.hostname
-
     def callback(self, n, action):
-        if action == "ssh":
-            process = ['/usr/bin/gnome-terminal', '-e', 'ssh ' + self.hostname]
-        elif action == "rdp":
+        if action == 'ssh':
+            process = ['/usr/bin/gnome-terminal', '-e', 'ssh '
+                       + self.hostname]
+        elif action == 'rdp':
             process = ['/usr/bin/rdesktop', self.hostname]
-        elif action == "centreon":
-            process = ['/usr/bin/xdg-open', \
-                'https://centreon.itc.integra.fr/main.php?p=201&o=hd&host_name=' + self.hostname]
-        elif action == "crdi":
-            process = ['/usr/bin/xdg-open', 'https://intranet.itc.integra.fr/crdi/']
+        elif action == 'centreon':
+            process = ['/usr/bin/xdg-open',
+                       'https://centreon.itc.integra.fr/main.php?p=20201&o=svc&host_search='
+                        + self.hostname]
+        elif action == 'crdi':
+            process = ['/usr/bin/xdg-open',
+                       'https://intranet.itc.integra.fr/crdi/']
         try:
             subprocess.Popen(process)
-        except Exception as e:
-            self.show_error_dialog(\
-                "Erreur en tentant d'exécuter le processus :\n\n", e.strerror)
+        except OSError as e:
+            self.show_error_dialog("Erreur en tentant d'exécuter le processus :\n\n",
+                                   e.strerror)
+        n.show()
+
+    def show_alerte(self):
+        self.hostname = self.get_hostname()
+        n = pynotify.Notification('Alerte sur ' + self.hostname,
+                                  self.alerte, 'abrt')
+        self.notifications.append(n)
+        if self.hostname[-1] == 'u' or self.hostname[-1] == 'l' \
+            or self.hostname[-3:] == 'san':
+            n.add_action('ssh', 'SSH', self.callback)
+        if self.hostname[-1] == 'w':
+            n.add_action('rdp', 'RDP', self.callback)
+        if self.hostname[6] == 'p':
+            n.set_urgency(pynotify.URGENCY_NORMAL)
+        else:
+            # n.set_urgency(pynotify.URGENCY_CRITICAL)
+            n.set_urgency(pynotify.URGENCY_NORMAL)
+        n.add_action('centreon', 'Centreon', self.callback)
+        n.add_action('crdi', 'CRDI', self.callback)
+        print 'Host : ' + self.hostname
+        print 'Alerte : ' + self.alerte
         n.show()
 
     def main(self):
-        alerte = self.get_last_alerte()
-        if alerte != self.previous_alerte and self.previous_alerte != '':
-            print "Alerte : " + alerte
-            try:
-                self.hostname = self.get_hostname(alerte)
-                print "Host : " + self.hostname
-            except Exception as e:
-                self.show_error_dialog(\
-                    "Erreur en tentant de parser le self.hostname :\n\n", e.message)
-            n = pynotify.Notification('Alerte', alerte)
-            self.notifications.append(n) 
-            if self.hostname[11] == 'u' or self.hostname[11] == 'l':
-                n.add_action("ssh", "SSH", self.callback)
-            if self.hostname[11] == 'w':
-                n.add_action("rdp", "RDP", self.callback)
-            if self.hostname[9] == 'v':
-                n.set_urgency(pynotify.URGENCY_CRITICAL)
-            else:
-                n.set_urgency(pynotify.URGENCY_NORMAL)
-            n.add_action("centreon", "Centreon", self.callback)
-            n.add_action("crdi", "CRDI", self.callback)
-            n.show()
-        self.previous_alerte = alerte
+        self.alerte = self.get_last_alerte()
+        if self.alerte != self.previous_alerte and \
+            self.previous_alerte != '':
+            self.show_alerte()
+        self.previous_alerte = self.alerte
         gobject.timeout_add(10000, self.main)
 
 if __name__ == '__main__':
