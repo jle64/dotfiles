@@ -3,6 +3,7 @@
 
 import re
 import subprocess
+import socket
 import urllib2 as u
 import pynotify
 import gobject
@@ -35,7 +36,7 @@ class Alerte:
 
     def get_hostname(self):
         try:
-            hostname = re.match(r'.*([f,s,r][r,o,d,0-9][d,m,i][0-9]{3}[p,d,t,s,e,b][0-9]{2,3}[a-z]{2}[u,w,l,o,a,n]).*',
+            hostname = re.match(r'.*((f[r,1-9]|ro|sd)[d,m,i][0-9]{3}[p,d,t,s,e,b][0-9]{2,3}[a-z]{2}[u,w,l,o,a,n]).*',
                                 self.alerte.lower()).group(1)
         except (IndexError, AttributeError) as e:
             self.show_error_dialog("Incapable d'identifier le nom de la machine :\n\n",
@@ -58,6 +59,9 @@ class Alerte:
                        + self.hostname]
         elif action == 'rdp':
             process = ['/usr/bin/rdesktop', self.hostname]
+        elif action == 'drac':
+            process = ['/usr/bin/xdg-open',
+                       "http://%s.drac.integra.fr/" % self.hostname]
         elif action == 'centreon':
             process = ['/usr/bin/xdg-open',
                        'https://centreon.itc.integra.fr/main.php?p=20201&o=svc&host_search='
@@ -82,13 +86,17 @@ class Alerte:
             n.add_action('ssh', 'SSH', self.callback)
         if self.hostname[-1] == 'w':
             n.add_action('rdp', 'RDP', self.callback)
-        if self.hostname[6] == 'p':
-            n.set_urgency(pynotify.URGENCY_NORMAL)
-        else:
+        try :
+            socket.getaddrinfo(self.hostname + '.drac.integra.fr', '80')
+            n.add_action('drac', 'DRAC', self.callback)
+        except:
+            pass
+        if self.hostname[6] == 'p': pass
             # n.set_urgency(pynotify.URGENCY_CRITICAL)
+        else:
             n.set_urgency(pynotify.URGENCY_NORMAL)
         n.add_action('centreon', 'Centreon', self.callback)
-        n.add_action('crdi', 'CRDI', self.callback)
+        #n.add_action('crdi', 'CRDI', self.callback)
         print 'Host : ' + self.hostname
         print 'Alerte : ' + self.alerte
         n.show()
