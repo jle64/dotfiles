@@ -21,4 +21,3 @@ unsetopt notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-source ~/.zsh-theme

@@ -98,12 +98,16 @@ export LESS=-wR
 alias ls="ls -hp --group-directories-first"
 alias ll="ls -l"
 alias la="ls -a"
+alias lx="ls -xb"           # sort by extension
+alias lk="ls -lSr"          # sort by size, biggest last
+alias lt="ls -ltr"          # sort by date, most recent last
 alias lsb="ls -ail"
 alias du="du -h"
 alias df="df -h"
 alias rm="rm -i"
 alias cp="cp -i"
 alias em="emacs -nw"
+alias dmesg="dmesg -TL"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
 alias smtp_server="python3 -m smtpd -n -c DebuggingServer"
@@ -226,7 +230,8 @@ flash_videos()
 
 # prompt
 [[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\] \[\033[31m\]\$\[\033[0m\] '
+export PS1='┌─ \[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\w\[\033[35m\] \[\033[31m\]\$\[\033[0m\]
+└╼ '
 
 # color
 export CLICOLOR=true
@@ -252,4 +257,4 @@ trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="set_title $SHELL"
 
 ### Source local definitions ###
-source ~/.bashrc_*
+source ~/.bashrc_local
