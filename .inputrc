@@ -1,0 +1,18 @@
+# visible or audible
+set bell-style none
+set expand-tilde on
+set blink-matching-paren on
+# if completing in the middle of a word, dont duplicate text
+set skip-completed-text on
+# ask to display more than 128 items
+set completion-query-items 128
+# do not uses an internal pager to display screens of possible completions
+set page-completions off
+# add @, /, *, = to filetype in completion list
+set visible-stats on
+# maximum number of history entries saved (0 for unlimited)
+set history-size 10000
+# display an asterisk (`*') at the start of history lines which have been modified
+set mark-modified-lines off
+# undo all changes to history before  returning  when  accept-line  is  executed
+set revert-all-at-newline on

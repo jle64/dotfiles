@@ -8,12 +8,54 @@
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 [ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
 
-# set useful options
-shopt -s no_empty_cmd_completion cdable_vars checkwinsize cmdhist dotglob extglob hostcomplete huponexit lithist globstar checkjobs histappend
-
 # make less more friendly for non-text input files, see lesspipe(1)
 which lesspipe &>/dev/null && eval "$(SHELL=/bin/sh lesspipe)"
 which lesspipe.sh &>/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
+
+# set shell options
+shopt -s autocd
+shopt -s cdable_vars
+shopt -u cdspell
+shopt -s checkhash
+shopt -s checkjobs
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -u compat31
+shopt -u compat32
+shopt -u compat40
+shopt -u compat41
+shopt -u direxpand
+shopt -u dirspell
+shopt -s dotglob
+shopt -s execfail
+shopt -s expand_aliases
+shopt -u extdebug
+shopt -s extglob
+shopt -s extquote
+shopt -u failglob
+shopt -s force_fignore
+shopt -u globstar
+shopt -s gnu_errfmt
+shopt -s histappend
+shopt -s histreedit
+shopt -s histverify
+shopt -s hostcomplete
+shopt -s huponexit
+shopt -s interactive_comments
+shopt -u lastpipe
+shopt -s lithist
+shopt -u login_shell
+shopt -u mailwarn
+shopt -s no_empty_cmd_completion
+shopt -u nocaseglob
+shopt -u nocasematch
+shopt -u nullglob
+shopt -s progcomp
+shopt -s promptvars
+shopt -u restricted_shell
+shopt -u shift_verbose
+shopt -s sourcepath
+shopt -u xpg_echo
 
 # history
 HISTCONTROL=ignoreboth
@@ -36,8 +78,7 @@ export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
 # locale
 if [[ `locale -a | grep fr_FR.utf8` ]]
 then
-	export LANG=fr_FR.UTF-8
-	export LC_ALL=$LANG
+	export LANG=fr_FR.utf8
 fi
 
 # apps
@@ -52,10 +93,10 @@ function get_first_available() {
 	done
 }
 
-export EDITOR=`get_first_available vim vi nano emacs`
-export VISUAL=$EDITOR
-export PAGER=`get_first_available less most more`
-#export SYSTEMD_PAGER=cat
+export EDITOR=vim
+export PAGER=less
+export SYSTEMD_PAGER=cat
+export GIT_PAGER=cat
 export BROWSER=firefox
 export PLAYER=mplayer
 
@@ -66,6 +107,7 @@ export LESS=-wR
 
 alias ls="ls -hp --group-directories-first"
 alias ll="ls -l"
+alias la="ls -a"
 alias lsb="ls -ail"
 alias du="du -h"
 alias df="df -h"
@@ -226,22 +268,21 @@ flash_videos()
 
 # prompt
 [[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-#export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\]$([[ `type -t get_git_branch` == function ]] && get_git_branch) \[\033[31m\]\$\[\033[0m\] '
 export PS1='\[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\W\[\033[35m\] \[\033[31m\]\$\[\033[0m\] '
 
 # color
 export CLICOLOR=true
-if [ "$TERM" != "dumb" ]
+if [[ "$TERM" == "xterm" || "$TERM" == "xterm-256color" ]]
 then
-	eval "`dircolors -b`"
+	eval `dircolors ~/.dircolors`
 	alias ls="`alias ls | cut -d \' -f 2` --color=auto"
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
-	alias most="most -c"
+	#alias most="most -c"
 	alias tree="tree -C"
 	which colordiff &>/dev/null && alias diff=colordiff
-	export KDE_COLOR_DEBUG=true
+	#export KDE_COLOR_DEBUG=true
 	export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 	export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
 	export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -254,52 +295,11 @@ fi
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="set_title $SHELL"
 
-### Debian stuff ###
-
 #export DEBFULLNAME="Jonathan Lestrelin"
 #export DEBEMAIL="$EMAIL"
 
-### ArchLinux stuff ###
-
-function pacman-disowned() {
-	tmp=${TMPDIR-/tmp}/pacman-disowned-$UID-$$
-	db=$tmp/db
-	fs=$tmp/fs
-
-	mkdir "$tmp"
-	trap  'rm -rf "$tmp"' EXIT
-
-	pacman -Qlq | sort -u > "$db"
-
-	find /bin /etc /lib /lib64 /sbin /usr \
-	! -path '/usr/share/mime/*' \
-	! -path '/etc/ssl/certs/*' \
-	! -path '/etc/fonts/*' \
-	! -path '/etc/gconf/*' \
-	! -name lost+found \
-	! -name '*.cache'
-	\( -type d -printf '%p/\n' -o -print \) | sort > "$fs"
-
-	comm -23 "$fs" "$db"
-}
-
-[ -f /usr/share/pkgtools/pkgfile-hook.bash ] && . /usr/share/pkgtools/pkgfile-hook.bash
-
-### NetBSD stuff ###
-
-#export PKG_PATH="ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/amd64/5.0_2009Q2/All"
-
-### FreeBSD stuff ###
-
-#export PACKAGESITE=ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-stable/Latest/
-
-# list files unknown of the packages database
+# FreeBSD: list files unknown of the packages database
 #alias pkg-list-orphans="find /usr/local /usr/X11R6 -type f | xargs pkg_which -v | fgrep '?'"
-
-### OpenBSD stuff ###
-
-#export PKG_PATH=ftp://ftp.arcane-networks.fr/pub/OpenBSD/4.4/packages/i386/
-#export FETCH_PACKAGES=yes
 
 ### Source local definitions ###
 source ~/.bashrc_*
