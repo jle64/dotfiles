@@ -72,26 +72,16 @@ HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
 [[ $TERM==xterm ]] && export TERM=xterm-256color
 
 # mail
-export EMAIL="zanko@daemontux.org"
+export EMAIL="jonathan.lestrelin@gmail.com"
 export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
+#export DEBFULLNAME="Jonathan Lestrelin"
+#export DEBEMAIL="$EMAIL"
 
 # locale
 if [[ `locale -a | grep fr_FR.utf8` ]]
 then
 	export LANG=fr_FR.utf8
 fi
-
-# apps
-function get_first_available() {
-	for app in $@
-	do
-		if [[ $(which $app 2>/dev/null) ]]
-		then
-			echo $app
-			break
-		fi
-	done
-}
 
 export EDITOR=vim
 export PAGER=less
@@ -113,17 +103,10 @@ alias du="du -h"
 alias df="df -h"
 alias rm="rm -i"
 alias cp="cp -i"
-alias psc="ps xawf -eo pid,user,cgroup,args"
-alias dmesg="dmesg -T"
 alias em="emacs -nw"
-alias vless="/usr/share/vim/vim73/macros/less.sh"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
 alias smtp_server="python3 -m smtpd -n -c DebuggingServer"
-alias screenshot="import -screen ~/screenshot_$RANDOM.png"
-alias screencast="ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/screencast_$RANDOM.mpg"
-alias is_spam="bogofilter -s -B -v"
-alias is_not_spam="bogofilter -n -B -v"
 alias say="espeak --stdin"
 alias speak="xsel -o | espeak --stdin"
 alias dire="espeak --stdin -v fr"
@@ -131,7 +114,6 @@ alias lire="xsel -o | espeak --stdin -v fr"
 alias chromium_tor="chromium --proxy-server=socks://localhost:9050 --incognito"
 alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
 alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias radio_Dogmazic="$PLAYER http://radio.musique-libre.org:8000/radio_dogmazic.ogg"
 alias radio_404="$PLAYER http://www.erreur404.org/radio404.pls"
 alias radio_FockNiouzes="$PLAYER http://www.fockniouzes.org/m3u/fockniouzes-ogg-128.m3u"
@@ -143,14 +125,6 @@ mkcd() {
 	mkdir -p "$1" && cd "$1"
 }
 
-mkbak() {
-	cp -r "`echo $1 | sed "s/\/$//"`"{,.bak-`date +%F`}
-}
-
-man2pdf() {
-	man -Tps $@ | ps2pdf - >${TMPDIR-/tmp}/$1.pdf && xdg-open ${TMPDIR-/tmp}/$1.pdf
-}
-
 smv() {
 	scp $1 $2 && rm $1
 }
@@ -160,29 +134,12 @@ sscp() {
 	scp $1 . && scp $filename $2 && rm $filename 
 }
 
-get_redirs() {
-	for url in $@;
-		do echo $url;
-		( wget -O /dev/null -S $url 3>&1 1>&2- 2>&3- ) | egrep "HTTP/|Location";
-		echo "";
-	done
-}
-
 img2txt() {
 	cd ${TMPDIR-/tmp}
 
 	import -depth 8 ocr.tif
 	tesseract ocr.tif ocr -l fra
 	cat ocr.txt | xsel -i -b
-}
-
-# Strip headers from S-NES roms
-smc2sfc() {
-	for file in *.smc *.swc
-	do
-		basename=`basename $file`
-		[ -f $basename.sfc ] && dd if="$file" of="$basename.sfc" bs=512 skip=1
-	done
 }
 
 random_mac() {
@@ -259,6 +216,7 @@ set_title() {
 	echo -ne "\e]0;$TITLE\007"
 }
 
+# show file descriptors pointing to flash plugin open videos
 flash_videos()
 {
         cd /proc/`pgrep -f flash`/fd && ls -l | grep /tmp/Flash
@@ -279,10 +237,8 @@ then
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
-	#alias most="most -c"
 	alias tree="tree -C"
 	which colordiff &>/dev/null && alias diff=colordiff
-	#export KDE_COLOR_DEBUG=true
 	export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 	export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
 	export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -294,12 +250,6 @@ fi
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="set_title $SHELL"
-
-#export DEBFULLNAME="Jonathan Lestrelin"
-#export DEBEMAIL="$EMAIL"
-
-# FreeBSD: list files unknown of the packages database
-#alias pkg-list-orphans="find /usr/local /usr/X11R6 -type f | xargs pkg_which -v | fgrep '?'"
 
 ### Source local definitions ###
 source ~/.bashrc_*
