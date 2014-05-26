@@ -62,6 +62,8 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=$HISTSIZE
 HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
+# Whenever displaying the prompt, write the previous line to disk
+export PROMPT_COMMAND="history -a"
 
 # umask, different if root
 [ $UID != 0 ] && umask 027 || umask 022
@@ -74,8 +76,8 @@ HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
 # mail
 export EMAIL="jonathan.lestrelin@gmail.com"
 export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
-#export DEBFULLNAME="Jonathan Lestrelin"
-#export DEBEMAIL="$EMAIL"
+export DEBFULLNAME="Jonathan Lestrelin"
+export DEBEMAIL="$EMAIL"
 
 # locale
 if [[ `locale -a | grep fr_FR.utf8` ]]
@@ -88,7 +90,6 @@ export PAGER=less
 export SYSTEMD_PAGER=cat
 export GIT_PAGER=cat
 export BROWSER=firefox
-export PLAYER=mplayer
 
 # less
 export LESS=-wR
@@ -97,7 +98,7 @@ export LESS=-wR
 
 alias ls="ls -hp --group-directories-first"
 alias ll="ls -l"
-alias la="ls -a"
+alias la="ls -A"
 alias lx="ls -xb"           # sort by extension
 alias lk="ls -lSr"          # sort by size, biggest last
 alias lt="ls -ltr"          # sort by date, most recent last
@@ -106,7 +107,9 @@ alias du="du -h"
 alias df="df -h"
 alias rm="rm -i"
 alias cp="cp -i"
-alias em="emacs -nw"
+alias mv="mv -i"
+alias trash="gvfs-trash"
+alias ec="emacs -nw"
 alias dmesg="dmesg -TL"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
@@ -118,10 +121,6 @@ alias lire="xsel -o | espeak --stdin -v fr"
 alias chromium_tor="chromium --proxy-server=socks://localhost:9050 --incognito"
 alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
 alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
-alias radio_Dogmazic="$PLAYER http://radio.musique-libre.org:8000/radio_dogmazic.ogg"
-alias radio_404="$PLAYER http://www.erreur404.org/radio404.pls"
-alias radio_FockNiouzes="$PLAYER http://www.fockniouzes.org/m3u/fockniouzes-ogg-128.m3u"
-alias radio_OxyRadio="$PLAYER http://www.oxyradio.net/listen/hd-ogg.pls"
 
 ### Functions ###
 
@@ -131,11 +130,6 @@ mkcd() {
 
 smv() {
 	scp $1 $2 && rm $1
-}
-
-sscp() {
-	filename=$(echo $1 | cut -d ':' -f2)
-	scp $1 . && scp $filename $2 && rm $filename 
 }
 
 img2txt() {
@@ -200,8 +194,13 @@ function chroot_init() {
 	sudo chroot .
 }
 
+function show_last_status() {
+	[[ $? == 0 ]] && echo -e "\\033[1;32m\\033[1;7m OK \\033[1;0m" || echo -e "\\033[1;31m\\033[1;7m KO \\033[1;0m"
+}
+
 function get_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+	GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
+	[[ $PWD != $HOME ]] && [[ -d .git ]] && echo $GIT_BRANCH
 }
 
 # set title
@@ -226,11 +225,69 @@ flash_videos()
         cd /proc/`pgrep -f flash`/fd && ls -l | grep /tmp/Flash
 }
 
+# This function defines a 'cd' replacement function capable of keeping, 
+# displaying and accessing history of visited directories, up to 10 entries.
+# acd_func 1.0.5, 10-nov-2004
+# Petar Marinov, http:/geocities.com/h2428, this is public domain
+cd_func ()
+{
+  local x2 the_new_dir adir index
+  local -i cnt
+
+  if [[ $1 ==  "--" ]]; then
+    dirs -v
+    return 0
+  fi
+
+  the_new_dir=$1
+  [[ -z $1 ]] && the_new_dir=$HOME
+
+  if [[ ${the_new_dir:0:1} == '-' ]]; then
+    #
+    # Extract dir N from dirs
+    index=${the_new_dir:1}
+    [[ -z $index ]] && index=1
+    adir=$(dirs +$index)
+    [[ -z $adir ]] && return 1
+    the_new_dir=$adir
+  fi
+
+  #
+  # '~' has to be substituted by ${HOME}
+  [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+
+  #
+  # Now change to the new dir and add to the top of the stack
+  pushd "${the_new_dir}" > /dev/null
+  [[ $? -ne 0 ]] && return 1
+  the_new_dir=$(pwd)
+
+  #
+  # Trim down everything beyond 11th entry
+  popd -n +11 2>/dev/null 1>/dev/null
+
+  #
+  # Remove any other occurence of this dir, skipping the top of the stack
+  for ((cnt=1; cnt <= 10; cnt++)); do
+    x2=$(dirs +${cnt} 2>/dev/null)
+    [[ $? -ne 0 ]] && return 0
+    [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
+    if [[ "${x2}" == "${the_new_dir}" ]]; then
+      popd -n +$cnt 2>/dev/null 1>/dev/null
+      cnt=cnt-1
+    fi
+  done
+
+  return 0
+}
+
+alias cd=cd_func
+
 ### Display ###
 
 # prompt
-[[ $UID != 0 ]] && USER_COLOR=32 || USER_COLOR=31
-export PS1='┌─ \[\033[$(echo $USER_COLOR)m\]\u\[\033[33m\]@\h \[\033[36m\]\w\[\033[35m\] \[\033[31m\]\$\[\033[0m\]
+[[ $UID != 0 ]] && USER_COLOR='32' || USER_COLOR='1;31'
+export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7m$es\\033[1;0m "; fi)\[\033[$(echo $USER_COLOR)m\]\u\[\033[0;33m\]@\h:\[\033[36m\]\w\[\033[34m\]$(get_git_branch)\[\033[35m\] \[\033[31m\]\$\[\033[0m\]
 └╼ '
 
 # color
@@ -251,10 +308,15 @@ then
 	export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
 	export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 	export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
+	if [ -f "/usr/lib/libstderred.so" ]; then
+		export LD_PRELOAD="/usr/lib/libstderred.so"
+	fi
 fi
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="set_title $SHELL"
 
 ### Source local definitions ###
-source ~/.bashrc_local
+if [ -f ~/.bashrc_local ]; then
+	source ~/.bashrc_local
+fi

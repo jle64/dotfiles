@@ -1,22 +1,33 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(fill-column 120)
  '(global-linum-mode 1))
+
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:height 90)))))
 
 ; Theme for graphic mode only
 ;(require 'color-theme)
 ;(if window-system
 ;    (color-theme-resolve))
+
+; More colors
+(setq font-lock-maximum-size nil)
+
+; Show matching parentheses
+(load-library "paren")
+(show-paren-mode 1)
+
+; Set window title
+(setq frame-title-format '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
 
 ; Disable startup screen
 (setq inhibit-startup-screen t)
@@ -55,7 +66,7 @@
 (delete-selection-mode t)
 
 ; Simple auto-complete with tab
-;(global-set-key [(tab)] 'smart-tab)
+(global-set-key [(tab)] 'smart-tab)
 (defun smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
     the minibuffer. Else, if mark is active, indents region. Else if
@@ -100,10 +111,33 @@
 ; Use trash
 ;(setq delete-by-moving-to-trash t)
 
-;; allow dired to be able to delete or copy a whole dir.
+; Allow dired to be able to delete or copy a whole dir.
 (setq dired-recursive-copies (quote always))
 (setq dired-recursive-deletes (quote top))
-;; “always” means no asking.
-;; “top” means ask once (top = top dir).
-;; any other symbol means ask each and every time for a dir and subdir.
+; “always” means no asking.
+; “top” means ask once (top = top dir).
+; any other symbol means ask each and every time for a dir and subdir.
 
+; Add the marmalade repo
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+; Add the MELPA repo
+(require 'package)
+(add-to-list 'package-archives 
+    '("melpa" .
+      "http://melpa.milkbox.net/packages/"))
+(package-initialize)
+
+; Load the 'evil' (vim) mode
+(add-to-list 'load-path "~/.emacs.d/evil") (require 'evil) (evil-mode 1)
+(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
+   (setq evil-emacs-state-modes nil)
+
+; Enable Sublime Text-like minimap
+(require 'sublimity)
+(require 'sublimity-scroll)
+(require 'sublimity-map)
