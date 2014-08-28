@@ -4,37 +4,35 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(fill-column 120)
- '(global-linum-mode 1))
+ '(fill-column 120))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 90)))))
-
-; Theme for graphic mode only
-;(require 'color-theme)
-;(if window-system
-;    (color-theme-resolve))
-
-; More colors
-(setq font-lock-maximum-size nil)
+ '(default ((t (:height 90))))
+ '(linum ((t (:inherit (shadow default) :background "white"))))
+ '(mode-line ((t (:background "white" :foreground "brightblack" :box (:line-width -1 :style released-button))))))
 
 ; Show matching parentheses
 (load-library "paren")
 (show-paren-mode 1)
 
 ; Set window title
-(setq frame-title-format '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
+(setq frame-title-format '(buffer-file-name "%f - Emacs" "%b - Emacs"))
 
 ; Disable startup screen
 (setq inhibit-startup-screen t)
 
 ; Use a single backup directory
 (setq backup-directory-alist
-'(("." . "~/.emacs-backups/")))
+'(("." . "~/.cache/emacs/backups")))
+
+; Remember position in files
+(setq save-place-file "~/.cache/emacs/saveplace") ;; keep my ~ clean
+(setq-default save-place t)                   ;; activate it for all buffers
+(require 'saveplace)                          ;; get the package
 
 ; Disable backup
 ;(setq backup-inhibited t)
@@ -43,6 +41,7 @@
 (setq auto-save-default nil)
 
 ; Show column and line numbers
+(global-linum-mode 1)
 (column-number-mode 1)
 (line-number-mode 1)
 
@@ -83,40 +82,22 @@
           (dabbrev-expand nil)
         (indent-for-tab-command)))))
 
-; Python auto-completion (need Pysmell)
-;(require 'pysmell)
-;(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
-
-; Tab bar
-;(tabbar-mode)
-
-; Transparency
-(defun djcb-opacity-modify (&optional dec)
-  "modify the transparency of the emacs frame; if DEC is t,
-    decrease the transparency, otherwise increase it in 10%-steps"
-  (let* ((alpha-or-nil (frame-parameter nil 'alpha)) ; nil before setting
-          (oldalpha (if alpha-or-nil alpha-or-nil 100))
-          (newalpha (if dec (- oldalpha 10) (+ oldalpha 10))))
-    (when (and (>= newalpha frame-alpha-lower-limit) (<= newalpha 100))
-      (modify-frame-parameters nil (list (cons 'alpha newalpha))))))
-
- ;; C-8 will increase opacity (== decrease transparency)
- ;; C-9 will decrease opacity (== increase transparency
- ;; C-0 will returns the state to normal
-(global-set-key (kbd "C-8") '(lambda()(interactive)(djcb-opacity-modify)))
-(global-set-key (kbd "C-9") '(lambda()(interactive)(djcb-opacity-modify t)))
-(global-set-key (kbd "C-0") '(lambda()(interactive)
-                               (modify-frame-parameters nil `((alpha . 100)))))
-
 ; Use trash
 ;(setq delete-by-moving-to-trash t)
 
 ; Allow dired to be able to delete or copy a whole dir.
-(setq dired-recursive-copies (quote always))
+(setq dired-recursive-copies (quote top))
 (setq dired-recursive-deletes (quote top))
 ; “always” means no asking.
 ; “top” means ask once (top = top dir).
 ; any other symbol means ask each and every time for a dir and subdir.
+
+; Show matching parentheses
+(load-library "paren")
+(show-paren-mode 1)
+
+; Set window title
+(setq frame-title-format '(buffer-file-name "%f - Emacs" "%b - Emacs"))
 
 ; Add the marmalade repo
 (require 'package)
@@ -132,12 +113,25 @@
       "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+; Disable the menu bar and the toolbar
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
 ; Load the 'evil' (vim) mode
 (add-to-list 'load-path "~/.emacs.d/evil") (require 'evil) (evil-mode 1)
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
    (setq evil-emacs-state-modes nil)
 
-; Enable Sublime Text-like minimap
-(require 'sublimity)
-(require 'sublimity-scroll)
-(require 'sublimity-map)
+; Keybinding for switching to/from evil mode
+(defun evil-toggle-input-method ()
+      "when toggle on input method, switch to evil-insert-state if possible.
+    when toggle off input method, switch to evil-normal-state if current state is evil-insert-state"
+      (interactive)
+      (if (not current-input-method)
+          (if (not (string= evil-state "insert"))
+              (evil-insert-state))
+        (if (string= evil-state "insert")
+            (evil-normal-state)
+            ))
+      (toggle-input-method))
+    (global-set-key (kbd "C-\\") 'evil-toggle-input-method)

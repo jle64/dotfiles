@@ -12,6 +12,7 @@ autocmd BufReadPost *
   \ endif
 set hidden
 map <TAB> :e#<CR>
+cnoremap sudow w !sudo tee % >/dev/null
 "if has('gui_running')
  "   set background=light
 "else

@@ -97,19 +97,21 @@ export LESS=-wR
 ### Aliases ###
 
 alias ls="ls -hp --group-directories-first"
+alias l="ls"
 alias ll="ls -l"
 alias la="ls -A"
 alias lx="ls -xb"           # sort by extension
 alias lk="ls -lSr"          # sort by size, biggest last
 alias lt="ls -ltr"          # sort by date, most recent last
 alias lsb="ls -ail"
-alias du="du -h"
 alias df="df -h"
-alias rm="rm -i"
+alias rm="rm -I"
 alias cp="cp -i"
 alias mv="mv -i"
+alias cta="cat"
 alias trash="gvfs-trash"
-alias ec="emacs -nw"
+alias e="emacs -nw"
+alias v="vim"
 alias dmesg="dmesg -TL"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
@@ -126,10 +128,6 @@ alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8
 
 mkcd() {
 	mkdir -p "$1" && cd "$1"
-}
-
-smv() {
-	scp $1 $2 && rm $1
 }
 
 img2txt() {
