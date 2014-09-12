@@ -16,9 +16,12 @@ function fish_prompt
         set_color magenta
     end
     echo -n @
-    echo -n (hostname)
+    echo -n (hostname):
     set_color cyan
-    echo -n :(pwd|sed "s=$HOME=~=")
+    echo -n (pwd|sed "s=$HOME=~=")
+    set_color red
+    echo -n ' $ '
+    set_color normal
     
     # Check if acpi exists
     if not set -q __fish_nim_prompt_has_acpi
@@ -50,7 +53,5 @@ function fish_prompt
     end
     set_color normal
     echo -n '└╼ '
-    set_color red
-    echo -n '$ '
     set_color normal
 end

@@ -96,35 +96,42 @@ export LESS=-wR
 
 ### Aliases ###
 
-alias ls="ls -hp --group-directories-first"
-alias l="ls"
+alias ls="ls -h --group-directories-first"
 alias ll="ls -l"
+alias l="ll"
 alias la="ls -A"
 alias lx="ls -xb"           # sort by extension
 alias lk="ls -lSr"          # sort by size, biggest last
 alias lt="ls -ltr"          # sort by date, most recent last
 alias lsb="ls -ail"
+alias sl="ls"
+alias cta="cat"
 alias df="df -h"
 alias rm="rm -I"
 alias cp="cp -i"
 alias mv="mv -i"
-alias cta="cat"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias open="xdg-open"
 alias trash="gvfs-trash"
-alias e="emacs -nw"
-alias v="vim"
+alias search="tracker-search"
+alias em="emacs -nw"
+alias vi="vim"
 alias dmesg="dmesg -TL"
 alias pysh="ipython -p sh"
 alias http_server="python3 -m http.server"
 alias smtp_server="python3 -m smtpd -n -c DebuggingServer"
-alias say="espeak --stdin"
-alias speak="xsel -o | espeak --stdin"
-alias dire="espeak --stdin -v fr"
-alias lire="xsel -o | espeak --stdin -v fr"
 alias chromium_tor="chromium --proxy-server=socks://localhost:9050 --incognito"
 alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
 alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
 
 ### Functions ###
+
+cl() {
+	cd "$1" && ls
+}
 
 mkcd() {
 	mkdir -p "$1" && cd "$1"
@@ -281,6 +288,18 @@ cd_func ()
 
 alias cd=cd_func
 
+-() {
+	cd -
+}
+
+-2() {
+	cd -2
+}
+
+-3() {
+	cd -3
+}
+
 ### Display ###
 
 # prompt
@@ -312,7 +331,7 @@ then
 fi
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
-PROMPT_COMMAND="set_title $SHELL"
+PROMPT_COMMAND="history -a; set_title $SHELL"
 
 ### Source local definitions ###
 if [ -f ~/.bashrc_local ]; then
