@@ -217,12 +217,12 @@ export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7
 └╼ '
 
 # color
+export CLICOLOR=true
 if [ ! -z $COLORTERM ]
 then
 	# 256 colors in terminal
 	TERM=xterm-256color
-	export CLICOLOR=true
-	# GNU ls colors
+	# GNU ls colors (assume dircolors means GNU ls)
 	if which dircolors &>/dev/null; then
 		eval $(dircolors ~/.dircolors)
 		alias ls="ls --color=auto --group-directories-first"
