@@ -63,20 +63,11 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=$HISTSIZE
 HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
-# Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a"
 
 # umask, different if root
 [ $UID != 0 ] && umask 027 || umask 022
 
 ### Environment ###
-
-# 256 colors in terminal
-if [ "$COLORTERM" == "gnome-terminal" ] || [ "$COLORTERM" == "xfce4-terminal" ]; then
-	TERM=xterm-256color
-elif [ "$COLORTERM" == "rxvt-xpm" ]; then
-	TERM=rxvt-256color
-fi
 
 # mail
 export EMAIL="jonathan.lestrelin@gmail.com"
@@ -101,8 +92,7 @@ export LESS=-wR
 
 ### Aliases ###
 
-alias ls="ls -h --group-directories-first"
-alias ll="ls -l"
+alias ll="ls -lh"
 alias l="ll"
 alias la="ls -lA"
 alias lx="ls -lAxb"          # sort by extension
@@ -125,13 +115,6 @@ alias trash="gvfs-trash"
 alias search="tracker-search"
 alias em="emacs -nw"
 alias vi="vim"
-alias dmesg="dmesg -TL"
-alias pysh="ipython -p sh"
-alias http_server="python3 -m http.server"
-alias smtp_server="python3 -m smtpd -n -c DebuggingServer"
-alias chromium_tor="chromium --proxy-server=socks://localhost:9050 --incognito"
-alias vnc_server="x11vnc -noxdamage  -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
-alias mtn2="mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
 
 ### Functions ###
 
@@ -141,72 +124,6 @@ cl() {
 
 mkcd() {
 	mkdir -p "$1" && cd "$1"
-}
-
-img2txt() {
-	cd ${TMPDIR-/tmp}
-
-	import -depth 8 ocr.tif
-	tesseract ocr.tif ocr -l fra
-	cat ocr.txt | xsel -i -b
-}
-
-random_mac() {
-	if [ "$1" == "" ] || [ "$1" == "--help" ]
-	then
-		echo "Usage: random_mac interface"
-		return
-	fi
-	MAC=`echo $RANDOM | md5sum | sed -r 's/^(.{12}).*$/\1/; s/([0-9a-f]{2})/\1:/g; s/:$//;'`
-	sudo ifconfig $1 down
-	sudo ifconfig $1 hw ether $MAC
-	if [ $? == 0 ]
-	then
-		echo "New mac address is $MAC"
-	fi
-	sudo ifconfig $1 up
-}
-
-function nbrename() {
-	if [ "$1" == "--help" ]
-	then
-		echo "Usage: nb_rename [min_number_lenght] [prefix] [suffix]"
-		return
-	fi
-	i=0
-	IFS=$'\n'
-	for filename in `ls -1v`
-	do
-		lenght=${1-3}
-		prefix=$2
-		suffix=${3-$(extname $filename)}
-		i=$(($i +1))
-		newname=$i
-		while [[ $(echo -n $newname | wc -m) <$lenght ]]
-		do
-			newname=0$newname
-		done
-		newname=$prefix$newname$suffix
-		mv $filename $newname && echo "$filename > $newname" || return 1
-	done
-}
-
-function extname() {
-	echo .$(echo "$1" | awk -F. '{print $NF}' -)
-}
-
-function chroot_init() {
-	[ $1 ] && cd "$1"
-	[[ $PWD == "/" || ! -d dev || ! -d proc || ! -d sys || ! -x bin/bash ]] && echo "Not in a chrootable place" && return
-	sudo mount -o bind /dev dev
-	sudo mount -o bind /proc proc
-	sudo mount -o bind /sys sys
-	sudo sh -c 'cat /etc/resolv.conf > etc/resolv.conf'
-	sudo chroot .
-}
-
-function show_last_status() {
-	[[ $? == 0 ]] && echo -e "\\033[1;32m\\033[1;7m OK \\033[1;0m" || echo -e "\\033[1;31m\\033[1;7m KO \\033[1;0m"
 }
 
 function get_git_branch() {
@@ -228,12 +145,6 @@ set_title() {
 	fi
 	[ ! -z "$SSH_CONNECTION" ] && TITLE="[$USER@`hostname`] $TITLE"
 	echo -ne "\e]0;$TITLE\007"
-}
-
-# show file descriptors pointing to flash plugin open videos
-flash_videos()
-{
-        cd /proc/`pgrep -f flash`/fd && ls -l | grep /tmp/Flash
 }
 
 # This function defines a 'cd' replacement function capable of keeping, 
@@ -298,14 +209,6 @@ alias cd=cd_func
 	cd -
 }
 
--2() {
-	cd -2
-}
-
--3() {
-	cd -3
-}
-
 ### Display ###
 
 # prompt
@@ -314,16 +217,26 @@ export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7
 └╼ '
 
 # color
-export CLICOLOR=true
-if [[ "$TERM" == "xterm" || "$TERM" == "xterm-256color" ]]
+if [ ! -z $COLORTERM ]
 then
-	eval `dircolors ~/.dircolors` &>/dev/null
-	alias ls="`alias ls | cut -d \' -f 2` --color=auto"
+	# 256 colors in terminal
+	TERM=xterm-256color
+	export CLICOLOR=true
+	# GNU ls colors
+	if which dircolors &>/dev/null; then
+		eval $(dircolors ~/.dircolors)
+		alias ls="ls --color=auto --group-directories-first"
+	fi
+	if which colordiff &>/dev/null; then
+		alias diff=colordiff
+	fi
+	if [ -f "/usr/lib/libstderred.so" ]; then
+		export LD_PRELOAD="/usr/lib/libstderred.so"
+	fi
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
 	alias tree="tree -C"
-	which colordiff &>/dev/null && alias diff=colordiff
 	export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 	export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
 	export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -331,15 +244,12 @@ then
 	export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
 	export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 	export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
-	if [ -f "/usr/lib/libstderred.so" ]; then
-		export LD_PRELOAD="/usr/lib/libstderred.so"
-	fi
 fi
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="history -a; set_title $SHELL"
 
-### Source local definitions ###
+### Source host specific definitions ###
 if [ -f ~/.bashrc_local ]; then
 	source ~/.bashrc_local
 fi
