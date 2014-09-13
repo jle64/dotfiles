@@ -5,8 +5,9 @@
 [ -f /etc/bashrc ] && source /etc/bashrc
 
 # Source auto-completion
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-[ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
+for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion; do
+	[ -f ${DIR}/bash_completion ] && source ${DIR}/bash_completion
+done
 
 # make less more friendly for non-text input files, see lesspipe(1)
 which lesspipe &>/dev/null && eval "$(SHELL=/bin/sh lesspipe)"
@@ -70,8 +71,12 @@ export PROMPT_COMMAND="history -a"
 
 ### Environment ###
 
-# more colors to xterm
-[[ $TERM==xterm ]] && export TERM=xterm-256color
+# 256 colors in terminal
+if [ "$COLORTERM" == "gnome-terminal" ] || [ "$COLORTERM" == "xfce4-terminal" ]; then
+	TERM=xterm-256color
+elif [ "$COLORTERM" == "rxvt-xpm" ]; then
+	TERM=rxvt-256color
+fi
 
 # mail
 export EMAIL="jonathan.lestrelin@gmail.com"
@@ -99,10 +104,10 @@ export LESS=-wR
 alias ls="ls -h --group-directories-first"
 alias ll="ls -l"
 alias l="ll"
-alias la="ls -A"
-alias lx="ls -xb"           # sort by extension
-alias lk="ls -lSr"          # sort by size, biggest last
-alias lt="ls -ltr"          # sort by date, most recent last
+alias la="ls -lA"
+alias lx="ls -lAxb"          # sort by extension
+alias lk="ls -lASr"          # sort by size, biggest last
+alias lt="ls -lAtr"          # sort by date, most recent last
 alias lsb="ls -ail"
 alias sl="ls"
 alias cta="cat"
