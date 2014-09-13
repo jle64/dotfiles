@@ -115,6 +115,7 @@ alias df="df -h"
 alias rm="rm -I"
 alias cp="cp -i"
 alias mv="mv -i"
+alias g='egrep -i'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -316,7 +317,7 @@ export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7
 export CLICOLOR=true
 if [[ "$TERM" == "xterm" || "$TERM" == "xterm-256color" ]]
 then
-	eval `dircolors ~/.dircolors`
+	eval `dircolors ~/.dircolors` &>/dev/null
 	alias ls="`alias ls | cut -d \' -f 2` --color=auto"
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
