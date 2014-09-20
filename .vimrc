@@ -23,3 +23,15 @@ if has('gui_running')
 	map <S-Insert> <MiddleMouse>
 	map! <S-Insert> <MiddleMouse>
 endif
+
+" plug
+call plug#begin('~/.vim/plugged')
+Plug 'bling/vim-airline'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'scrooloose/syntastic'
+call plug#end()
+
+" airline
+set laststatus=2
+let g:airline_theme='luna'
+"let g:airline#extensions#tabline#enabled = 1

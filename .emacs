@@ -41,9 +41,9 @@
 (setq auto-save-default nil)
 
 ; Show column and line numbers
-(global-linum-mode 1)
-(column-number-mode 1)
-(line-number-mode 1)
+;(global-linum-mode 1)
+;(column-number-mode 1)
+;(line-number-mode 1)
 
 ; Delete whitespaces at end of lines
 (autoload 'nuke-trailing-whitespace "whitespace" nil t)
