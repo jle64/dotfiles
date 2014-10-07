@@ -92,6 +92,12 @@
 ; “top” means ask once (top = top dir).
 ; any other symbol means ask each and every time for a dir and subdir.
 
+; Auto-refresh dired on file change
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
+; Enable dired extra features
+(require 'dired-x)
+
 ; Show matching parentheses
 (load-library "paren")
 (show-paren-mode 1)

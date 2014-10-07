@@ -62,7 +62,9 @@ shopt -u xpg_echo
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=$HISTSIZE
-HISTTIMEFORMAT="[ %d/%m/%Y %H:%M:%S ]  "
+CYAN=$(echo -e '\e[0;36m')
+NORMAL=$(echo -e '\e[0m')
+HISTTIMEFORMAT="${CYAN}[ %d/%m/%Y %H:%M:%S ]${NORMAL}  "
 
 # umask, different if root
 [ $UID != 0 ] && umask 027 || umask 022
@@ -124,6 +126,10 @@ cl() {
 
 mkcd() {
 	mkdir -p "$1" && cd "$1"
+}
+
+h() {
+	test -z $1 && history || history | egrep -i $1
 }
 
 function get_git_branch() {
@@ -207,6 +213,13 @@ alias cd=cd_func
 -() {
 	cd -
 }
+
+SSHAGENT=/usr/bin/ssh-agent
+SSHAGENTARGS="-s"
+if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+	eval `$SSHAGENT $SSHAGENTARGS` >/dev/null
+	trap "kill $SSH_AGENT_PID" 0
+fi
 
 ### Display ###
 
