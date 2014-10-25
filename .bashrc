@@ -96,6 +96,7 @@ export LESS=-wR
 
 alias ll="ls -lh"
 alias l="ll"
+alias l.="ls -d .*"
 alias la="ls -lA"
 alias lx="ls -lAxb"          # sort by extension
 alias lk="ls -lASr"          # sort by size, biggest last
@@ -104,7 +105,7 @@ alias lsb="ls -ail"
 alias sl="ls"
 alias cta="cat"
 alias df="df -h"
-alias rm="rm -I"
+alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias g='egrep -i'
@@ -124,7 +125,7 @@ cl() {
 	cd "$1" && ls
 }
 
-mkcd() {
+md() {
 	mkdir -p "$1" && cd "$1"
 }
 
@@ -211,7 +212,13 @@ cd_func () {
 alias cd=cd_func
 
 -() {
-	cd -
+        cd -1
+}
+--() {
+        cd -2
+}
+---() {
+        cd -3
 }
 
 SSHAGENT=/usr/bin/ssh-agent
@@ -229,34 +236,34 @@ export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7
 └╼ '
 
 # color
-export CLICOLOR=true
 if [ ! -z $COLORTERM ]
 then
 	# 256 colors in terminal
 	TERM=xterm-256color
-	# GNU ls colors (assume dircolors means GNU ls)
-	if which dircolors &>/dev/null; then
-		eval $(dircolors ~/.dircolors)
-		alias ls="ls --color=auto --group-directories-first"
-	fi
-	if which colordiff &>/dev/null; then
-		alias diff=colordiff
-	fi
-	if [ -f "/usr/lib/libstderred.so" ]; then
-		export LD_PRELOAD="/usr/lib/libstderred.so"
-	fi
-	alias grep="grep --color=auto"
-	alias egrep="egrep --color=auto"
-	alias fgrep="fgrep --color=auto"
-	alias tree="tree -C"
-	export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-	export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
-	export LESS_TERMCAP_me=$'\E[0m'           # end mode
-	export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-	export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
-	export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-	export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
 fi
+export CLICOLOR=true
+# GNU ls colors (assume dircolors means GNU ls)
+if which dircolors &>/dev/null; then
+	eval $(dircolors ~/.dircolors)
+	alias ls="ls --color=auto --group-directories-first"
+fi
+if which colordiff &>/dev/null; then
+	alias diff=colordiff
+fi
+if [ -f "/usr/lib/libstderred.so" ]; then
+	export LD_PRELOAD="/usr/lib/libstderred.so"
+fi
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias tree="tree -C"
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="history -a; set_title $SHELL"
