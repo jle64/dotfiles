@@ -29,7 +29,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'scrooloose/syntastic'
+Plug 'flazz/vim-colorschemes'
 call plug#end()
+
+colorscheme molokai
 
 " airline
 set laststatus=2
