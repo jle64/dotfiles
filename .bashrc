@@ -185,8 +185,3 @@ trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="history -a; set_title $SHELL"
 
 source ~/.sh_common
-
-### Source host specific definitions ###
-if [ -f ~/.bashrc_local ]; then
-	source ~/.bashrc_local
-fi
