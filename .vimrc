@@ -30,6 +30,7 @@ Plug 'bling/vim-airline'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 colorscheme molokai

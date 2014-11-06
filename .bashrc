@@ -71,67 +71,20 @@ HISTTIMEFORMAT="${CYAN}[ %d/%m/%Y %H:%M:%S ]${NORMAL}  "
 
 ### Environment ###
 
-# mail
-export EMAIL="jonathan.lestrelin@gmail.com"
-export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
-export DEBFULLNAME="Jonathan Lestrelin"
-export DEBEMAIL="$EMAIL"
-
 # locale
 if [[ `locale -a | grep fr_FR.utf8` ]]
 then
 	export LANG=fr_FR.utf8
 fi
 
-export EDITOR=vim
-export PAGER=less
-export SYSTEMD_PAGER=cat
-export GIT_PAGER=cat
-export BROWSER=firefox
-
-# less
-export LESS=-wR
-
 ### Aliases ###
 
-alias ll="ls -lh"
-alias l="ll"
-alias l.="ls -d .*"
-alias la="ls -lA"
-alias lx="ls -lAxb"          # sort by extension
-alias lk="ls -lASr"          # sort by size, biggest last
-alias lt="ls -lAtr"          # sort by date, most recent last
-alias lsb="ls -ail"
-alias sl="ls"
-alias cta="cat"
-alias df="df -h"
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
-alias g='egrep -i'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias open="xdg-open"
-alias trash="gvfs-trash"
-alias search="tracker-search"
-alias em="emacs -nw"
-alias vi="vim"
 
 ### Functions ###
-
-cl() {
-	cd "$1" && ls
-}
-
-md() {
-	mkdir -p "$1" && cd "$1"
-}
-
-h() {
-	test -z $1 && history || history | egrep -i $1
-}
 
 function get_git_branch() {
 	GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
@@ -221,13 +174,6 @@ alias cd=cd_func
         cd -3
 }
 
-SSHAGENT=/usr/bin/ssh-agent
-SSHAGENTARGS="-s"
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-	eval `$SSHAGENT $SSHAGENTARGS` >/dev/null
-	trap "kill $SSH_AGENT_PID" 0
-fi
-
 ### Display ###
 
 # prompt
@@ -235,38 +181,10 @@ fi
 export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7m$es\\033[1;0m "; fi)\[\033[$(echo $USER_COLOR)m\]\u\[\033[0;33m\]@\h:\[\033[36m\]\w\[\033[34m\]$(get_git_branch)\[\033[35m\] \[\033[31m\]\$\[\033[0m\]
 └╼ '
 
-# color
-if [ ! -z $COLORTERM ]
-then
-	# 256 colors in terminal
-	TERM=xterm-256color
-fi
-export CLICOLOR=true
-# GNU ls colors (assume dircolors means GNU ls)
-if which dircolors &>/dev/null; then
-	eval $(dircolors ~/.dircolors)
-	alias ls="ls --color=auto --group-directories-first"
-fi
-if which colordiff &>/dev/null; then
-	alias diff=colordiff
-fi
-if [ -f "/usr/lib/libstderred.so" ]; then
-	export LD_PRELOAD="/usr/lib/libstderred.so"
-fi
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias tree="tree -C"
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
-
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="history -a; set_title $SHELL"
+
+source ~/.sh_common
 
 ### Source host specific definitions ###
 if [ -f ~/.bashrc_local ]; then

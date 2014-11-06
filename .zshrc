@@ -101,3 +101,4 @@ PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
 └╼ "
 RPS1='${vcs_info_msg_0_}'
 
+source ~/.sh_common
