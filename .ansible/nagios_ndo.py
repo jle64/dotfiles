@@ -74,7 +74,6 @@ class NagiosNDOInventory(object):
             hosts = connection.execute(select_hostgroup_hosts, hostgroup_alias=hostgroup_alias)
             self.result[hostgroup_alias]['hosts'] = [host['display_name'] for host in hosts]
 
-
     def __init__(self):
 
         self.defaultgroup = 'group_all'
@@ -87,6 +86,8 @@ class NagiosNDOInventory(object):
         self.result = {}
         self.result['all'] = {}
         self.result['all']['hosts'] = []
+        self.result['_meta'] = {}
+        self.result['_meta']['hostvars'] = {}
 
         if self.ndo_database_uri:
             self.get_hosts()
