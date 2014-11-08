@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 colorscheme molokai
+:highlight Normal ctermbg=NONE
 
 " airline
 set laststatus=2
