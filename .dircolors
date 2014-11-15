@@ -78,9 +78,13 @@ DOOR 37;45 # Solaris door
 
 ### By file attributes
 
-ORPHAN  01;37;41 # orphaned symlinks
-MISSING 01;37;41 # and their missing targets
 EXEC 01;31  # files with execute permission
+ORPHAN  30;41 # orphaned symlinks
+MISSING 30;41 # and their missing targets
+OTHER_WRITABLE 30;41 # dir that is o+w
+SETUID 30;41
+SETGID 30;41
+CAPABILITY 30;41
 
 ### By extension
 
