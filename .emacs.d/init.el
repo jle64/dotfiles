@@ -141,3 +141,13 @@
             ))
       (toggle-input-method))
     (global-set-key (kbd "C-\\") 'evil-toggle-input-method)
+
+; Load stuff in ~/.emacs.d/lisp/
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+; Load dirtree
+(autoload 'dirtree "dirtree" "Add directory to tree view" t)
+; Make it work with eproject
+(defun ep-dirtree ()
+  (interactive)
+  (dirtree-in-buffer eproject-root t))
