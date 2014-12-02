@@ -30,10 +30,13 @@ Plug 'bling/vim-airline'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 call plug#end()
 
-colorscheme molokai
+set background=dark
+"colorscheme molokai
+colorscheme base16-chalk
 ":highlight Normal ctermbg=NONE
 
 " airline
