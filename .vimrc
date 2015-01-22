@@ -35,11 +35,11 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 set background=dark
-"colorscheme molokai
-colorscheme base16-chalk
+colorscheme molokai
 ":highlight Normal ctermbg=NONE
 
 " airline
 set laststatus=2
-let g:airline_theme='luna'
+let g:airline_theme='tomorrow'
+let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#enabled = 1
