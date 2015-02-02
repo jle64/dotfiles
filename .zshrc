@@ -58,6 +58,16 @@ function precmd {
     vcs_info
 }
 
+rationalise-dot() {
+    if [[ $LBUFFER = *.. ]]; then
+        LBUFFER+=/..
+    else
+        LBUFFER+=.
+    fi
+}
+zle -N rationalise-dot
+bindkey . rationalise-dot
+
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
