@@ -24,7 +24,7 @@ scrollbar-policy='always'
 [:598ee746-cc99-4ba7-8b18-403704269add]
 foreground-color='#e0e0e0'
 visible-name='Dark Bright'
-palette=['#000000', '#fb0120', '#a1c659', '#fda331', '#6fb3d2', '#d381c3', '#76c7b7', '#e0e0e0', '#b0b0b0', '#fb0120', '#a1c659', '#fda331', '#6fb3d2', '#d381c3', '#76c7b7', '#ffffff']
+palette=['rgb(0,0,0)', 'rgb(255,19,48)', 'rgb(161,198,89)', 'rgb(253,163,49)', 'rgb(111,179,210)', 'rgb(211,129,195)', 'rgb(118,199,183)', 'rgb(224,224,224)', 'rgb(176,176,176)', 'rgb(255,19,48)', 'rgb(161,198,89)', 'rgb(253,163,49)', 'rgb(111,179,210)', 'rgb(211,129,195)', 'rgb(118,199,183)', 'rgb(255,255,255)']
 default-size-columns=100
 cursor-shape='block'
 use-custom-default-size=true
@@ -36,7 +36,7 @@ scrollback-unlimited=true
 use-theme-background=false
 bold-color-same-as-fg=true
 bold-color='#e0e0e0'
-background-color='#000000'
+background-color='rgb(26,26,26)'
 audible-bell=false
 title-mode='replace'
 scrollbar-policy='always'
