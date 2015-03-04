@@ -40,6 +40,7 @@ alias trash="gvfs-trash"
 alias search="tracker-search"
 alias em="emacs -nw"
 alias vi="vim"
+alias e=$EDITOR
 
 ### Functions ###
 
@@ -65,9 +66,8 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 	trap "kill $SSH_AGENT_PID" 0
 fi
 
-### Display ###
+### Color ###
 
-# color
 if [ ! -z $COLORTERM ]
 then
 	# 256 colors in terminal
