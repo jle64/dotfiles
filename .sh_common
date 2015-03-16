@@ -77,6 +77,8 @@ export CLICOLOR=true
 # GNU ls colors (assume dircolors means GNU ls)
 if which dircolors &>/dev/null; then
 	eval $(dircolors ~/.dircolors)
+fi
+if ls --version | grep -q GNU; then
 	alias ls="ls --color=auto --group-directories-first"
 fi
 if which colordiff &>/dev/null; then
@@ -85,9 +87,14 @@ fi
 if [ -f "/usr/lib/libstderred.so" ]; then
 	export LD_PRELOAD="/usr/lib/libstderred.so"
 fi
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
+if [ $(uname) == "Linux" ]; then
+	alias dmesg="dmesg -TL"
+fi
+if grep -V | grep -q GNU; then
+	alias grep="grep --color=auto"
+	alias egrep="egrep --color=auto"
+	alias fgrep="fgrep --color=auto"
+fi
 alias tree="tree -C"
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
