@@ -1,8 +1,8 @@
 #!/bin/sh
 
 for file in .*; do
-	[ "$file" == "." -o "$file" == ".." ] && continue
-	[ "$file" == ".git" -o "$file" == ".gitignore" ] && continue
+	[ "$file" = "." -o "$file" = ".." ] && continue
+	[ "$file" = ".git" -o "$file" = ".gitignore" ] && continue
 	echo ln -s "$(realpath "$file")" "$HOME/$(basename "$file")"
 done
 
