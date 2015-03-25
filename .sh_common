@@ -78,7 +78,7 @@ export CLICOLOR=true
 if which dircolors &>/dev/null; then
 	eval $(dircolors ~/.dircolors)
 fi
-if ls --version | grep GNU &>/dev/null; then
+if ls --version 2>/dev/null | grep GNU &>/dev/null; then
 	alias ls="ls --color=auto --group-directories-first"
 fi
 if which colordiff &>/dev/null; then
@@ -90,7 +90,7 @@ fi
 if [ $(uname) = "Linux" ]; then
 	alias dmesg="dmesg -TL"
 fi
-if grep -V | grep GNU &>/dev/null; then
+if grep -V 2>/dev/null | grep GNU &>/dev/null; then
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
