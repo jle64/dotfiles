@@ -78,7 +78,7 @@ export CLICOLOR=true
 if which dircolors &>/dev/null; then
 	eval $(dircolors ~/.dircolors)
 fi
-if ls --version | grep -q GNU; then
+if ls --version | grep GNU &>/dev/null; then
 	alias ls="ls --color=auto --group-directories-first"
 fi
 if which colordiff &>/dev/null; then
@@ -87,10 +87,10 @@ fi
 if [ -f "/usr/lib/libstderred.so" ]; then
 	export LD_PRELOAD="/usr/lib/libstderred.so"
 fi
-if [ $(uname) == "Linux" ]; then
+if [ $(uname) = "Linux" ]; then
 	alias dmesg="dmesg -TL"
 fi
-if grep -V | grep -q GNU; then
+if grep -V | grep GNU &>/dev/null; then
 	alias grep="grep --color=auto"
 	alias egrep="egrep --color=auto"
 	alias fgrep="fgrep --color=auto"
