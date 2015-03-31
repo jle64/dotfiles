@@ -5,6 +5,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ":completion:*:commands" rehash 1
 zstyle ':completion:*:rm:*' ignore-line yes
 zstyle ':completion:*:mv:*' ignore-line yes
 zstyle ':completion:*:cp:*' ignore-line yes
@@ -101,4 +102,5 @@ PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
 └╼ "
 RPS1='${vcs_info_msg_0_}'
 
+alias history='fc -il 1'
 source ~/.sh_common
