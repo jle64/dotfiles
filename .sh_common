@@ -37,7 +37,6 @@ alias mv="mv -i"
 alias g='egrep -i'
 alias open="xdg-open"
 alias trash="gvfs-trash"
-alias search="tracker-search"
 alias em="emacs -nw"
 alias vi="vim"
 alias e=$EDITOR
