@@ -1,15 +1,41 @@
-zstyle ':completion:*' auto-description '%d'
-zstyle ':completion:*' completer _complete _ignored
-zstyle ':completion:*' format '%d'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' menu select=1
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ":completion:*:commands" rehash 1
-zstyle ':completion:*:rm:*' ignore-line yes
-zstyle ':completion:*:mv:*' ignore-line yes
-zstyle ':completion:*:cp:*' ignore-line yes
-zstyle :compinstall filename '~/.zshrc'
+#
+# Executes commands at the start of an interactive session.
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+alias history='fc -il 1'
+
+# History options
+setopt appendhistory
+setopt histignorealldups
+setopt histexpiredupsfirst
+setopt histsavenodups
+setopt histverify
+setopt incappendhistory
+setopt extendedhistory
+
+# Other options
+setopt autocd
+setopt extendedglob
+setopt nomatch
+setopt completealiases
+setopt autonamedirs
+setopt listtypes
+setopt nobeep
+setopt nolistbeep
+setopt nonotify
+setopt promptsubst
+
+bindkey -e
 
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -24,6 +50,19 @@ green="%{$fg_bold[green]%}"
 red="%{$fg[red]%}"
 blue="%{$fg[blue]%}"
 yellow="%{$fg[yellow]%}"
+
+zstyle ':completion:*' auto-description '%d'
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' format '%d'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ":completion:*:commands" rehash 1
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:mv:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+zstyle ':compinstall filename' '~/.zshrc'
 
 zstyle ':vcs_info:*' enable git hg bzr svn
 zstyle ':vcs_info:*' enable git hg
@@ -59,35 +98,7 @@ function precmd {
     vcs_info
 }
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-setopt appendhistory
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_VERIFY
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt autocd
-setopt extendedglob
-setopt nomatch
-unsetopt beep
-unsetopt notify
-setopt completealiases
-bindkey -e
-
-# oh-my-zsh
-ZSH=$HOME/.oh-my-zsh
-DISABLE_AUTO_UPDATE="true"
-DISABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git zsh-syntax-highlighting)
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-source $ZSH/oh-my-zsh.sh
-
+# Prompt
 if [[ $UID -eq 0 ]]; then
   user_color="${fg_bold[red]}"
 else
@@ -102,5 +113,4 @@ PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
 └╼ "
 RPS1='${vcs_info_msg_0_}'
 
-alias history='fc -il 1'
 source ~/.sh_common
