@@ -1,2 +1,5 @@
 .emacs.d/eshell/history
 .emacs.d/eshell/lastdir
+.config/fish/fish_history
+.config/fish/fishd.jonathanpc
+*.swp

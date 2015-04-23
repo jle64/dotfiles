@@ -3,6 +3,7 @@
 for file in .*; do
 	[ "$file" = "." -o "$file" = ".." ] && continue
 	[ "$file" = ".git" -o "$file" = ".gitignore" ] && continue
+	[ -e "$HOME"/"$file" ] && echo "$file" already exists && continue
 	echo ln -s "$(realpath "$file")" "$HOME/$(basename "$file")"
 done
 
