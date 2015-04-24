@@ -35,7 +35,7 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 set background=dark
-"colorscheme molokai
+colorscheme molokai
 ":highlight Normal ctermbg=NONE
 
 " airline

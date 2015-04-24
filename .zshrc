@@ -98,19 +98,19 @@ function precmd {
     vcs_info
 }
 
-# Prompt
-if [[ $UID -eq 0 ]]; then
-  user_color="${fg_bold[red]}"
-else
-  user_color="${fg_no_bold[green]}"
-fi
-return_code="%(?..%{${bg_bold[red]}${fg_bold[white]}%}%?%{${reset_color}%} )"
-user_at_host="%{${user_color}%}%n${deco}%{${fg_no_bold[yellow]}%}@%m"
-cwd="%{${fg_no_bold[cyan]}%}%32<...<%~"
-sign="%{${fg_no_bold[red]}%}%#"
-
-PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
-└╼ "
-RPS1='${vcs_info_msg_0_}'
+## Prompt
+#if [[ $UID -eq 0 ]]; then
+#  user_color="${fg_bold[red]}"
+#else
+#  user_color="${fg_no_bold[green]}"
+#fi
+#return_code="%(?..%{${bg_bold[red]}${fg_bold[white]}%}%?%{${reset_color}%} )"
+#user_at_host="%{${user_color}%}%n${deco}%{${fg_no_bold[yellow]}%}@%m"
+#cwd="%{${fg_no_bold[cyan]}%}%32<...<%~"
+#sign="%{${fg_no_bold[red]}%}%#"
+#
+#PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
+#└╼ "
+#RPS1='${vcs_info_msg_0_}'
 
 source ~/.sh_common
