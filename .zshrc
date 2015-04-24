@@ -33,6 +33,7 @@ setopt listtypes
 setopt nobeep
 setopt nolistbeep
 setopt nonotify
+setopt nocorrect
 setopt promptsubst
 
 bindkey -e
