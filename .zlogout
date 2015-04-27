@@ -1,1 +1,1 @@
-prezto/runcoms/zlogout
+.bash_logout
