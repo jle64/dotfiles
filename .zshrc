@@ -112,6 +112,6 @@ sign="%{${fg_no_bold[red]}%}%#"
 
 PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
 └╼ "
-RPS1='${vcs_info_msg_0_}'
+RPS1='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]}'
 
 source ~/.sh_common
