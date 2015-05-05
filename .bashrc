@@ -9,10 +9,6 @@ for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion; do
 	[ -f ${DIR}/bash_completion ] && source ${DIR}/bash_completion
 done
 
-# make less more friendly for non-text input files, see lesspipe(1)
-which lesspipe &>/dev/null && eval "$(SHELL=/bin/sh lesspipe)"
-which lesspipe.sh &>/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
-
 # set shell options
 shopt -s autocd
 shopt -s cdable_vars
