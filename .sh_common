@@ -93,23 +93,67 @@ if grep -V 2>/dev/null | grep -q GNU; then
 fi
 alias tree="tree -C"
 
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+# use control chars directly because tput may be broken
+RED="[31m"
+BG_RED="[41m"
+GREEN="[32m"
+YELLOW="[33m"
+BLUE="[34m"
+MAGENTA="[35m"
+CYAN="[36m"
+WHITE="[37m"
+BOLD="[01m"
+RESET="[00m"
 
-# blue
-#export LESS_TERMCAP_md=$'\E[01;38;5;33m'  # begin bold
-#export LESS_TERMCAP_so=$'\E[01;31;5;31m'  # begin standout-mode - info box
-#export LESS_TERMCAP_us=$'\E[38;5;31m'     # begin underline
+export LESS_TERMCAP_mb=${BOLD}${RED}
+export LESS_TERMCAP_me=${RESET}
+export LESS_TERMCAP_se=${RESET}
+export LESS_TERMCAP_ue=${RESET}
+export LESS_TERMCAP_md=${BOLD}${RED}
 
-# red and blue
-export LESS_TERMCAP_md=$'\E[01;31m'       # begin bold
-export LESS_TERMCAP_so=$'\E[01;47;31m'    # begin standout-mode - info box                              
-export LESS_TERMCAP_us=$'\E[04;38;05;32m' # begin underline
+# a colorful prompt that works on {a,da,ba,mk,pdk,z}sh
+# and probably other Bourne/POSIX variants
+get_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d;s/* \(.*\)/(\1)/'
+}
 
-### Source host specific definitions ###
-if [ -f ~/.sh_local ]; then
-	. ~/.sh_local
+get_exit_status() {
+	EXIT_STATUS="$?"
+	if [ ${EXIT_STATUS} -ne 0 ]; then
+		echo "${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET} "
+	fi
+}
+
+if [ `id -u` = 0 ]; then
+        USER_COLOR="${RED}${BOLD}"
+        USER_CHAR="#"
+else
+        USER_COLOR="${GREEN}"
+        USER_CHAR="$"
 fi
 
+if [ -z $HOST ]; then
+        HOST=`hostname`
+fi
+
+if [ ! -z $ZSH_VERSION ]; then
+        WORK_DIR='%~'
+elif [ ! -z $OLDPWD ]; then
+	WORK_DIR=\${PWD}
+else
+	WORK_DIR='\w'
+fi
+
+if [ ! -z $BASH ]; then
+	EXIT_STATUS="\`get_exit_status\`"
+	GIT_BRANCH="\`get_git_branch\`"
+fi
+
+PS1="${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${USER_CHAR}${RESET}
+> "
+
+
+### Source host specific definitions ###
+if [ -f ${HOME}/.sh_local ]; then
+	. ${HOME}/.sh_local
+fi

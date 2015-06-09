@@ -9,10 +9,5 @@
 #
 
 # set prompt: ``username@hostname$ '' 
-PS1="`whoami`@`hostname | sed 's/\..*//'`"
-case `id -u` in
-	0) PS1="${PS1}# ";;
-	*) PS1="${PS1}$ ";;
-esac
 
-. ~/.sh_common
+. ${HOME}/.sh_common

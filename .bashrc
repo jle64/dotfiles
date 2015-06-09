@@ -82,11 +82,6 @@ alias .....="cd ../../../.."
 
 ### Functions ###
 
-function get_git_branch() {
-	GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
-	[[ $PWD != $HOME ]] && [[ -d .git ]] && echo $GIT_BRANCH
-}
-
 # set title
 # adapted from http://v3.sk/~lkundrak/blog/entries/bashrc.html
 set_title() {
@@ -169,13 +164,6 @@ alias cd=cd_func
 ---() {
         cd -3
 }
-
-### Display ###
-
-# prompt
-[[ $UID != 0 ]] && USER_COLOR='32' || USER_COLOR='1;31'
-export PS1='┌─ $(es=$?; if [ $es -ne 0 ]; then echo -e "\\033[1;31m\\033[1;7m$es\\033[1;0m "; fi)\[\033[$(echo $USER_COLOR)m\]\u\[\033[0;33m\]@\h:\[\033[36m\]\w\[\033[34m\]$(get_git_branch)\[\033[35m\] \[\033[31m\]\$\[\033[0m\]
-└╼ '
 
 trap 'set +o functrace; set_title $BASH_COMMAND' DEBUG
 PROMPT_COMMAND="history -a; set_title $SHELL"
