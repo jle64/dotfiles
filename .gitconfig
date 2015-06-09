@@ -13,7 +13,7 @@
 	cp = 'cherry-pick'
 	st = 'status -sb'
 	cl = 'clone'
-	ci = 'commit'
+	cm = 'commit'
 	co = 'checkout'
 	br = 'branch'
 	dc = 'diff --cached'
