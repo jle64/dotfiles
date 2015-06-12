@@ -15,6 +15,10 @@ set $mod Mod4
 # Mod1 = Alt
 set $mod2 Mod1
 
+# Cheat sheets
+# Mod1: http://www.keyboard-layout-editor.com/#/layouts/8692cac33657fff5179a2bfc385dc2b3
+# Mod2: http://www.keyboard-layout-editor.com/#/layouts/b38667ae3911b3fd8beda4ae355f2b96
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
