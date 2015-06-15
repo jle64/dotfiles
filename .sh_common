@@ -149,8 +149,8 @@ if [ ! -z $BASH ]; then
 	GIT_BRANCH="\`get_git_branch\`"
 fi
 
-PS1="${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${USER_CHAR}${RESET}
-> "
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${USER_CHAR}${RESET}
+└╼ "
 
 
 ### Source host specific definitions ###
