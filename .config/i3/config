@@ -15,6 +15,12 @@ set $mod Mod4
 # Mod1 = Alt
 set $mod2 Mod1
 
+set $terminal gnome-terminal
+
+# Cheat sheets
+# Mod1: http://www.keyboard-layout-editor.com/#/layouts/8692cac33657fff5179a2bfc385dc2b3
+# Mod2: http://www.keyboard-layout-editor.com/#/layouts/b38667ae3911b3fd8beda4ae355f2b96
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -28,13 +34,13 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod2+d exec dmenu_run
+bindsym $mod+c exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -63,7 +69,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -78,36 +84,36 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# switch to workspace
-bindsym $mod+KP_1 workspace 1
-bindsym $mod+KP_2 workspace 2
-bindsym $mod+KP_3 workspace 3
-bindsym $mod+KP_4 workspace 4
-bindsym $mod+KP_5 workspace 5
-bindsym $mod+KP_6 workspace 6
-bindsym $mod+KP_7 workspace 7
-bindsym $mod+KP_8 workspace 8
-bindsym $mod+KP_9 workspace 9
-bindsym $mod+KP_0 workspace 10
-
 # move focused container to workspace
-bindsym $mod2+KP_1 move container to workspace 1
-bindsym $mod2+KP_2 move container to workspace 2
-bindsym $mod2+KP_3 move container to workspace 3
-bindsym $mod2+KP_4 move container to workspace 4
-bindsym $mod2+KP_5 move container to workspace 5
-bindsym $mod2+KP_6 move container to workspace 6
-bindsym $mod2+KP_7 move container to workspace 7
-bindsym $mod2+KP_8 move container to workspace 8
-bindsym $mod2+KP_9 move container to workspace 9
-bindsym $mod2+KP_0 move container to workspace 10
+bindsym $mod+KP_1 move container to workspace 1
+bindsym $mod+KP_2 move container to workspace 2
+bindsym $mod+KP_3 move container to workspace 3
+bindsym $mod+KP_4 move container to workspace 4
+bindsym $mod+KP_5 move container to workspace 5
+bindsym $mod+KP_6 move container to workspace 6
+bindsym $mod+KP_7 move container to workspace 7
+bindsym $mod+KP_8 move container to workspace 8
+bindsym $mod+KP_9 move container to workspace 9
+bindsym $mod+KP_0 move container to workspace 10
+
+# switch to workspace
+bindsym $mod2+KP_1 workspace 1
+bindsym $mod2+KP_2 workspace 2
+bindsym $mod2+KP_3 workspace 3
+bindsym $mod2+KP_4 workspace 4
+bindsym $mod2+KP_5 workspace 5
+bindsym $mod2+KP_6 workspace 6
+bindsym $mod2+KP_7 workspace 7
+bindsym $mod2+KP_8 workspace 8
+bindsym $mod2+KP_9 workspace 9
+bindsym $mod2+KP_0 workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod2+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod2+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod2+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -135,8 +141,28 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# right click on titlebar toggles between floating / tiling modes
+bindsym button2 floating toggle
+
+assign [title="irssi"] → work
+
+bindsym $mod+ff exec "firefox"
+bindsym $mod+fh exec "firefox -P Home --new-instance"
+bindsym $mod+fp exec "firefox --private-window"
+bindsym $mod+t exec "thunderbird"
+bindsym $mod+g exec "gedit"
+bindsym $mod+vi exec "$terminal -e vim"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
+	position bottom
+	output default
+	tray_output primary
+	font pango:Ubuntu
+	colors {
+		background #0088cc
+		statusline #ffffff
+	}
 }
