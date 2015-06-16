@@ -1,10 +1,9 @@
 general {
-        output_format = "dzen2"
         colors = true
         interval = 5
 }
 
-order += "ipv6"
+order += "ip"
 order += "disk /"
 order += "run_watch DHCP"
 order += "run_watch VPNC"
