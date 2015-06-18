@@ -144,7 +144,7 @@ else
 	WORK_DIR='\w'
 fi
 
-if [ ! -z $BASH -o ! -z $ZSH_VERSION ]; then
+if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 	EXIT_STATUS="\`get_exit_status\`"
 	GIT_BRANCH="\`get_git_branch\`"
 fi
