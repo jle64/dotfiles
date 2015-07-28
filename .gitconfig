@@ -1,10 +1,11 @@
 [user]
-	name = Jonathan Lestrelin
-	email = jonathan.lestrelin@gmail.com
+	name = jonathan.lestrelin
+	email = jonathan.lestrelin@alterway.fr
 
 [core]
 	pager = cat
 	whitespace=fix,trailing-space,tabwidth=4
+	editor = vim
 
 [merge]
 	tool = vimdiff
