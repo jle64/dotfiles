@@ -57,27 +57,3 @@ set laststatus=2
 let g:airline_theme='tomorrow'
 "let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#enabled = 1
-
-" keep clipboard and vim in sync
-" needs vim to be built with adequate options
-set clipboard=unnamed
-
-" plug
-call plug#begin('~/.vim/plugged')
-Plug 'bling/vim-airline'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'scrooloose/syntastic'
-Plug 'flazz/vim-colorschemes'
-Plug 'chriskempson/base16-vim'
-Plug 'scrooloose/nerdtree'
-call plug#end()
-
-set background=dark
-colorscheme molokai
-":highlight Normal ctermbg=NONE
-
-" airline
-set laststatus=2
-let g:airline_theme='tomorrow'
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
