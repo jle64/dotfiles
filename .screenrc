@@ -1,6 +1,9 @@
 # set terminal title
-termcapinfo xterm*|Eterm|mlterm "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
+termcapinfo xterm* "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
 hardstatus string "screen %n (%t)%? [%h]%?"
+
+# new windows default to utf8
+defutf8 on
 
 # set caption (ie statusbar)
 caption always "%{wg} %{-b ..}%-w%{+b ..}%n %t%{-}%+w %= %{wG} %H %02d-%02m-%Y %0c"
