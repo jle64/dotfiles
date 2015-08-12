@@ -1,0 +1,7 @@
+_theme() {
+        local cur
+        cur=${COMP_WORDS[COMP_CWORD]}
+        COMPREPLY=( $( compgen -W "$( ls -1 ~/.config/base16-shell/base16*.sh | sed 's/.*base16-\(.*\)\.sh$/\1/' )" -- $cur ) )
+        return 0
+}
+complete -F _theme theme

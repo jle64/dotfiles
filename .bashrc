@@ -5,7 +5,7 @@
 [ -f /etc/bashrc ] && source /etc/bashrc
 
 # Source auto-completion
-for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion; do
+for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion ${HOME}/.bash_completion; do
 	[ -f ${DIR}/bash_completion ] && source ${DIR}/bash_completion
 done
 

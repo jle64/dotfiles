@@ -1,0 +1,3 @@
+theme() {
+        . ~/.config/base16-shell/base16-"$1".sh
+}

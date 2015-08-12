@@ -152,6 +152,10 @@ fi
 PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${USER_CHAR}${RESET}
 └╼ "
 
+### Source additional functions
+if [ -f ${HOME}/.sh_functions ]; then
+	. ${HOME}/.sh_functions
+fi
 
 ### Source host specific definitions ###
 if [ -f ${HOME}/.sh_local ]; then
