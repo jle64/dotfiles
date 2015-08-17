@@ -46,6 +46,7 @@ Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'rodjek/vim-puppet'
 call plug#end()
 
 set background=dark
