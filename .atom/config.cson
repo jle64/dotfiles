@@ -1,0 +1,28 @@
+"*":
+  "exception-reporting":
+    userId: "2b114c48-82c9-3d5a-1ca7-0aa32bec6a55"
+  welcome:
+    showOnStartup: false
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "vim-mode"
+      "markdown-toc"
+    ]
+    autoHideMenuBar: true
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+  editor:
+    invisibles:
+      {}
+    fontFamily: "Fira Mono"
+  minimap:
+    {}
+  "tree-view":
+    {}
+  "isotope-ui":
+    {}
+  "markdown-pdf":
+    {}
