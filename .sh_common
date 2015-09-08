@@ -45,9 +45,9 @@ alias mv="mv -i"
 alias g='egrep -i'
 alias open="xdg-open"
 alias trash="gvfs-trash"
-alias em="emacs -nw"
+alias e="emacs -nw"
 alias vi="vim"
-alias e="\$EDITOR"
+alias parallel="parallel --will-cite"
 
 ### Functions ###
 
