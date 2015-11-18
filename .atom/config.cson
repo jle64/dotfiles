@@ -10,19 +10,14 @@
       "markdown-toc"
     ]
     autoHideMenuBar: true
-    themes: [
-      "one-light-ui"
-      "solarized-light-syntax"
-    ]
   editor:
-    invisibles:
-      {}
-    fontFamily: "Fira Mono"
-  minimap:
-    {}
-  "tree-view":
-    {}
-  "isotope-ui":
-    {}
-  "markdown-pdf":
-    {}
+    invisibles: {}
+    backUpBeforeSaving: true
+    showIndentGuide: true
+    softWrapAtPreferredLineLength: true
+    tabLength: 4
+  minimap: {}
+  "tree-view": {}
+  "isotope-ui": {}
+  "markdown-pdf": {}
+  "one-light-ui": {}
