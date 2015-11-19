@@ -1,5 +1,5 @@
 [/]
-list=['699a97f3-9371-424b-803b-655caf7a0681', 'fad6c520-3e55-4ed1-9de8-87832bae2e2a', '1a67ff7d-1ac6-4d49-a101-4be006e152d3', '66f3e793-5ab7-437f-8e7b-474093c65f31', 'ee89f943-fac0-416a-b589-f370964ecec4', '598ee746-cc99-4ba7-8b18-403704269add', 'e5ec9dae-3af3-428a-92aa-e942c204bce2']
+list=['699a97f3-9371-424b-803b-655caf7a0681', 'fad6c520-3e55-4ed1-9de8-87832bae2e2a', '1a67ff7d-1ac6-4d49-a101-4be006e152d3', '66f3e793-5ab7-437f-8e7b-474093c65f31', 'ee89f943-fac0-416a-b589-f370964ecec4', '598ee746-cc99-4ba7-8b18-403704269add']
 default='699a97f3-9371-424b-803b-655caf7a0681'
 
 [:699a97f3-9371-424b-803b-655caf7a0681]
@@ -37,26 +37,6 @@ use-theme-background=false
 bold-color-same-as-fg=true
 bold-color='#e0e0e0'
 background-color='rgb(26,26,26)'
-audible-bell=false
-title-mode='replace'
-scrollbar-policy='always'
-
-[:e5ec9dae-3af3-428a-92aa-e942c204bce2]
-foreground-color='#4f424c'
-visible-name='Light Paraiso'
-palette='#e7e9db:#ef6155:#48b685:#fec418:#06b6ef:#815ba4:#5bc4bf:#a39e9b:#776e71:#ef6155:#48b685:#fec418:#06b6ef:#815ba4:#5bc4bf:#2f1e2e'
-default-size-columns=100
-cursor-shape='block'
-use-custom-default-size=true
-use-theme-colors=false
-use-system-font=true
-font='DejaVu Sans Mono 9'
-allow-bold=true
-scrollback-unlimited=true
-use-theme-background=false
-bold-color-same-as-fg=true
-bold-color='#4f424c'
-background-color='#e7e9db'
 audible-bell=false
 title-mode='replace'
 scrollbar-policy='always'
