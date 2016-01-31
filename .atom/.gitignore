@@ -5,3 +5,4 @@ packages
 storage
 nohup.out
 packages.list
+blob-store

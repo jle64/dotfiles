@@ -14,5 +14,7 @@ theme_rand() {
 	shapeshifter.dark
 	solarized.dark
 	tomorrow.dark
+	solarized.light
+	atelierlakeside.light
 EOF`
 }
