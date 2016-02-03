@@ -150,7 +150,9 @@ if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 	# Source git prompt stuff
 	if [ -f /usr/share/git/git-prompt.sh ]; then
 		source /usr/share/git/git-prompt.sh
-		GIT_PS1_SHOWDIRTYSTATE=1
+		export GIT_PS1_SHOWDIRTYSTATE=true
+		export GIT_PS1_SHOWUNTRACKEDFILES=true
+		export GIT_PS1_SHOWSTASHSTATE=true
 		GIT_BRANCH="\`__git_ps1\`"
 	fi
 fi
