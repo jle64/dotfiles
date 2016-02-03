@@ -42,3 +42,6 @@
 	untracked = magenta
 [push]
 	default = simple
+[gui]
+	warndetachedcommit = true
+	spellingdictionary = en
