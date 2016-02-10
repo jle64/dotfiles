@@ -4,7 +4,7 @@
 
 [core]
 	pager = cat
-	whitespace=fix,trailing-space,tabwidth=4
+	whitespace = fix,trailing-space,tabwidth=4
 	editor = vim
 
 [merge]
@@ -18,9 +18,13 @@
 	co = 'checkout'
 	br = 'branch'
 	dc = 'diff --cached'
-	lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
-	last ='git log -1 --stat'
-	unstage ='reset HEAD --'
+	lg = "log --reverse --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --all"
+	rlog = "log --reverse"
+	last = 'git log -1 --stat'
+	unstage = 'reset HEAD --'
+
+[log]
+	date = rfc2822
 
 [color]
 	diff = auto
@@ -40,8 +44,10 @@
 	added = cyan
 	changed = green
 	untracked = magenta
+
 [push]
 	default = simple
+
 [gui]
 	warndetachedcommit = true
 	spellingdictionary = en
