@@ -1,2 +1,2 @@
 '.platform-linux':
-  'ctrl-alt': 'tree-view:toggle'
+  'ctrl-shift': 'tree-view:toggle'
