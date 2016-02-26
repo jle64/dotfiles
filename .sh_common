@@ -126,10 +126,10 @@ get_exit_status() {
 
 if [ `id -u` = 0 ]; then
         USER_COLOR="${RED}${BOLD}"
-        USER_CHAR="☢"
+        USER_CHAR="#"
 else
         USER_COLOR="${GREEN}"
-        USER_CHAR="❇"
+        USER_CHAR="$"
 fi
 
 if [ -z $HOST ]; then
@@ -157,7 +157,11 @@ if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 	fi
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${USER_CHAR}${RESET}
+if [ -f /run/reboot-required ]; then
+	REBOOT='!'
+fi
+
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
 ### Source additional functions
