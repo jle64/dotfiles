@@ -68,9 +68,9 @@ HISTTIMEFORMAT="${CYAN}[ %d/%m/%Y %H:%M:%S ]${NORMAL}  "
 ### Environment ###
 
 # locale
-if [[ `locale -a | grep fr_FR.utf8` ]]
+if [[ `locale -a | grep en_US.utf8` ]]
 then
-	export LANG=fr_FR.utf8
+	export LANG=en_US.utf8
 fi
 
 ### Aliases ###
