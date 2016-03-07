@@ -102,6 +102,9 @@ CAPABILITY 30;41
 .pacnew 37;46
 .rpmsave 37;46
 .rpmnew 37;46
+.dpkg-new 37;46
+.dpkg-old 37;46
+.dpkg-dist 37;46
 
 # encrypted stuff
 .gpg 04;31;31
