@@ -1,8 +1,8 @@
 # if not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
 
 # Source global definitions
-[ -f /etc/bashrc ] && source /etc/bashrc
+[ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
 
 # Source auto-completion
 for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion ${HOME}/.bash_completion; do
@@ -61,6 +61,9 @@ HISTFILESIZE=$HISTSIZE
 CYAN=$(echo -e '\e[0;36m')
 NORMAL=$(echo -e '\e[0m')
 HISTTIMEFORMAT="${CYAN}[ %d/%m/%Y %H:%M:%S ]${NORMAL}  "
+
+# no mail check
+unset MAILCHECK
 
 # umask, different if root
 [ $UID != 0 ] && umask 027 || umask 022
