@@ -126,10 +126,10 @@ get_exit_status() {
 
 if [ `id -u` = 0 ]; then
         USER_COLOR="${RED}${BOLD}"
-        USER_CHAR='+'
+        USER_CHAR='#'
 else
         USER_COLOR="${GREEN}"
-        USER_CHAR='-'
+        USER_CHAR='$'
 fi
 
 if [ -z $HOST ]; then
@@ -143,7 +143,6 @@ elif [ ! -z $OLDPWD ]; then
 else
 	WORK_DIR='\w'
 fi
-WORK_DIR_FULL=\${PWD}
 
 if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 	EXIT_STATUS="\`get_exit_status\`"
@@ -162,9 +161,7 @@ if [ -f /run/reboot-required ]; then
 	REBOOT='${RED}[!]'
 fi
 
-#PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
-#└╼ "
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${MAGENTA}@${HOST} ${CYAN}${WORK_DIR_FULL}${YELLOW}${GIT_BRANCH} ${BLUE}${USER_CHAR} ${RED}${REBOOT}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
 ### Source additional functions
