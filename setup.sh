@@ -21,5 +21,6 @@ done
 
 echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < gnome-keybindings.dconf"
 echo "dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal.dconf"
+echo "lesskey $HOME/.lesskey"
 
 echo ln -s "$(realpath prezto)" "$HOME"/.zprezto
