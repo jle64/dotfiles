@@ -8,17 +8,12 @@ set -o emacs
 
 ### Environment ###
 
-# mail
-export EMAIL="jonathan.lestrelin@gmail.com"
-export MAILPATH=/var/spool/mail/$USER:$HOME/Mail
-export DEBFULLNAME="Jonathan Lestrelin"
-export DEBEMAIL="$EMAIL"
-
 export EDITOR=vim
 export PAGER=less
 export SYSTEMD_PAGER=cat
 export GIT_PAGER=cat
 export BROWSER=firefox
+unset MAILCHECK
 
 # less
 export LESS=-wR
@@ -48,6 +43,7 @@ alias trash="gvfs-trash"
 alias e="emacs -nw"
 alias vi="vim"
 alias parallel="parallel --will-cite"
+alias sudo="sudo "            # allow to perform alias expansion
 
 ### Functions ###
 
