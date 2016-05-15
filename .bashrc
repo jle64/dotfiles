@@ -31,7 +31,7 @@ shopt -s extglob
 shopt -s extquote
 shopt -u failglob
 shopt -s force_fignore
-shopt -u globstar
+shopt -s globstar
 shopt -s gnu_errfmt
 shopt -s histappend
 shopt -s histreedit
