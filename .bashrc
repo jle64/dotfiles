@@ -68,14 +68,6 @@ unset MAILCHECK
 # umask, different if root
 [ $UID != 0 ] && umask 027 || umask 022
 
-### Environment ###
-
-# locale
-if [[ `locale -a | grep en_US.utf8` ]]
-then
-	export LANG=en_US.utf8
-fi
-
 ### Aliases ###
 
 alias ..="cd .."
