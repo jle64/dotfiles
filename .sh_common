@@ -25,8 +25,8 @@ which lesspipe.sh >/dev/null 2>&1 && eval "$(SHELL=/bin/sh lesspipe.sh)"
 ### Aliases ###
 
 alias l="ls"
-alias l.="ls -d .*"
 alias ll="ls -lh"
+alias l.="ls -ld .*"
 alias la="ls -lhA"
 alias lx="ls -lhAxb"          # sort by extension
 alias lk="ls -lhASr"          # sort by size, biggest last
