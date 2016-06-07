@@ -118,7 +118,7 @@ get_git_branch() {
 get_exit_status() {
 	EXIT_STATUS="$?"
 	if [ ${EXIT_STATUS} -ne 0 ]; then
-		echo "${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET} "
+		echo "${EXIT_STATUS}${RESET} "
 	fi
 }
 
