@@ -1,9 +1,0 @@
-#env
-LESS = -wR
-LESS_TERMCAP_mb = [01m[32m
-LESS_TERMCAP_md = [01m[32m
-LESS_TERMCAP_so = [01m[37m[41m
-LESS_TERMCAP_us = [01m[35m
-LESS_TERMCAP_me = [00m
-LESS_TERMCAP_se = [00m
-LESS_TERMCAP_ue = [00m

@@ -101,13 +101,17 @@ WHITE="[37m"
 BOLD="[01m"
 RESET="[00m"
 
-export LESS_TERMCAP_mb=${BOLD}${GREEN}              # Begins blinking.
-export LESS_TERMCAP_md=${BOLD}${GREEN}              # Begins bold.
-export LESS_TERMCAP_so=${BOLD}${WHITE}${BG_RED}     # Begins standout-mode.
-export LESS_TERMCAP_us=${BOLD}${MAGENTA}            # Begins underline.
-export LESS_TERMCAP_me=${RESET}                     # Ends mode.
-export LESS_TERMCAP_se=${RESET}                     # Ends standout-mode.
-export LESS_TERMCAP_ue=${RESET}                     # Ends underline.
+man() {
+	env \
+	LESS_TERMCAP_mb=${BOLD}${GREEN}             \
+	LESS_TERMCAP_md=${BOLD}${GREEN}             \
+	LESS_TERMCAP_so=${BOLD}${WHITE}${BG_RED}    \
+	LESS_TERMCAP_us=${BOLD}${MAGENTA}           \
+	LESS_TERMCAP_me=${RESET}                    \
+	LESS_TERMCAP_se=${RESET}                    \
+	LESS_TERMCAP_ue=${RESET}                    \
+	man "$@"
+}
 
 # a colorful prompt that works on {a,da,ba,mk,pdk,z}sh
 # and probably other Bourne/POSIX variants
