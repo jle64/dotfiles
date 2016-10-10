@@ -13,17 +13,20 @@ set autochdir                   " use current working directory of a file as bas
 set encoding=utf-8              " what else ?
 set showcmd                     " show informations about selection while in visual mode
 set guioptions-=T               " remove toolbar
-" set colorcolumn=80              " highligth the 80th column
+"set relativenumber
+"set number
+set colorcolumn=80              " highligth the 80th column
 
 syntax on			" colors !
+set termguicolors
 set t_Co=256			" Moar colors !
 filetype plugin on
 
 " remember last position
 autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\   exe "normal! g`\"" |
+	\ endif
 set hidden
 map <TAB> :e#<CR>
 cnoremap sudow w !sudo tee % >/dev/null
@@ -47,14 +50,17 @@ Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+let g:gruvbox_italic=1
+colorscheme gruvbox
 ":highlight Normal ctermbg=NONE
 
 " airline
 set laststatus=2
-let g:airline_theme='tomorrow'
+"let g:airline_theme='tomorrow'
 "let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
