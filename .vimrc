@@ -15,7 +15,7 @@ set showcmd                     " show informations about selection while in vis
 set guioptions-=T               " remove toolbar
 "set relativenumber
 "set number
-set colorcolumn=80              " highligth the 80th column
+"set colorcolumn=80              " highligth the 80th column
 
 syntax on			" colors !
 set termguicolors

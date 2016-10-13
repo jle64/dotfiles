@@ -3,8 +3,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (deeper-blue)))
+ '(custom-enabled-themes (quote (tango-dark)))
  '(custom-safe-themes
    (quote
     ("fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" default)))
@@ -19,6 +21,12 @@
  '(linum ((t (:inherit (shadow default) :background "white"))))
  '(mode-line ((t (:background "white" :foreground "brightblack" :box (:line-width -1 :style released-button))))))
 
+; Bigger default font size
+(set-face-attribute 'default nil :height 125)
+
+; Set window size at startup
+(when window-system (set-frame-size (selected-frame) 80 24))
+
 ; Show matching parentheses
 (load-library "paren")
 (show-paren-mode 1)
@@ -32,6 +40,11 @@
 ; Use a single backup directory
 (setq backup-directory-alist
 '(("." . "~/.cache/emacs/backups")))
+
+; Remember history of mini buffer and other stuff
+(savehist-mode 1)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+(setq savehist-file "~/.cache/emacs/history")
 
 ; Remember position in files
 (setq save-place-file "~/.cache/emacs/saveplace") ;; keep my ~ clean
