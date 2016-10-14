@@ -127,11 +127,11 @@ get_exit_status() {
 }
 
 if [ `id -u` = 0 ]; then
-        USER_COLOR="${RED}${BOLD}"
-        USER_CHAR='#'
+        USER_COLOR="${MAGENTA}${BOLD}"
+        USER_CHAR='👑'
 else
-        USER_COLOR="${GREEN}"
-        USER_CHAR='$'
+        USER_COLOR="${YELLOW}"
+        USER_CHAR=''
 fi
 
 if [ -z $HOST ]; then
@@ -163,7 +163,7 @@ if [ -f /run/reboot-required ]; then
 	REBOOT='${RED}[!]'
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${CYAN}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${YELLOW}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
 [ $TERM = "dumb" ] && PS1='$ '
