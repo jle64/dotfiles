@@ -166,6 +166,8 @@ fi
 PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
+[ $TERM = "dumb" ] && PS1='$ '
+
 ### Source additional functions
 if [ -f ${HOME}/.sh_functions ]; then
 	. ${HOME}/.sh_functions
