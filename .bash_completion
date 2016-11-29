@@ -5,3 +5,13 @@ _theme() {
         return 0
 }
 complete -F _theme theme
+
+if uname -v | grep -q FreeBSD; then
+	_service () {
+		local cur
+		cur=${COMP_WORDS[COMP_CWORD]}
+		COMPREPLY=( $( compgen -W '$( service -l )' -- $cur ) )
+		return 0
+	}
+	complete -F _service service
+fi
