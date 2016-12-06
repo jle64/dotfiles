@@ -101,6 +101,11 @@ function precmd {
 
 RPS1='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]}'
 
+# Load zsh stuff
+for config in ${HOME}/.config/shell.d/*.zsh ; do
+    source "${config}"
+done
+
 # Load any supplementary scripts
 for config in ${HOME}/.config/shell.d/*.sh ; do
     source "${config}"
