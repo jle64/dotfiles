@@ -99,19 +99,12 @@ function precmd {
     vcs_info
 }
 
-# Prompt
-if [[ $UID -eq 0 ]]; then
-  user_color="${fg_bold[red]}"
-else
-  user_color="${fg_no_bold[green]}"
-fi
-return_code="%(?..%{${bg_bold[red]}${fg_bold[white]}%}%?%{${reset_color}%} )"
-user_at_host="%{${user_color}%}%n${deco}%{${fg_no_bold[yellow]}%}@%m"
-cwd="%{${fg_no_bold[cyan]}%}%32<...<%~"
-sign="%{${fg_no_bold[red]}%}%#"
-
-PS1="┌─ ${return_code}${user_at_host}:${cwd} ${sign}%{${reset_color}%}
-└╼ "
 RPS1='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${INSIDE_EMACS:+" %B%F{green}E%f%b"}${git_info[rprompt]}'
 
-source ~/.sh_common
+# Load any supplementary scripts
+for config in ${HOME}/.config/shell.d/*.sh ; do
+    source "${config}"
+done
+
+# Load local stuff
+source .sh_local
