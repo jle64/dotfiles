@@ -1,10 +1,10 @@
-#!/bin/sh
-
 # Load any supplementary scripts
 for config in ${HOME}/.config/shell.d/*.sh ; do
     . "${config}"
 done
 unset -v config
 
-# Load local stuff
-. .sh_local
+if [ -f "${HOME}/.sh_local" ]; then
+	. "${HOME}/.sh_local"
+fi
+

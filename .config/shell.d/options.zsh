@@ -1,0 +1,11 @@
+setopt autocd
+setopt extendedglob
+setopt nomatch
+setopt completealiases
+setopt autonamedirs
+setopt listtypes
+setopt nobeep
+setopt nolistbeep
+setopt nonotify
+setopt nocorrect
+setopt promptsubst
