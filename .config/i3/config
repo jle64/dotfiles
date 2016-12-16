@@ -32,10 +32,14 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+q kill
 
-# start dmenu for running commands
-bindsym $mod+c exec dmenu_run
 # start dmenu for running desktop files
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod2+F1 exec --no-startup-id i3-dmenu-desktop
+# start dmenu for running commands
+bindsym $mod2+F2 exec dmenu_run
+# start dmenu with clipd for clipboard history
+bindsym $mod2+F3 exec ~/.config/i3/clipd menu
+# start dmenu with passmenu for using pass
+bindsym $mod3+F4 exec passmenu
 
 # move focused window
 bindsym $mod+Left move left
@@ -86,16 +90,6 @@ bindsym $mod+7 move container to workspace number 7
 bindsym $mod+8 move container to workspace number 8
 bindsym $mod+9 move container to workspace number 9
 bindsym $mod+0 move container to workspace number 10
-bindsym $mod+KP_1 move container to workspace number 1
-bindsym $mod+KP_2 move container to workspace number 2
-bindsym $mod+KP_3 move container to workspace number 3
-bindsym $mod+KP_4 move container to workspace number 4
-bindsym $mod+KP_5 move container to workspace number 5
-bindsym $mod+KP_6 move container to workspace number 6
-bindsym $mod+KP_7 move container to workspace number 7
-bindsym $mod+KP_8 move container to workspace number 8
-bindsym $mod+KP_9 move container to workspace number 9
-bindsym $mod+KP_0 move container to workspace number 10
 
 # switch to workspace
 bindsym $mod2+1 workspace number 1
@@ -108,25 +102,15 @@ bindsym $mod2+7 workspace number 7
 bindsym $mod2+8 workspace number 8
 bindsym $mod2+9 workspace number 9
 bindsym $mod2+0 workspace number 10
-bindsym $mod2+KP_1 workspace number 1
-bindsym $mod2+KP_2 workspace number 2
-bindsym $mod2+KP_3 workspace number 3
-bindsym $mod2+KP_4 workspace number 4
-bindsym $mod2+KP_5 workspace number 5
-bindsym $mod2+KP_6 workspace number 6
-bindsym $mod2+KP_7 workspace number 7
-bindsym $mod2+KP_8 workspace number 8
-bindsym $mod2+KP_9 workspace number 9
-bindsym $mod2+KP_0 workspace number 10
 
 # reload the configuration file
 bindsym $mod2+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod2+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod2+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod2+e exec "i3-nagbar -t warning -m 'Do you want to exit i3 ?' -b 'Yes' 'i3-msg exit'"
 # lock screen
-bindsym $mod+l exec "i3lock -f -t -c cccccc"
+bindsym $mod+l exec "i3lock -f -t -c 002277"
 # run i3-input
 bindsym $mod+i exec "i3-input"
 
