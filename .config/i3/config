@@ -32,14 +32,11 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+q kill
 
-# start dmenu for running desktop files
-bindsym $mod2+F1 exec --no-startup-id i3-dmenu-desktop
-# start dmenu for running commands
-bindsym $mod2+F2 exec dmenu_run
-# start dmenu with clipd for clipboard history
-bindsym $mod2+F3 exec ~/.config/i3/clipd menu
-# start dmenu with passmenu for using pass
-bindsym $mod2+F4 exec passmenu
+# rofi
+bindsym $mod+w exec "~/.config/i3/rofi -show window"
+bindsym $mod+x exec "~/.config/i3/rofi -combi-modi run,drun -show combi"
+bindsym $mod+c exec ~/.config/i3/clipd menu
+bindsym $mod+p exec ~/.config/i3/passmenu
 
 # move focused window
 bindsym $mod+Left move left
