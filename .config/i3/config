@@ -39,7 +39,7 @@ bindsym $mod2+F2 exec dmenu_run
 # start dmenu with clipd for clipboard history
 bindsym $mod2+F3 exec ~/.config/i3/clipd menu
 # start dmenu with passmenu for using pass
-bindsym $mod3+F4 exec passmenu
+bindsym $mod2+F4 exec passmenu
 
 # move focused window
 bindsym $mod+Left move left
