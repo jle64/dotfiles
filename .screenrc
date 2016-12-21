@@ -6,7 +6,7 @@ hardstatus string "screen %n (%t)%? [%h]%?"
 defutf8 on
 
 # set caption (ie statusbar)
-caption always "%{wg} %{-b ..}%-w%{+b ..}%n %t%{-}%+w %= %{wG} %H %02d-%02m-%Y %0c"
+caption always "%{rg} %{-b ..}%-w%{+b ..}%n %t%{-}%+w %= %{rG} %H %02d-%02m-%Y %0c"
 
 altscreen on
 startup_message off
