@@ -2,5 +2,5 @@
 ENV=$HOME/.shrc; export ENV
 
 if [ ! -z "$BASH" ]; then
-	. .bashrc
+	. ~/.bashrc
 fi
