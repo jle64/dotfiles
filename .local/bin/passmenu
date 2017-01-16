@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
+set -e
 shopt -s nullglob globstar
+
+cd "$(dirname "$(realpath "$0")")"
 
 typeit=0
 if [[ $1 == "--type" ]]; then
@@ -13,7 +15,7 @@ password_files=( "$prefix"/**/*.gpg )
 password_files=( "${password_files[@]#"$prefix"/}" )
 password_files=( "${password_files[@]%.gpg}" )
 
-password=$(printf '%s\n' "${password_files[@]}" | ~/.config/i3/rofi -dmenu "$@")
+password=$(printf '%s\n' "${password_files[@]}" | ./rofi -dmenu "$@")
 
 [[ -n $password ]] || exit
 

@@ -1,3 +1,6 @@
+# path
+export PATH=~/.local/bin:$PATH
+
 # apps
 export EDITOR=vim
 export PAGER=less

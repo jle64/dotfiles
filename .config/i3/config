@@ -33,10 +33,10 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+q kill
 
 # rofi
-bindsym $mod+w exec "~/.config/i3/rofi -show window"
-bindsym $mod+x exec "~/.config/i3/rofi -combi-modi run,drun -show combi"
-bindsym $mod+c exec ~/.config/i3/clipd menu
-bindsym $mod+p exec ~/.config/i3/passmenu
+bindsym $mod+w exec "~/.local/bin/rofi -show window"
+bindsym $mod+x exec "~/.local/bin/rofi -combi-modi run,drun -show combi"
+bindsym $mod+c exec ~/.local/bin/clipd menu
+bindsym $mod+p exec ~/.local/bin/passmenu
 
 # move focused window
 bindsym $mod+Left move left
