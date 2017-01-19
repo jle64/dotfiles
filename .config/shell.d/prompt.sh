@@ -18,7 +18,7 @@ get_git_branch() {
 }
 
 get_exit_status() {
-	EXIT_STATUS="$?"
+EXIT_STATUS="$?"
 	if [ ${EXIT_STATUS} -ne 0 ]; then
 		echo "${EXIT_STATUS}${RESET} "
 	fi
@@ -33,11 +33,11 @@ else
 fi
 
 if [ -z $HOST ]; then
-        HOST=`hostname`
+	HOST=`hostname`
 fi
 
 if [ ! -z $ZSH_VERSION ]; then
-        WORK_DIR='%~'
+	WORK_DIR='%~'
 elif [ ! -z $OLDPWD ]; then
 	WORK_DIR=\${PWD}
 else
@@ -59,12 +59,15 @@ if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 		GIT_BRANCH="\`__git_ps1\`"
 	fi
 fi
+if [ -n "$GUIX_ENVIRONMENT" ]; then
+	GUIX_ENV=" [guix]"
+fi
 
 if [ -f /run/reboot-required ]; then
 	REBOOT='${RED}[!]'
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
 [ $TERM = "dumb" ] && PS1='$ '
