@@ -24,6 +24,3 @@ export CLICOLOR=true
 if which dircolors >/dev/null 2>&1; then
 	eval "$(dircolors ~/.dircolors)"
 fi
-if [ -f "/usr/lib/libstderred.so" ]; then
-	export LD_PRELOAD="/usr/lib/libstderred.so"
-fi
