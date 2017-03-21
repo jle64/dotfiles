@@ -44,6 +44,7 @@ set clipboard=unnamed
 " plug
 call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
@@ -61,6 +62,6 @@ colorscheme gruvbox
 
 " airline
 set laststatus=2
-"let g:airline_theme='tomorrow'
+let g:airline_theme='gruvbox'
 "let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1

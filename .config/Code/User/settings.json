@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "update.channel": "none",
+    "editor.rulers": [80],
+    "editor.renderWhitespace": "boundary",
+    "editor.wrappingColumn": -1,
+    "editor.fontLigatures": true,
+    "editor.renderIndentGuides": true,
+    "editor.renderControlCharacters": true,
+    "window.openFoldersInNewWindow": "on",
+    "window.menuBarVisibility": "toggle",
+    "explorer.openEditors.visible": 0,
+    "terminal.integrated.scrollback": 100000
+}
