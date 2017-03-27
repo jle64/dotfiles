@@ -28,3 +28,4 @@ done
 
 echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < gnome-keybindings.dconf"
 echo "dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal.dconf"
+echo "dconf load /com/gexperts/Tilix/ < tilix.dconf"
