@@ -29,7 +29,7 @@ autocmd BufReadPost *
 	\ endif
 set hidden
 map <TAB> :e#<CR>
-cnoremap sudow w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % > /dev/null
 if has('gui_running')
 	set number
 	" Make shift-insert work like in Xterm
