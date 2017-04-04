@@ -1,5 +1,5 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/']
 screenshot=''
 
 [custom-keybindings/custom0]
@@ -8,7 +8,7 @@ command='nautilus'
 name='Nautilus'
 
 [custom-keybindings/custom1]
-binding='<Super>t'
+binding='<Super>m'
 command='thunderbird'
 name='Thunderbird'
 
@@ -19,7 +19,7 @@ name='Firefox'
 
 [custom-keybindings/custom3]
 binding='<Super>c'
-command='gnome-terminal'
+command='tilix'
 name='Console'
 
 [custom-keybindings/custom4]
@@ -31,6 +31,11 @@ name='Gedit'
 binding='Print'
 command='gnome-screenshot -i'
 name='Screenshot'
+
+[custom-keybindings/custom10]
+binding='<Super>x'
+command='/home/jonathan/.dotfiles/.local/bin/passmenu'
+name='Passmenu'
 
 [custom-keybindings/custom6]
 binding='<Primary>Escape'
