@@ -19,7 +19,11 @@ password=$(printf '%s\n' "${password_files[@]}" | ./runrofi -dmenu "$@")
 [[ -n $password ]] || exit
 
 if [[ $typeit -eq 0 ]]; then
-	pass show -c "$password" 2>/dev/null
+	if which gpaste-client 2>/dev/null; then
+		pass show "$password" | gpaste-client add-password "$password"
+	else
+		pass show -c "$password" 2>/dev/null
+	fi
 else
 	xdotool - <<<"type --clearmodifiers -- $(pass show "$password" | head -n 1)"
 fi
