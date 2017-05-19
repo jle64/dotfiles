@@ -6,11 +6,13 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tango-dark)))
  '(custom-safe-themes
    (quote
     ("fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" default)))
- '(fill-column 120))
+ '(fill-column 120)
+ '(package-selected-packages
+   (quote
+    (gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -127,13 +129,12 @@
 (add-to-list 'package-archives 
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 ; Add the MELPA repo
 (require 'package)
 (add-to-list 'package-archives 
     '("melpa" .
-      "http://melpa.milkbox.net/packages/"))
+      "https://melpa.org/packages/"))
 (package-initialize)
 
 ; Disable the menu bar and the toolbar
@@ -168,3 +169,7 @@
 (defun ep-dirtree ()
   (interactive)
   (dirtree-in-buffer eproject-root t))
+
+; Load theme
+(load-theme 'gruvbox t)
+
