@@ -1,6 +1,6 @@
 # history
 HISTCONTROL=ignoreboth
-HISTSIZE=10000
+HISTSIZE=100000
 HISTFILESIZE=$HISTSIZE
 CYAN=$(echo -e '\e[0;36m')
 NORMAL=$(echo -e '\e[0m')
