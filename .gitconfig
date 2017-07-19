@@ -3,7 +3,6 @@
 	email = jonathan.lestrelin@gmail.com
 
 [core]
-	pager = cat
 	whitespace = fix,trailing-space,tabwidth=4
 	editor = vim
 
