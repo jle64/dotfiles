@@ -5,6 +5,7 @@
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
 	editor = vim
+	pager = cat
 
 [merge]
 	tool = vimdiff
@@ -18,7 +19,7 @@
 	br = 'branch'
 	dc = 'diff --cached'
 	lg = "log --reverse --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --all"
-	rlog = "log --reverse"
+	lr = "log --reverse"
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
 
