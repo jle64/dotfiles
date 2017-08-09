@@ -6,22 +6,26 @@ alias lx="ls -lhAxb"          # sort by extension
 alias lk="ls -lhASr"          # sort by size, biggest last
 alias lt="ls -lhAtr"          # sort by date, most recent last
 alias lsb="ls -ail"
-alias sl="ls"
-alias cta="cat"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias g='egrep -i'
-alias open="xdg-open"
-alias trash="gvfs-trash"
 alias e="emacs -nw"
 alias vi="vim"
 alias parallel="parallel --will-cite"
 alias sudo="sudo "            # allow to perform alias expansion
+if which gio >/dev/null 2>&1; then
+	alias open="gio open"
+	alias trash="gio trash"
+elif which xdg-open >/dev/null 2>&1; then
+	alias open="xdg-open"
+fi
 
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 if [ "$(uname)" = "Linux" ]; then
 	alias dmesg="dmesg -TL"
