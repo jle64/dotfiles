@@ -51,3 +51,14 @@
 [gui]
 	warndetachedcommit = true
 	spellingdictionary = en
+
+[url "git@github.com:"]
+	insteadOf = github:
+	insteadOf = gh:
+
+[url "git@gitlab.com:"]
+	insteadOf = gitlab:
+	insteadOf = gl:
+
+[url "git@git.alterway.fr:"]
+	insteadOf = aw:
