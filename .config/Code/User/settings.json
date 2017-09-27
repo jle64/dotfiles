@@ -14,6 +14,5 @@
     "workbench.welcome.enabled": false,
     "workbench.iconTheme": "vscode-icon-theme",
     "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Solarized Dark",
     "vim.disableAnnoyingNeovimMessage": true
 }
