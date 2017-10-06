@@ -10,6 +10,9 @@ export BROWSER=firefox
 if [ -n "$KATE_PID" ]
 then
 	export GIT_EDITOR="kate -b"
+elif [ -n "$VSCODE_PID" ]
+then
+	export GIT_EDITOR="code --wait"
 fi
 
 # don't read mail
