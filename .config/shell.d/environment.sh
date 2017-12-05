@@ -1,5 +1,7 @@
 # path
-export PATH=~/.local/bin:$PATH
+if ! echo $PATH | grep -q $HOME/.local/bin; then
+	export PATH=$HOME/.local/bin:$PATH
+fi
 
 # apps
 export EDITOR=vim
