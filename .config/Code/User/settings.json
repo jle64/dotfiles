@@ -14,5 +14,6 @@
     "workbench.iconTheme": "vscode-icon-theme",
     "workbench.activityBar.visible": true,
     "workbench.startupEditor": "newUntitledFile",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Gloom"
 }
