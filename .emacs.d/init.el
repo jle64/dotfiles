@@ -124,17 +124,17 @@
 ; Set window title
 (setq frame-title-format '(buffer-file-name "%f - Emacs" "%b - Emacs"))
 
-; Add the marmalade repo
+;; Add the marmalade repo
 (require 'package)
 (add-to-list 'package-archives 
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 
-; Add the MELPA repo
-(require 'package)
-(add-to-list 'package-archives 
-    '("melpa" .
-      "https://melpa.org/packages/"))
+;; Add the MELPA repo
+;(require 'package)
+;(add-to-list 'package-archives 
+;    '("melpa" .
+;      "https://melpa.org/packages/"))
 (package-initialize)
 
 ; Disable the menu bar and the toolbar

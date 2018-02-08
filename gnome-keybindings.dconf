@@ -1,5 +1,5 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
 screenshot=''
 
 [custom-keybindings/custom0]
@@ -8,7 +8,7 @@ command='nautilus'
 name='Nautilus'
 
 [custom-keybindings/custom1]
-binding='<Super>m'
+binding='<Super>t'
 command='thunderbird'
 name='Thunderbird'
 
@@ -23,36 +23,26 @@ command='tilix'
 name='Console'
 
 [custom-keybindings/custom4]
-binding='<Super>g'
-command='gedit'
-name='Gedit'
-
-[custom-keybindings/custom5]
 binding='Print'
 command='gnome-screenshot -i'
 name='Screenshot'
 
-[custom-keybindings/custom10]
-binding='<Super>x'
-command='/home/jonathan/.dotfiles/.local/bin/passmenu'
-name='Passmenu'
-
-[custom-keybindings/custom6]
+[custom-keybindings/custom5]
 binding='<Primary>Escape'
 command='gnome-system-monitor'
 name='System monitor'
 
-[custom-keybindings/custom7]
-binding='<Super>h'
-command='gnome-terminal -e htop'
-name='Htop'
+[custom-keybindings/custom6]
+binding='<Super>g'
+command='gedit'
+name='Gedit'
 
-[custom-keybindings/custom8]
+[custom-keybindings/custom7]
 binding='<Super>v'
-command='gnome-terminal -e vim'
+command='gvim'
 name='Vim'
 
-[custom-keybindings/custom9]
+[custom-keybindings/custom8]
 binding='<Super>e'
 command='emacs'
 name='Emacs'
