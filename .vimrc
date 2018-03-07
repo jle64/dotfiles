@@ -2,8 +2,6 @@ set nocompatible                " Use Vim defaults instead of 100% vi compatibil
 set backspace=indent,eol,start  " more powerful backspacing
 set history=100                 " keep 100 lines of command line history
 set ruler                       " show the cursor position all the time
-set nobackup
-set nowritebackup
 set smartcase
 set hlsearch
 set incsearch                   " type-ahead-find
@@ -16,6 +14,21 @@ set guioptions-=T               " remove toolbar
 "set relativenumber
 "set number
 "set colorcolumn=80              " highligth the 80th column
+
+" set <leader> key to space
+:let mapleader = " "
+
+" make invisible characters visible
+"set list
+set listchars=tab:↹·,extends:⇉,precedes:⇇,trail:␣,nbsp:␣
+nmap <leader>l :set list!<CR>
+
+set backup
+set writebackup
+set undofile                          " persistent undo on
+set backupdir=~/.cache/vim/backup     " get backups outta here
+set directory=~/.cache/vim/swap       " get swapfiles outta here
+set undodir=~/.cache/vim/undo         " persistent undo storage
 
 syntax on			" colors !
 set termguicolors
