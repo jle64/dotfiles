@@ -13,6 +13,7 @@ done
 echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < gnome-keybindings.dconf"
 echo "dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal.dconf"
 echo "dconf load /com/gexperts/Tilix/ < tilix.dconf"
+echo "xrdb -merge .Xresources"
 
 if [ ! -d "$HOME"/.prezto ]; then
 	echo "git clone git@github.com:sorin-ionescu/prezto.git "$HOME"/.prezto"

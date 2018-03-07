@@ -1,0 +1,22 @@
+! Use a nice truetype font and size by default... 
+xterm*faceName: DejaVu Sans Mono Book
+xterm*faceSize: 11
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+xterm*loginshell: true
+
+! double-click to select whole URLs :D
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! right hand side scrollbar...
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+
+! toolbar
+xterm*toolBar: true
+
+! stop output to terminal from jumping down to bottom of scroll again
+xterm*scrollTtyOutput: false
+
+! scrollback
+xterm*savelines: 100000
