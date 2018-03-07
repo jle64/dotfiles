@@ -11,6 +11,8 @@ set autochdir                   " use current working directory of a file as bas
 set encoding=utf-8              " what else ?
 set showcmd                     " show informations about selection while in visual mode
 set guioptions-=T               " remove toolbar
+set foldmethod=indent           " auto-fold based on indentation.  (py-friendly)
+set foldlevel=99
 "set relativenumber
 "set number
 "set colorcolumn=80              " highligth the 80th column
@@ -65,6 +67,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
 Plug 'morhetz/gruvbox'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 set background=dark
