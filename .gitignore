@@ -6,8 +6,9 @@
 .emacs.d/elpa
 .emacs.d/eshell/history
 .emacs.d/eshell/lastdir
-.emacs.d/iquelpa
+.emacs.d/quelpa
 .emacs.d/network-security.data
+.emacs.d/session.*
 .emacs.d/tramp
 .emacs.d/url
 .vim/plugged/*
