@@ -22,8 +22,8 @@ test -d ~/.cache/vim || echo mkdir -p ~/.cache/vim/{backup,swap,undo}
 test -d ~/.cache/emacs || echo mkdir -p ~/.cache/emacs
 
 echo -e "\n# Add utilities"
-mkdir -p ~/.local/bin
-wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
+test -d ~/.local/bin || echo mkdir -p ~/.local/bin
+test -f ~/.local/bin/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
 
 if [ ! -d "$HOME"/.prezto ]; then
 	echo -e "\n# Setup zsh"
