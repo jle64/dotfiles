@@ -1,0 +1,5 @@
+#env
+LESS_TERMCAP_mb = [1m[32m
+LESS_TERMCAP_md = [1m[36m
+LESS_TERMCAP_me = (B[m
+LESS_TERMCAP_se = [0m

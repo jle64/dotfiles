@@ -16,6 +16,7 @@ echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < gnome-keybindi
 echo "dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal.dconf"
 echo "dconf load /com/gexperts/Tilix/ < tilix.dconf"
 echo "xrdb -merge .Xresources"
+echo "lesskey lesskey$(shuf -n 1 -e 1 2 3)-*"
 
 echo -e "\n# Create cache directories"
 test -d ~/.cache/vim || echo mkdir -p ~/.cache/vim/{backup,swap,undo}
