@@ -22,6 +22,10 @@ echo -e "\n# Create cache directories"
 test -d ~/.cache/vim || echo mkdir -p ~/.cache/vim/{backup,swap,undo}
 test -d ~/.cache/emacs || echo mkdir -p ~/.cache/emacs
 
+echo -e "\n# Add utilities"
+test -d ~/.local/bin || echo mkdir -p ~/.local/bin
+test -f ~/.local/bin/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
+
 if [ ! -d "$HOME"/.prezto ]; then
 	echo -e "\n# Setup zsh"
 	echo "git clone git@github.com:sorin-ionescu/prezto.git "$HOME"/.prezto"
