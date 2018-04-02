@@ -26,10 +26,10 @@ echo -e "\n# Add utilities"
 test -d ~/.local/bin || echo mkdir -p ~/.local/bin
 test -f ~/.local/bin/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
 
-if [ ! -d "$HOME"/.prezto ]; then
+if [ ! -d "$HOME"/.zprezto ]; then
 	echo -e "\n# Setup zsh"
-	echo "git clone git@github.com:sorin-ionescu/prezto.git "$HOME"/.prezto"
-	echo "ln -s "$HOME"/.prezto/runcoms/zprofile "$HOME"/.zprofile"
-	echo "ln -s "$HOME"/.prezto/runcoms/zlogin "$HOME"/.zlogin"
-	echo "ln -s "$HOME"/.prezto/runcoms/zshenv "$HOME"/.zshenv"
+	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git "$HOME"/.zprezto"
+	echo "ln -s "$HOME"/.zprezto/runcoms/zprofile "$HOME"/.zprofile"
+	echo "ln -s "$HOME"/.zprezto/runcoms/zlogin "$HOME"/.zlogin"
+	echo "ln -s "$HOME"/.zprezto/runcoms/zshenv "$HOME"/.zshenv"
 fi
