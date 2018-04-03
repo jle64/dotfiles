@@ -11,22 +11,23 @@ h() {
 }
 
 theme() {
-        . ~/.config/base16-shell/base16-"$1".sh
+        . "${XDG_CONFIG_HOME:-$HOME/.config}"/base16-shell/scripts/base16-"$1".sh
 }
 
 theme_rand() {
 	theme `sort -R << EOF
-	ashes.dark
-	atelierlakeside.dark
-	bright.dark
-	codeschool.dark
-	harmonic16.dark
-	isotope.dark
-	monokai.dark
-	shapeshifter.dark
-	solarized.dark
-	tomorrow.dark
-	solarized.light
-	atelierlakeside.light
+	ashes
+	atelier-heath
+	atelier-lakeside
+	bright
+	codeschool
+	harmonic-dark
+	isotope
+	monokai
+	shapeshifter
+	solarized-dark
+	tomorrow
+	solarized-light
+	atelier-lakeside-light
 EOF`
 }
