@@ -27,10 +27,10 @@ nmap <leader>l :set list!<CR>
 
 set backup
 set writebackup
-set undofile                          " persistent undo on
-set backupdir=~/.cache/vim/backup     " get backups outta here
-set directory=~/.cache/vim/swap       " get swapfiles outta here
-set undodir=~/.cache/vim/undo         " persistent undo storage
+set undofile                             " persistent undo on
+set backupdir=$XDG_CACHE_HOME/vim/backup " get backups outta here
+set directory=$XDG_CACHE_HOME/vim/swap   " get swapfiles outta here
+set undodir=$XDG_CACHE_HOME/vim/undo     " persistent undo storage
 
 syntax on			" colors !
 set termguicolors

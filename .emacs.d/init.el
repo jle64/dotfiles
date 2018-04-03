@@ -41,15 +41,15 @@
 
 ; Use a single backup directory
 (setq backup-directory-alist
-'(("." . "~/.cache/emacs/backups")))
+'(("." . (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/backups"))))
 
 ; Remember history of mini buffer and other stuff
 (savehist-mode 1)
 (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
-(setq savehist-file "~/.cache/emacs/history")
+(setq savehist-file (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/history"))
 
 ; Remember position in files
-(setq save-place-file "~/.cache/emacs/saveplace") ;; keep my ~ clean
+(setq save-place-file (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/saveplace"))
 (setq-default save-place t)                   ;; activate it for all buffers
 (require 'saveplace)                          ;; get the package
 
@@ -127,14 +127,12 @@
 ;; Add the marmalade repo
 (require 'package)
 (add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "https://marmalade-repo.org/packages/") t)
+
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (package-initialize)
-(unless (require 'quelpa nil t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
 
 ; Disable the menu bar and the toolbar
 (menu-bar-mode -1)

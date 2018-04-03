@@ -11,7 +11,7 @@ h() {
 }
 
 theme() {
-        . "${XDG_CONFIG_HOME:-$HOME/.config}"/base16-shell/scripts/base16-"$1".sh
+        . "${XDG_CONFIG_HOME}"/base16-shell/scripts/base16-"$1".sh
 }
 
 theme_rand() {

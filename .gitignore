@@ -1,6 +1,6 @@
-.config/Code/*
-.config/fish/fishd.jonathanpc
-.config/fish/fish_history
+config/Code/*
+config/fish/fishd.*
+config/fish/fish_history
 .emacs.d/auto-save-list/
 .emacs.d/%backup%~
 .emacs.d/elpa

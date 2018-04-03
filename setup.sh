@@ -47,8 +47,7 @@ test -d "$CONFIG"/base16-shell || echo "git clone https://github.com/chriskempso
 
 if [ ! -d "$CONFIG"/zprezto ]; then
 	echo -e "\\n# Setup zsh"
-	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git $HOME/zprezto"
-	echo "ln -s $HOME/.zprezto/runcoms/zprofile $HOME/.zprofile"
-	echo "ln -s $HOME/.zprezto/runcoms/zlogin $HOME/.zlogin"
-	echo "ln -s $HOME/.zprezto/runcoms/zshenv $HOME/.zshenv"
+	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git $CONFIG/zprezto"
+	echo "ln -s $CONFIG/zprezto/runcoms/zlogin $HOME/.zlogin"
+	echo "ln -s $CONFIG/zprezto/runcoms/zshenv $HOME/.zshenv"
 fi

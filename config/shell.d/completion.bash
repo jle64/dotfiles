@@ -1,7 +1,6 @@
 _theme() {
         local cur=${COMP_WORDS[COMP_CWORD]}
-	local config="${XDG_CONFIG_HOME:-$HOME/.config}"
-        COMPREPLY=( $( compgen -W "$( ls -1 $config/base16-shell/scripts/base16*.sh | sed 's/.*base16-\(.*\)\.sh$/\1/' )" -- $cur ) )
+        COMPREPLY=( $( compgen -W "$( ls -1 ${XDG_CONFIG_HOME}/base16-shell/scripts/base16*.sh | sed 's/.*base16-\(.*\)\.sh$/\1/' )" -- $cur ) )
         return 0
 }
 complete -F _theme theme
