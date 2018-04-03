@@ -9,13 +9,8 @@ for DIR in /etc /usr/share/bash-completion /usr/local/share/bash-completion; do
 	[ -f ${DIR}/bash_completion ] && source ${DIR}/bash_completion
 done
 
-# Source bash specific scripts
-for config in "${HOME}"/.config/shell.d/*.bash ; do
-	source "${config}"
-done
-
-# Load any supplementary scripts
-for config in "${HOME}"/.config/shell.d/*.sh ; do
+# Source bash specific and supplementary scripts
+for config in "${XDG_CONFIG_HOME:-"${HOME}"/.config}"/shell.d/*.{ba,}sh ; do
 	source "${config}"
 done
 

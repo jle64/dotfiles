@@ -4,11 +4,29 @@ cd $(dirname $(realpath $0))
 
 echo cd $(dirname $(realpath $0))
 
+CONFIG="${XDG_CONFIG_HOME:-"$HOME"/.config}"
+CACHE="${XDG_CACHE_HOME:-"$HOME"/.cache}"
+OS=$(uname)
+
 echo -e "\n# Create conf symlinks"
-for file in .* .config/*; do
-	echo $file | grep -qE '^\.(|\.|config|git|gitignore|gitmodules)$' && continue
-	[ -e "$HOME"/"$file" ] && echo \# "$HOME"/"$file" already exists && continue
-	echo ln -s "$(realpath "$file")" "$HOME"/"$file"
+for FILE in .*; do
+	echo $FILE | grep -qE '^\.(|\.|git|gitignore|gitmodules)$' && continue
+	if [ "$OS" == "Haiku" ]; then
+		TARGET_DIR=$CONFIG
+		TARGET_FILE="$(echo "$FILE" | sed 's|^\.||;s|gitconfig|git/config|')"
+	else
+		TARGET_DIR="$HOME"
+		TARGET_FILE="$FILE"
+	fi
+	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
+	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+done
+
+for FILE in config/*; do
+	TARGET_FILE="$(basename "$FILE")"
+	TARGET_DIR="$CONFIG"
+	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
+	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
 echo -e "\n# Import/update conf"
@@ -19,16 +37,16 @@ echo "xrdb -merge .Xresources"
 echo "lesskey lesskey$(shuf -n 1 -e 1 2 3)-*"
 
 echo -e "\n# Create cache directories"
-test -d ~/.cache/vim || echo mkdir -p ~/.cache/vim/{backup,swap,undo}
-test -d ~/.cache/emacs || echo mkdir -p ~/.cache/emacs
+test -d "$CACHE"/vim || echo mkdir -p "$CACHE"/vim/{backup,swap,undo}
+test -d "$CACHE"/emacs || echo mkdir -p "$CACHE"/emacs
 
 echo -e "\n# Add utilities"
 test -d ~/.local/bin || echo mkdir -p ~/.local/bin
 test -f ~/.local/bin/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
 
-if [ ! -d "$HOME"/.zprezto ]; then
+if [ ! -d "$CONFIG"/zprezto ]; then
 	echo -e "\n# Setup zsh"
-	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git "$HOME"/.zprezto"
+	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git "$HOME"/zprezto"
 	echo "ln -s "$HOME"/.zprezto/runcoms/zprofile "$HOME"/.zprofile"
 	echo "ln -s "$HOME"/.zprezto/runcoms/zlogin "$HOME"/.zlogin"
 	echo "ln -s "$HOME"/.zprezto/runcoms/zshenv "$HOME"/.zshenv"
