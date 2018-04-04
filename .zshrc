@@ -5,9 +5,6 @@ autoload -U colors && colors
 autoload -U zargs
 autoload -Uz vcs_info
 
-# Make sure that environment is loaded
-source ~/.zprofile
-
 # Source Prezto
 if [[ -s "${XDG_CONFIG_HOME}/zprezto/init.zsh" ]]; then
 	source "${XDG_CONFIG_HOME}/zprezto/init.zsh"

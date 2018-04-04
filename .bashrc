@@ -1,9 +1,6 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Make sure that environment is loaded
-source ~/.profile
-
 # Source global definitions
 [ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
 
