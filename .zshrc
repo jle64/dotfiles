@@ -5,9 +5,12 @@ autoload -U colors && colors
 autoload -U zargs
 autoload -Uz vcs_info
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# Make sure that environment is loaded
+source ~/.zprofile
+
+# Source Prezto
+if [[ -s "${XDG_CONFIG_HOME}/zprezto/init.zsh" ]]; then
+	source "${XDG_CONFIG_HOME}/zprezto/init.zsh"
 fi
 
 # Source zsh specific and supplementary scripts
