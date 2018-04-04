@@ -5,7 +5,6 @@
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
 	editor = vim
-	pager = cat
 
 [merge]
 	tool = vimdiff

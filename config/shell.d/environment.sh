@@ -20,9 +20,6 @@ fi
 # don't read mail
 unset MAILCHECK
 
-# less options
-export LESS=-wRim
-
 # colors
 if [ -n "$COLORTERM" ]
 then
