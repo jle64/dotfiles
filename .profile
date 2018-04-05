@@ -13,7 +13,7 @@ if [ -z "$XDG_CACHE_HOME" ]; then
 	export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
-if [ -n "$BASH_VERSION" ]; then
+if [ -n "$BASH_VERSION" ] && [ -z "$BASHRC" ] ; then
 	if [ -f "$HOME/.bashrc" ]; then
 		source "$HOME/.bashrc"
 	fi
