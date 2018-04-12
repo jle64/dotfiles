@@ -20,3 +20,9 @@ xterm*scrollTtyOutput: false
 
 ! scrollback
 xterm*savelines: 100000
+
+! use locale
+xterm*locale: true
+
+! color
+xterm*reverseVideo: on
