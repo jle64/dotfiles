@@ -9,10 +9,11 @@ alias lsb="ls -ail"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
-alias g='egrep -i'
+alias g="egrep -i"
 alias e="emacs -nw"
 alias vi="vim"
 alias parallel="parallel --will-cite"
+alias ip="ip -c"
 alias sudo="sudo "            # allow to perform alias expansion
 if which gio >/dev/null 2>&1; then
 	alias open="gio open"
