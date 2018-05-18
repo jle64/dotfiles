@@ -25,4 +25,4 @@ xterm*savelines: 100000
 xterm*locale: true
 
 ! color
-xterm*reverseVideo: on
+xterm*reverseVideo: off
