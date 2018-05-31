@@ -14,16 +14,7 @@
    (quote
     (gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 120))))
- '(linum ((t (:inherit (shadow default) :background "white"))))
- '(mode-line ((t (:background "white" :foreground "brightblack" :box (:line-width -1 :style released-button))))))
-
-; Bigger default font size
+; Default font size
 (set-face-attribute 'default nil :height 125)
 
 ; Set window size at startup
@@ -39,30 +30,18 @@
 ; Disable startup screen
 (setq inhibit-startup-screen t)
 
-; Use a single backup directory
-(setq backup-directory-alist
-'(("." . (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/backups"))))
-
 ; Remember history of mini buffer and other stuff
 (savehist-mode 1)
 (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
-(setq savehist-file (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/history"))
 
 ; Remember position in files
-(setq save-place-file (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/saveplace"))
-(setq-default save-place t)                   ;; activate it for all buffers
-(require 'saveplace)                          ;; get the package
+(save-place-mode 1)
 
 ; Disable backup
-;(setq backup-inhibited t)
+(setq backup-inhibited t)
 
 ; Disable auto save
 (setq auto-save-default nil)
-
-; Show column and line numbers
-;(global-linum-mode 1)
-;(column-number-mode 1)
-;(line-number-mode 1)
 
 ; Delete whitespaces at end of lines
 (autoload 'nuke-trailing-whitespace "whitespace" nil t)
@@ -170,3 +149,5 @@
 ; Load theme
 (load-theme 'gruvbox t)
 
+; Faster than scp
+(setq tramp-default-method "ssh")
