@@ -36,6 +36,9 @@ if [ -z $HOST ]; then
 	HOST=`hostname`
 fi
 
+# Inspired by https://github.com/ramnes/context-color
+HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
+
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
 elif [ ! -z $OLDPWD ]; then
@@ -67,7 +70,7 @@ if [ -f /run/reboot-required ]; then
 	REBOOT='${RED}[!]'
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${YELLOW}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${HOST_COLOR}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH} ${RED}${REBOOT:-$USER_CHAR}${RESET}
 └╼ "
 
 [ $TERM = "dumb" ] && PS1='$ '
