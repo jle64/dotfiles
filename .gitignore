@@ -7,6 +7,7 @@ config/fish/fish_history
 .emacs.d/eshell/history
 .emacs.d/eshell/lastdir
 .emacs.d/history
+.emacs.d/image-dired
 .emacs.d/network-security.data
 .emacs.d/places
 .emacs.d/quelpa
