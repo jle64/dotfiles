@@ -29,7 +29,7 @@ if [ `id -u` = 0 ]; then
 	USER_CHAR='#'
 else
 	USER_COLOR="${GREEN}"
-	USER_CHAR='$'
+	USER_CHAR=''
 fi
 
 if [ -z $HOST ]; then
