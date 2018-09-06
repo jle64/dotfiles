@@ -1,6 +1,5 @@
-All hope abandon ye who enter here 😈
 
-Nah, just kidding ❤️ althought you probably won't find anything super exciting in here, those are just a bunch of dotfiles.
+My dotfiles. You probably won't find anything super exciting in here.
 
 Mostly they deal with setting shiny colors, setting a few preferences and installing a few add-ons.
 
