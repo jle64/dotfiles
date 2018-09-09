@@ -68,12 +68,14 @@ Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
+Plug 'dylanaraps/wal.vim'
 call plug#end()
 
 set background=dark
-"colorscheme molokai
-let g:gruvbox_italic=1
-colorscheme gruvbox
+colorscheme molokai
+"let g:gruvbox_italic=1
+"colorscheme gruvbox
+"colorscheme wal
 ":highlight Normal ctermbg=NONE
 
 " airline
