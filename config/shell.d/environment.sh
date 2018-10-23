@@ -21,11 +21,6 @@ fi
 unset MAILCHECK
 
 # colors
-if [ -n "$COLORTERM" ]
-then
-	# 256 colors in terminal
-	TERM=xterm-256color
-fi
 export CLICOLOR=true
 if which dircolors >/dev/null 2>&1; then
 	eval "$(dircolors ~/.dircolors)"
