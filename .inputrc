@@ -1,19 +1,19 @@
 set bell-style none
 set blink-matching-paren on
-set completion-ignore-case on
-set completion-map-case on
 set colored-completion-prefix on
 set colored-stats on
+set completion-ignore-case on
+set completion-map-case on
 set completion-query-items 128
+set emacs-mode-string ""
 set enable-bracketed-paste on
-set horizontal-scroll-mode on
 set expand-tilde on
 set history-size 100000
-set mark-modified-lines on
-set show-mode-in-prompt on
-set emacs-mode-string ""
+set horizontal-scroll-mode on
+set mark-modified-lines off
 set page-completions off
 set revert-all-at-newline on
+set show-mode-in-prompt on
 set skip-completed-text on
 set visible-stats on
 # history browsing with PgUp/PgDown
