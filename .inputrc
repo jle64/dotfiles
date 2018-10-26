@@ -1,22 +1,21 @@
-# visible or audible
 set bell-style none
-set expand-tilde on
 set blink-matching-paren on
-# if completing in the middle of a word, dont duplicate text
-set skip-completed-text on
 set completion-ignore-case on
-# ask to display more than 128 items
+set completion-map-case on
+set colored-completion-prefix on
+set colored-stats on
 set completion-query-items 128
-# do not uses an internal pager to display screens of possible completions
+set enable-bracketed-paste on
+set horizontal-scroll-mode on
+set expand-tilde on
+set history-size 100000
+set mark-modified-lines on
+set show-mode-in-prompt on
+set emacs-mode-string ""
 set page-completions off
-# add @, /, *, = to filetype in completion list
-set visible-stats on
-# maximum number of history entries saved (0 for unlimited)
-set history-size 10000
-# display an asterisk (`*') at the start of history lines which have been modified
-set mark-modified-lines off
-# undo all changes to history before  returning  when  accept-line is  executed
 set revert-all-at-newline on
+set skip-completed-text on
+set visible-stats on
 # history browsing with PgUp/PgDown
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
