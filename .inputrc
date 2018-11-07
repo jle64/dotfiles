@@ -13,7 +13,7 @@ set horizontal-scroll-mode on
 set mark-modified-lines off
 set page-completions off
 set revert-all-at-newline on
-set show-all-if-ambiguous on
+set show-all-if-ambiguous off
 set show-mode-in-prompt on
 set skip-completed-text on
 set visible-stats on
