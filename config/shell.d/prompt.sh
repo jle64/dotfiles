@@ -26,7 +26,7 @@ EXIT_STATUS="$?"
 
 if [ `id -u` = 0 ]; then
 	USER_COLOR="${RED}${BOLD}"
-	USER_CHAR=' (👑)'
+	USER_CHAR=' (0)'
 else
 	USER_COLOR="${GREEN}"
 	USER_CHAR=''
@@ -37,7 +37,7 @@ if [ -z $HOST ]; then
 fi
 
 # Inspired by https://github.com/ramnes/context-color
-HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
+HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sed 's/jona//' | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
