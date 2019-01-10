@@ -1,7 +1,7 @@
 # a colorful prompt that works on {a,da,ba,mk,pdk,z}sh
 # and probably other Bourne/POSIX variants
 
-# use control chars directly because tput might be broken on some systems
+# use control chars directly because tput lacks terminfo capabilities on FreeBSD
 RED="[31m"
 BG_RED="[41m"
 GREEN="[32m"
@@ -18,7 +18,7 @@ get_git_branch() {
 }
 
 get_exit_status() {
-EXIT_STATUS="$?"
+	EXIT_STATUS="$?"
 	if [ ${EXIT_STATUS} -ne 0 ]; then
 		echo "${EXIT_STATUS}${RESET} "
 	fi
@@ -26,10 +26,8 @@ EXIT_STATUS="$?"
 
 if [ `id -u` = 0 ]; then
 	USER_COLOR="${RED}${BOLD}"
-	USER_CHAR=' (0)'
 else
 	USER_COLOR="${GREEN}"
-	USER_CHAR=''
 fi
 
 if [ -z $HOST ]; then
@@ -37,7 +35,7 @@ if [ -z $HOST ]; then
 fi
 
 # Inspired by https://github.com/ramnes/context-color
-HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sed 's/jona//' | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
+HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
@@ -70,7 +68,7 @@ if [ -f /run/reboot-required ]; then
 	REBOOT=' ${RED}[!]'
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${HOST_COLOR}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH}${REBOOT}${USER_COLOR}${USER_CHAR}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${HOST_COLOR}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH}${REBOOT}${RESET}
 └╼ "
 
 [ $TERM = "dumb" ] && PS1='$ '
