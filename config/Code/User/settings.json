@@ -16,5 +16,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "editor.minimap.enabled": false,
     "workbench.colorTheme": "Gloom",
-    "telemetry.enableTelemetry": false
+    "telemetry.enableTelemetry": false,
+    "python.jediEnabled": false
 }
