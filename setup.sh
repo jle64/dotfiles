@@ -6,6 +6,7 @@ echo cd "$(dirname $(realpath $0))"
 
 CONFIG="${XDG_CONFIG_HOME:-"$HOME"/.config}"
 CACHE="${XDG_CACHE_HOME:-"$HOME"/.cache}"
+EXEC="$HOME"/.local/bin
 OS=$(uname)
 
 echo -e "\\n# Create conf symlinks"
@@ -41,9 +42,10 @@ test -d "$CACHE"/vim || echo mkdir -p "$CACHE"/vim/{backup,swap,undo}
 test -d "$CACHE"/emacs || echo mkdir -p "$CACHE"/emacs
 
 echo -e "\\n# Add utilities"
-test -d ~/.local/bin || echo mkdir -p ~/.local/bin
-test -f ~/.local/bin/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/.local/bin/z.sh
-test -d "$CONFIG"/base16-shell || echo "git clone https://github.com/chriskempson/base16-shell ${CONFIG}/base16-shell"
+test -d "$EXEC" || echo mkdir -p ~/.local/bin
+test -f "$EXEC"/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O "$EXEC"/z.sh
+test -f "$EXEC"/z.fish || echo wget https://raw.githubusercontent.com/sjl/z-fish/master/z.fish -O "$EXEC"/z.fish
+test -d "$CONFIG"/base16-shell || echo "git clone https://github.com/chriskempson/base16-shell "$CONFIG"/base16-shell"
 
 if [ ! -d "$CONFIG"/zprezto ]; then
 	echo -e "\\n# Setup zsh"
