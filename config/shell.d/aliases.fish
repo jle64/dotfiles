@@ -15,7 +15,12 @@ alias lsb='ls -ail'
 alias lt='ls -lhAtr'
 alias lx='ls -lhAxb'
 alias sudo='sudo '
-alias open='gio open'
 alias trash='gio trash'
 alias tree='tree -C'
 alias vi='vim'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."

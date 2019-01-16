@@ -12,7 +12,7 @@
 
 [alias]
 	cp = 'cherry-pick'
-	st = 'status -sb'
+	st = 'status'
 	cl = 'clone'
 	cm = 'commit'
 	co = 'checkout'
