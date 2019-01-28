@@ -9,7 +9,7 @@ set emacs-mode-string ""
 set enable-bracketed-paste on
 set expand-tilde on
 set history-size 100000
-set horizontal-scroll-mode on
+set horizontal-scroll-mode off
 set mark-modified-lines off
 set page-completions off
 set revert-all-at-newline on
