@@ -32,7 +32,9 @@ for FILE in config/*; do
 done
 
 for DIR in $(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
-	echo ln -s firefox-user.js $FIREFOX/$DIR/user.js
+	TARGET_DIR=$FIREFOX/$DIR
+	[ -e "$TARGET_DIR"/user.js ] && echo \# $TARGET_DIR/user.js already exists && continue
+	echo ln -s "$(realpath firefox-user.js)" $TARGET_DIR/user.js
 done
 
 echo -e "\\n# Import/update conf"
