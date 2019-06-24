@@ -22,6 +22,12 @@
 	lr = "log --reverse"
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
+	switch = !legit switch
+	sync = !legit sync
+	publish = !legit publish
+	unpublish = !legit unpublish
+	undo = !legit undo
+	branches = !legit branches
 
 [log]
 	date = rfc2822
