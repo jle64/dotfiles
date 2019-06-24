@@ -8,6 +8,7 @@ CONFIG="${XDG_CONFIG_HOME:-"$HOME"/.config}"
 CACHE="${XDG_CACHE_HOME:-"$HOME"/.cache}"
 EXEC="$HOME"/.local/bin
 OS=$(uname)
+FIREFOX="$HOME"/.mozilla/firefox
 
 echo -e "\\n# Create conf symlinks"
 for FILE in .*; do
@@ -28,6 +29,12 @@ for FILE in config/*; do
 	TARGET_DIR="$CONFIG"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
 	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+done
+
+for DIR in $(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
+	TARGET_DIR=$FIREFOX/$DIR
+	[ -e "$TARGET_DIR"/user.js ] && echo \# $TARGET_DIR/user.js already exists && continue
+	echo ln -s "$(realpath firefox-user.js)" $TARGET_DIR/user.js
 done
 
 echo -e "\\n# Import/update conf"
