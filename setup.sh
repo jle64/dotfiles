@@ -6,6 +6,7 @@ echo cd "$(dirname $(realpath $0))"
 
 CONFIG="${XDG_CONFIG_HOME:-"$HOME"/.config}"
 CACHE="${XDG_CACHE_HOME:-"$HOME"/.cache}"
+DATA="${XDG_DATA_HOME:-"$HOME"/.local/share}"
 EXEC="$HOME"/.local/bin
 OS=$(uname)
 FIREFOX="$HOME"/.mozilla/firefox
@@ -27,6 +28,13 @@ done
 for FILE in config/*; do
 	TARGET_FILE="$(basename "$FILE")"
 	TARGET_DIR="$CONFIG"
+	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
+	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+done
+
+for FILE in local/share/*; do
+	TARGET_FILE="$(basename "$FILE")"
+	TARGET_DIR="$DATA"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
 	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
