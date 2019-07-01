@@ -39,7 +39,7 @@ HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sum | cut -d' ' -f1) % $(expr $(
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
-elif [ ! -z $OLDPWD ]; then
+elif [ ! -z $OLDPWD ] || [ ! -z "$KSH_VERSION" ] ; then
 	WORK_DIR=\${PWD}
 else
 	WORK_DIR='\w'

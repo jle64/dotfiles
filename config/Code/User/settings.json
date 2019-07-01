@@ -19,5 +19,7 @@
     "telemetry.enableTelemetry": false,
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
-    "autoDocstring.docstringFormat": "sphinx"
+    "autoDocstring.docstringFormat": "sphinx",
+    "window.zoomLevel": 0,
+    "go.useLanguageServer": true
 }
