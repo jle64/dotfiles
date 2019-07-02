@@ -7,7 +7,6 @@ for config in ${XDG_CONFIG_HOME}/shell.d/*.sh ; do
 done
 unset -v config
 
-if [ -f "${HOME}/.sh_local" ]; then
-	. "${HOME}/.sh_local"
-fi
+# Load local stuff
+[ -f "${HOME}/.shrc.local" ] && . "${HOME}/.shrc.local"
 

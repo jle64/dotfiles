@@ -20,7 +20,5 @@ done
 unset -v config
 
 # Load local stuff
-if [ -f "${HOME}/.sh_local" ]; then
-	source "${HOME}/.sh_local"
-fi
-
+[ -f "${HOME}/.zshrc.local" ] && source "${HOME}/.zshrc.local"
+[ -f "${HOME}/.shrc.local" ] && source "${HOME}/.shrc.local"
