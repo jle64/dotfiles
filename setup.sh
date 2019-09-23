@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eu
-cd "$(dirname $(realpath $0))"
 
-echo cd "$(dirname $(realpath $0))"
+cd "$(dirname $(readlink -f $0))"
+echo cd "$(dirname $(readlink -f $0))"
 
 CONFIG="${XDG_CONFIG_HOME:-"$HOME"/.config}"
 CACHE="${XDG_CACHE_HOME:-"$HOME"/.cache}"
@@ -13,7 +13,8 @@ FIREFOX="$HOME"/.mozilla/firefox
 
 echo -e "\\n# Create conf symlinks"
 for FILE in .*; do
-	echo "$FILE" | grep -qE '^\.(|\.|git|gitignore|gitmodules)$' && continue
+	[ "$FILE" == "." ] && continue
+	echo "$FILE" | grep -qE '^\.(\.|git|gitignore|gitmodules)$' && continue
 	if [ "$OS" == "Haiku" ]; then
 		TARGET_DIR=$CONFIG
 		TARGET_FILE="$(echo "$FILE" | sed 's|^\.||;s|gitconfig|git/config|')"
@@ -22,28 +23,30 @@ for FILE in .*; do
 		TARGET_FILE="$FILE"
 	fi
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
-	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+	echo ln -s "$(readlink -f "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
 for FILE in config/*; do
 	TARGET_FILE="$(basename "$FILE")"
 	TARGET_DIR="$CONFIG"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
-	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+	echo ln -s "$(readlink -f "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
 for FILE in local/share/*; do
 	TARGET_FILE="$(basename "$FILE")"
 	TARGET_DIR="$DATA"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
-	echo ln -s "$(realpath "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
+	echo ln -s "$(readlink -f "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
-for DIR in $(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
-	TARGET_DIR=$FIREFOX/$DIR
-	[ -e "$TARGET_DIR"/user.js ] && echo \# $TARGET_DIR/user.js already exists && continue
-	echo ln -s "$(realpath firefox-user.js)" $TARGET_DIR/user.js
-done
+if [ -f $FIREFOX/profiles.ini ]; then
+	for DIR in $(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
+		TARGET_DIR=$FIREFOX/$DIR
+		[ -e "$TARGET_DIR"/user.js ] && echo \# $TARGET_DIR/user.js already exists && continue
+		echo ln -s "$(readlink -f firefox-user.js)" $TARGET_DIR/user.js
+	done
+fi
 
 echo -e "\\n# Import/update conf"
 echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < gnome-keybindings.dconf"

@@ -35,7 +35,8 @@ if [ -z $HOST ]; then
 fi
 
 # Inspired by https://github.com/ramnes/context-color
-HOST_COLOR=$(tput setaf $(expr 1 + $(hostname | sum | cut -d' ' -f1) % $(expr $(tput colors) - 1)))
+HOST_COLOR=$(expr 1 + $(hostname | cksum | cut -d' ' -f1) % $(expr $(tput colors) - 1))
+HOST_COLOR=$(tput setaf $HOST_COLOR $HOST_COLOR $HOST_COLOR)
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
