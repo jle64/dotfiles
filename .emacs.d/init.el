@@ -118,7 +118,7 @@
 (tool-bar-mode -1)
 
 ; Load the 'evil' (vim) mode
-(add-to-list 'load-path "~/.emacs.d/evil") (require 'evil) (evil-mode 1)
+(add-to-list 'load-path "~/.emacs.d/evil") (require 'evil) (evil-mode 0)
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
    (setq evil-emacs-state-modes nil)
 
@@ -147,7 +147,7 @@
   (dirtree-in-buffer eproject-root t))
 
 ; Load theme
-(load-theme 'gruvbox t)
+(load-theme 'deeper-blue t)
 
 ; Faster than scp
 (setq tramp-default-method "ssh")
