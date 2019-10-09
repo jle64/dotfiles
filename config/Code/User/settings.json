@@ -15,11 +15,11 @@
     "workbench.activityBar.visible": true,
     "workbench.startupEditor": "newUntitledFile",
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "kiwi",
     "telemetry.enableTelemetry": false,
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
     "autoDocstring.docstringFormat": "sphinx",
     "window.zoomLevel": 0,
-    "go.useLanguageServer": true
+    "go.useLanguageServer": true,
+    "editor.suggestSelection": "first"
 }
