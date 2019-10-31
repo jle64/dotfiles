@@ -1,3 +1,4 @@
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' auto-description '%d'
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' format '%d'
