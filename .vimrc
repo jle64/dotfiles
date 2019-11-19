@@ -67,7 +67,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
 Plug 'morhetz/gruvbox'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'dylanaraps/wal.vim'
 call plug#end()
 
