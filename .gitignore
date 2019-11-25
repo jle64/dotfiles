@@ -1,6 +1,7 @@
 config/Code/*
 config/fish/fishd.*
 config/fish/fish_history
+config/fish/completions
 .emacs.d/auto-save-list/
 .emacs.d/%backup%~
 .emacs.d/elpa
@@ -14,5 +15,3 @@ config/fish/fish_history
 .emacs.d/session.*
 .emacs.d/tramp
 .emacs.d/url
-.vim/plugged/*
-*.swp

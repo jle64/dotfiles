@@ -8,7 +8,7 @@ alias lt="ls -lhAtr"          # sort by date, most recent last
 alias lsb="ls -ail"
 alias g="egrep -i"
 alias e="emacsclient -a '' -t"
-alias vi="vim"
+alias vi="nvim"
 alias sudo="sudo "            # allow to perform alias expansion
 if which gio >/dev/null 2>&1; then
 	alias open="gio open"

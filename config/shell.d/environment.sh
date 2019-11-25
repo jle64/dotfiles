@@ -4,7 +4,7 @@ if ! echo $PATH | grep -q $HOME/.local/bin; then
 fi
 
 # apps
-export EDITOR=vim
+export EDITOR=nvim
 export PAGER=less
 export SYSTEMD_PAGER=cat
 export BROWSER=firefox

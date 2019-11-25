@@ -17,7 +17,7 @@ alias lx='ls -lhAxb'
 alias sudo='sudo '
 alias trash='gio trash'
 alias tree='tree -C'
-alias vi='vim'
+alias vi='nvim'
 
 alias ..="cd .."
 alias ...="cd ../.."
