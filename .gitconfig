@@ -4,7 +4,7 @@
 
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
-	editor = vim
+	editor = nvim
 	pager = cat
 
 [merge]
