@@ -9,6 +9,7 @@ alias lsb="ls -ail"
 alias g="egrep -i"
 alias e="emacsclient -a '' -t"
 alias vi="nvim"
+alias vim="nvim"
 alias sudo="sudo "            # allow to perform alias expansion
 if which gio >/dev/null 2>&1; then
 	alias open="gio open"
