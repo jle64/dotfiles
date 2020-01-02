@@ -12,7 +12,7 @@
  '(fill-column 120)
  '(package-selected-packages
    (quote
-    (gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))))
+    (powerline magit gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))))
 
 ; Default font size
 (set-face-attribute 'default nil :height 125)
@@ -114,7 +114,7 @@
 (package-initialize)
 
 ; Disable the menu bar and the toolbar
-(menu-bar-mode -1)
+; (menu-bar-mode -1)
 (tool-bar-mode -1)
 
 ; Load the 'evil' (vim) mode
@@ -151,3 +151,9 @@
 
 ; Faster than scp
 (setq tramp-default-method "ssh")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
