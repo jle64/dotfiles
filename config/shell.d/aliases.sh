@@ -42,15 +42,3 @@ for cmd in grep egrep fgrep diff; do
 		alias $cmd="$cmd --color"
 	fi
 done
-
-# show file descriptors pointing to flash plugin open videos
-lsflash()
-{
-        for pid in $(pgrep -f flash); do
-                find /proc/$pid/fd -lname '/tmp/* (deleted)' -ls
-        done
-}
-
-alias vnc_server="x11vnc -noxdamage -display :0 -24to32 -scr always -xkb -shared -forever -loop -ncache 12 >/dev/null"
-alias mtn2="LANG=C ~/.local/bin/mtn . -f /usr/share/fonts/TTF/DejaVuSans-Bold.ttf -g 10 -j 100  -r 8 -h 200 -k 000000 -o.jpg -O thumbs -w 1280"
-
