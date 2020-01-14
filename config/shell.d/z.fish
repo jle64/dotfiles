@@ -1,1 +1,1 @@
-test -f /home/jonathan/.local/bin/z.fish; and source /home/jonathan/.local/bin/z.fish
+test -f ~/.local/bin/z.fish; and source ~/.local/bin/z.fish
