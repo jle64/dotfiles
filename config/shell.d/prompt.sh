@@ -30,13 +30,20 @@ else
 	USER_COLOR="${GREEN}"
 fi
 
-if [ -z $HOST ]; then
-	HOST=`hostname`
-fi
+# show @hostname part only if on remote (ssh) host
+if [ ! -z "$SSH_CLIENT" ]; then
+	if [ -z $HOST ]; then
+		HOST=`hostname`
+	fi
+	HOST_PART=@$HOST
 
-# Inspired by https://github.com/ramnes/context-color
-HOST_COLOR=$(expr 1 + $(hostname | cksum | cut -d' ' -f1) % $(expr $(tput colors) - 1))
-HOST_COLOR=$(tput setaf $HOST_COLOR $HOST_COLOR $HOST_COLOR)
+	# make up a different color for each hostname
+	# inspired by https://github.com/ramnes/context-color
+	HOST_COLOR=$(expr 1 + $(hostname | cksum | cut -d' ' -f1) % $(expr $(tput colors) - 1))
+	HOST_COLOR=$(tput setaf $HOST_COLOR $HOST_COLOR $HOST_COLOR)
+else
+	HOST_PART=""
+fi
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
@@ -52,7 +59,7 @@ fi
 if [ ! -z "$BASH" -o ! -z "$ZSH_VERSION" ]; then
 	EXIT_STATUS="\`get_exit_status\`"
 	GIT_BRANCH="\`get_git_branch\`"
-	# Source git prompt stuff
+	# source git prompt stuff
 	if [ -f /usr/share/git/git-prompt.sh ]; then
 		source /usr/share/git/git-prompt.sh
 		export GIT_PS1_SHOWDIRTYSTATE=true
@@ -69,7 +76,7 @@ if [ -f /run/reboot-required ]; then
 	REBOOT=' ${RED}[!]'
 fi
 
-PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${HOST_COLOR}@${HOST}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH}${REBOOT}${RESET}
+PS1="┌─ ${BG_RED}${BOLD}${WHITE}${EXIT_STATUS}${RESET}${USER_COLOR}${USER}${RESET}${HOST_COLOR}${HOST_PART}:${CYAN}${WORK_DIR}${MAGENTA}${GUIX_ENV}${GIT_BRANCH}${REBOOT}${RESET}
 └╼ "
 
 [ $TERM = "dumb" ] && PS1='$ '
