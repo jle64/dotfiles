@@ -22,5 +22,5 @@ done
 unset -v config
 
 # Load local stuff
-[ -f "${HOME}/.bashrc.local" ] && source "${HOME}/.bashrc.local"
-[ -f "${HOME}/.shrc.local" ] && source "${HOME}/.shrc.local"
+[ -f "${HOME}/.bashrc.local" ] && source "${HOME}/.bashrc.local" || true
+[ -f "${HOME}/.shrc.local" ] && source "${HOME}/.shrc.local" || true

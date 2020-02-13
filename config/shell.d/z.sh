@@ -1,1 +1,1 @@
-test -f /home/jonathan/.local/bin/z.sh && source /home/jonathan/.local/bin/z.sh
+test -f ~/.local/bin/z.sh && source ~/.local/bin/z.sh
