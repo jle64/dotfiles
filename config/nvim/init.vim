@@ -1,4 +1,3 @@
-set nocompatible                " Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start  " more powerful backspacing
 set history=100                 " keep 100 lines of command line history
 set ruler                       " show the cursor position all the time
@@ -13,51 +12,35 @@ set showcmd                     " show informations about selection while in vis
 set guioptions-=T               " remove toolbar
 set foldmethod=indent           " auto-fold based on indentation.  (py-friendly)
 set foldlevel=99
-"set relativenumber
-"set number
-"set colorcolumn=80              " highligth the 80th column
-
-" set <leader> key to space
-:let mapleader = " "
-
-" make invisible characters visible
-"set list
-set listchars=tab:↹·,extends:⇉,precedes:⇇,trail:␣,nbsp:␣
-nmap <leader>l :set list!<CR>
-
+set clipboard=unnamed           " keep clipboard and vim in sync
+set hidden                      " opening a new file hides rather than closes current file
+                                " if it has unsaved changes
 set backup
 set writebackup
-set undofile                             " persistent undo on
-set backupdir=$XDG_CACHE_HOME/vim/backup " get backups outta here
-set directory=$XDG_CACHE_HOME/vim/swap   " get swapfiles outta here
-set undodir=$XDG_CACHE_HOME/vim/undo     " persistent undo storage
+set undofile                    " persistent undo on
 
-syntax on			" colors !
-set termguicolors
-set t_Co=256			" Moar colors !
-filetype plugin on
+" don't let backup files polute current working dir
+let &backupdir=stdpath('data').'/backup'
+exec mkdir(stdpath('data').'/backup', 'p')
+
+" set <leader> key to space
+:let mapleader=" "
+
+" define how invisible characters are shown
+set listchars=tab:↹·,extends:⇉,precedes:⇇,trail:␣,nbsp:␣
+" press <leader>+l to enable showing invisible characters
+nmap <leader>l :set list!<CR>
 
 " remember last position
 autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\   exe "normal! g`\"" |
-	\ endif
-set hidden
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 map <TAB> :e#<CR>
 cmap w!! w !sudo tee % > /dev/null
-if has('gui_running')
-	set number
-	" Make shift-insert work like in Xterm
-	map <S-Insert> <MiddleMouse>
-	map! <S-Insert> <MiddleMouse>
-endif
 
-" keep clipboard and vim in sync
-" needs vim to be built with adequate options
-set clipboard=unnamed
-
-" plug
-call plug#begin('~/.vim/plugged')
+" plug (install with PlugInstall)
+call plug#begin(stdpath('data').'/plugged')
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jmcantrell/vim-virtualenv'
@@ -66,20 +49,17 @@ Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
-Plug 'morhetz/gruvbox'
-"Plug 'davidhalter/jedi-vim'
-Plug 'dylanaraps/wal.vim'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
-set background=dark
-"colorscheme molokai
-let g:gruvbox_italic=1
-colorscheme gruvbox
-"colorscheme wal
-":highlight Normal ctermbg=NONE
+" colors
+syntax on
+set termguicolors
+set t_Co=256
+filetype plugin on
+colorscheme base16-default-dark
 
 " airline
 set laststatus=2
-let g:airline_theme='gruvbox'
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
