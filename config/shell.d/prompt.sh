@@ -30,20 +30,15 @@ else
 	USER_COLOR="${GREEN}"
 fi
 
-# show @hostname part only if on remote (ssh) host
-if [ ! -z "$SSH_CLIENT" ]; then
-	if [ -z $HOST ]; then
-		HOST=`hostname`
-	fi
-	HOST_PART=@$HOST
-
-	# make up a different color for each hostname
-	# inspired by https://github.com/ramnes/context-color
-	HOST_COLOR=$(expr 1 + $(hostname | cksum | cut -d' ' -f1) % $(expr $(tput colors) - 1))
-	HOST_COLOR=$(tput setaf $HOST_COLOR $HOST_COLOR $HOST_COLOR)
-else
-	HOST_PART=""
+if [ -z $HOST ]; then
+	HOST=`hostname`
 fi
+HOST_PART=@$HOST
+
+# make up a different color for each hostname
+# inspired by https://github.com/ramnes/context-color
+HOST_COLOR=$(expr 1 + $(hostname | cksum | cut -d' ' -f1) % $(expr $(tput colors) - 1))
+HOST_COLOR=$(tput setaf $HOST_COLOR $HOST_COLOR $HOST_COLOR)
 
 if [ ! -z $ZSH_VERSION ]; then
 	WORK_DIR='%~'
