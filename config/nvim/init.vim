@@ -49,7 +49,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " colors

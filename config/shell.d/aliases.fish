@@ -18,6 +18,7 @@ alias sudo='sudo '
 alias trash='gio trash'
 alias tree='tree -C'
 alias vi='nvim'
+alias private='set -gx fish_history ""'
 
 alias ..="cd .."
 alias ...="cd ../.."
