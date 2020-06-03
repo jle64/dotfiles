@@ -43,8 +43,17 @@ done
 if [ -f $FIREFOX/profiles.ini ]; then
 	for DIR in $(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
 		TARGET_DIR=$FIREFOX/$DIR
-		[ -e "$TARGET_DIR"/user.js ] && echo \# $TARGET_DIR/user.js already exists && continue
-		echo ln -s "$(readlink -f firefox-user.js)" $TARGET_DIR/user.js
+		if [ -e "$TARGET_DIR"/user.js ]; then
+			echo \# $TARGET_DIR/user.js already exists
+		else
+			echo ln -s "$(readlink -f firefox-user.js)" $TARGET_DIR/user.js
+		fi
+		if [ -e "$TARGET_DIR"/chrome/userChrome.css ]; then
+			echo \# $TARGET_DIR/chrome/userChrome.css already exists
+		else
+			echo mkdir $TARGET_DIR/chrome
+			echo ln -s "$(readlink -f userChrome.css)" $TARGET_DIR/chrome/userChrome.css
+		fi
 	done
 fi
 
