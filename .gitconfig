@@ -68,3 +68,5 @@
 
 [url "git@git.alterway.fr:"]
 	insteadOf = aw:
+[pull]
+	rebase = false
