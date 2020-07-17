@@ -67,6 +67,13 @@
 	insteadOf = gl:
 
 [url "git@git.alterway.fr:"]
-	insteadOf = aw:
+        insteadOf = aw:
+
+[url "git@git.alterway.fr:/ansibleroles/"]
+        insteadOf = rl:
+
+[url "git@git.alterway.fr:/alter-way-hosting/"]
+        insteadOf = awh:
+
 [pull]
 	rebase = false
