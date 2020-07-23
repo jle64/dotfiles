@@ -27,3 +27,25 @@ set visible-stats on
 "\e[5D": backward-word
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+# enclose the current or previous word with ""
+"\C-x\"": "\eb\"\ef\""
+# enclose the current or previous word with ()
+"\C-x(": "\eb\(\ef\)"
+$if Bash
+# enclose the current or previous word with $()
+"\C-x$": "\eb\$\(\ef\)"
+# enclose the current or previous word with <()
+"\C-x<": "\eb\<\(\ef\)"
+# prepend # to the current line
+"\C-x#": "\C-a# \C-e"
+# prepend sudo to the current line
+"\C-xs": "\C-asudo '\C-e'"
+# append | less to the curent line and run it
+"\C-xl": "\C-e| less\C-m"
+# append | tail -f to the curent line and run it
+"\C-xt": "\C-e| tail -f\C-m"
+# run current line in background, discarding output
+"\C-xb": "\C-e > /dev/null 2>&1 &\C-m"
+# open man page of current command
+"\C-xm": '\C-aman \ef\C-k\C-m'
+$endif
