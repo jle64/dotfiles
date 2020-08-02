@@ -1,5 +1,6 @@
 alias dmesg='dmesg -T'
 alias diff='diff --color'
+alias e="emacsclient -a '' -t"
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 alias grep='grep --color'
