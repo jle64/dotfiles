@@ -1,18 +1,14 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(column-number-mode t)
  '(custom-safe-themes
-   (quote
-    ("fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" default)))
- '(fill-column 120)
+   '("fe1682ca8f7a255cf295e76b0361438a21bb657d8846a05d9904872aa2fb86f2" default))
+ '(fill-column 100)
  '(package-selected-packages
-   (quote
-    (powerline magit gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))))
+   '(powerline magit gruvbox-theme smart-mode-line-powerline-theme powerline-evil graphene))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 ; Default font size
 (set-face-attribute 'default nil :height 125)
@@ -81,7 +77,7 @@
         (indent-for-tab-command)))))
 
 ; Use trash
-;(setq delete-by-moving-to-trash t)
+(setq delete-by-moving-to-trash t)
 
 ; Allow dired to be able to delete or copy a whole dir.
 (setq dired-recursive-copies (quote top))
@@ -118,7 +114,7 @@
 (tool-bar-mode -1)
 
 ; Load the 'evil' (vim) mode
-(add-to-list 'load-path "~/.emacs.d/evil") (require 'evil) (evil-mode 0)
+(require 'evil) (evil-mode 0)
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
    (setq evil-emacs-state-modes nil)
 
@@ -137,7 +133,7 @@
     (global-set-key (kbd "C-\\") 'evil-toggle-input-method)
 
 ; Load stuff in ~/.emacs.d/lisp/
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.config/emacs/lisp")
 
 ; Load dirtree
 (autoload 'dirtree "dirtree" "Add directory to tree view" t)
@@ -151,9 +147,6 @@
 
 ; Faster than scp
 (setq tramp-default-method "ssh")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(require 'powerline)
+(powerline-center-theme)
