@@ -29,3 +29,6 @@ xterm*locale: true
 
 ! color
 xterm*reverseVideo: on
+
+! bug workaround for emacs
+*.WINDOW_FOREGROUND: white
