@@ -1,0 +1,88 @@
+{
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#E36464",
+          "properties": {
+            "user_info_separator": "",
+            "display_host": false,
+            "prefix": "@"
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#69FF94",
+          "properties": {
+            "text": "\u279C",
+            "postfix": "",
+            "prefix": ""
+          }
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#56B6C2",
+          "properties": {
+            "style": "short"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#DCB977",
+          "properties": {
+            "branch_icon": "",
+            "display_status": true,
+            "display_stash_count": true,
+            "prefix": "<#5FAAE8>git(</>",
+            "postfix": "<#5FAAE8>)</> "
+          }
+        },
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "#DCB977",
+          "properties": {
+            "display_exit_code": true,
+            "prefix": "<#E36464>error(</>",
+            "postfix": "<#E36464>)</> "
+          }
+        },
+        {
+            "type": "root",
+            "foreground": "#ffff66",
+            "properties": {
+                "prefix": "",
+                "postfix": ""
+            }
+        }
+      ]
+    },
+        {
+      "type": "newline"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#FFFFFF",
+          "properties": {
+            "prefix": "",
+            "postfix": "",
+            "text": "<#C591E8>\u276F</><#69FF94>\u276F</>"
+          }
+        }
+      ]
+    }
+  ],
+  "final_space": true
+}

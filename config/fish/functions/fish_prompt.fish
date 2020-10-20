@@ -55,3 +55,7 @@ function fish_prompt
     echo -n '└╼ '
     set_color normal
 end
+
+function fish_prompt
+    eval oh-my-posh -config ~/.dotfiles/posh.json -error $status
+end
