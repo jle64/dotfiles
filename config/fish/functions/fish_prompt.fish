@@ -1,4 +1,9 @@
 function fish_prompt
+    if test -x (which oh-my-posh)
+        eval oh-my-posh -config ~/.dotfiles/posh.json -error $status
+        return
+    end
+
     set prev_status $status
     tty|grep -q tty; and set tty tty; or set tty pts
 
@@ -54,8 +59,4 @@ function fish_prompt
     set_color normal
     echo -n '└╼ '
     set_color normal
-end
-
-function fish_prompt
-    eval oh-my-posh -config ~/.dotfiles/posh.json -error $status
 end
