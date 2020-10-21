@@ -11,25 +11,26 @@
           "properties": {
             "user_info_separator": "",
             "display_host": false,
-            "prefix": "@"
+            "prefix": "@",
+	    "postfix": " "
           }
         },
         {
-          "type": "text",
-          "style": "plain",
-          "foreground": "#69FF94",
-          "properties": {
-            "text": "\u279C",
-            "postfix": "",
-            "prefix": ""
-          }
+            "type": "root",
+            "foreground": "#ffff66",
+            "properties": {
+                "prefix": "",
+                "postfix": " "
+            }
         },
         {
           "type": "path",
           "style": "plain",
           "foreground": "#56B6C2",
           "properties": {
-            "style": "short"
+            "style": "short",
+            "prefix": "",
+            "postfix": " "
           }
         },
         {
@@ -53,14 +54,6 @@
             "prefix": "<#E36464>error(</>",
             "postfix": "<#E36464>)</> "
           }
-        },
-        {
-            "type": "root",
-            "foreground": "#ffff66",
-            "properties": {
-                "prefix": "",
-                "postfix": ""
-            }
         }
       ]
     },
