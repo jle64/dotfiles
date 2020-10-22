@@ -1,6 +1,6 @@
 function fish_prompt
     set saved_status $status
-    if test -x (which oh-my-posh)
+    if test -x ~/.local/bin/oh-my-posh
         eval oh-my-posh -config ~/.dotfiles/posh.json -error $saved_status
         return
     end
