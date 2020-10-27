@@ -26,3 +26,8 @@ export CLICOLOR=true
 if which dircolors >/dev/null 2>&1; then
 	eval "$(dircolors ~/.dircolors)"
 fi
+
+# jupyterlab console doesn't mix well with fancy stuff
+if test -n "$JPY_PARENT_PID"; then
+	export TERM=dumb
+fi
