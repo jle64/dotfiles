@@ -46,3 +46,9 @@ name='Vim'
 binding='<Super>e'
 command='emacs'
 name='Emacs'
+
+[custom-keybindings/custom9]
+binding='<Super>s'
+command="python -c \"import dbus, click; click.launch(f\\\"https://duckduckgo.com/{str(dbus.SessionBus().call_blocking('org.gnome.GPaste.Daemon', '/org/gnome/GPaste', 'org.gnome.GPaste2', 'GetElementAtIndex', 't',
+ '0')[1])}\\\")\""
+name='Duckduckgo'
