@@ -22,7 +22,6 @@
 	lr = "log --reverse"
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
-	switch = !legit switch
 	sync = !legit sync
 	publish = !legit publish
 	unpublish = !legit unpublish
@@ -58,6 +57,12 @@
 	warndetachedcommit = true
 	spellingdictionary = en
 
+[pull]
+	rebase = false
+
+[init]
+	defaultBranch = main
+
 [url "git@github.com:"]
 	insteadOf = github:
 	insteadOf = gh:
@@ -68,14 +73,3 @@
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
-
-[url "git@git.alterway.fr:/ansibleroles/"]
-        insteadOf = rl:
-
-[url "git@git.alterway.fr:/alter-way-hosting/"]
-        insteadOf = awh:
-
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
