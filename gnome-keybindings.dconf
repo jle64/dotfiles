@@ -1,6 +1,7 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
-screenshot=''
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
+home=@as []
+screenshot=['']
 
 [custom-keybindings/custom0]
 binding='<Super>n'
@@ -38,17 +39,11 @@ command='gedit'
 name='Gedit'
 
 [custom-keybindings/custom7]
-binding='<Super>v'
-command='gvim'
-name='Vim'
+binding='<Super>s'
+command="bash -c 'gio open https://duckduckgo.com/\"$(wl-paste -p)\"'"
+name='Duckduckgo'
 
 [custom-keybindings/custom8]
 binding='<Super>e'
 command='emacs'
 name='Emacs'
-
-[custom-keybindings/custom9]
-binding='<Super>s'
-command="python -c \"import dbus, click; click.launch(f\\\"https://duckduckgo.com/{str(dbus.SessionBus().call_blocking('org.gnome.GPaste.Daemon', '/org/gnome/GPaste', 'org.gnome.GPaste2', 'GetElementAtIndex', 't',
- '0')[1])}\\\")\""
-name='Duckduckgo'
