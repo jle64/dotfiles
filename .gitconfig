@@ -20,6 +20,7 @@
 	dc = 'diff --cached'
 	lg = "log --reverse --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --all"
 	lr = "log --reverse"
+	sw = 'switch'
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
 	sync = !legit sync
