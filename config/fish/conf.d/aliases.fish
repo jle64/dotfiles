@@ -11,7 +11,7 @@ alias l.='ls -ld .*'
 alias la='ls -lhA'
 alias lk='ls -lhASr'
 alias ll='ls -lh'
-alias ls='ls --color=auto --group-directories-first'
+alias ls='ls --color=auto --group-directories-first --hyperlink=auto'
 alias lsb='ls -ail'
 alias lt='ls -lhAtr'
 alias lx='ls -lhAxb'
@@ -20,6 +20,9 @@ alias trash='gio trash'
 alias tree='tree -C'
 alias vi='nvim'
 alias private='set -gx fish_history ""'
+
+alias kcat="kitty +kitten icat"
+alias kdiff="kitty +kitten diff"
 
 alias ..="cd .."
 alias ...="cd ../.."

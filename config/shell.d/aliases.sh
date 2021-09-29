@@ -34,7 +34,7 @@ alias ip="ip -c"
 alias tree="tree -C"
 
 if ls --version 2>/dev/null | grep -q GNU; then
-	alias ls="ls --color=auto --group-directories-first"
+	alias ls="ls --color=auto --group-directories-first --hyperlink=auto"
 fi
 
 for cmd in grep egrep fgrep diff; do

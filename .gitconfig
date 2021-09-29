@@ -21,6 +21,7 @@
 	lg = "log --reverse --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --all"
 	lr = "log --reverse"
 	sw = 'switch'
+	sc = "switch --create"
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
 	sync = !legit sync
