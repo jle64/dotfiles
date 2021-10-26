@@ -24,3 +24,5 @@ unset -v config
 # Load local stuff
 [ -f "${HOME}/.bashrc.local" ] && source "${HOME}/.bashrc.local" || true
 [ -f "${HOME}/.shrc.local" ] && source "${HOME}/.shrc.local" || true
+
+source ~/.bashrc_awhtools
