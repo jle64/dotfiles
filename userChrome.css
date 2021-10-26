@@ -1,6 +1,6 @@
 /* Koad Gnome style stylesheet */
 
-@import "firefox-gnome-theme/userChrome.css";
+/* @import "firefox-gnome-theme/userChrome.css"; */
 
 /* Hide tab bar when showing Sidebery */
 
@@ -16,7 +16,7 @@
 }
 
 /* Hide tab bar whan showing single tab */
-
+/*
 #tabbrowser-tabs,
 .tabbrowser-arrowscrollbox {
   min-height: 0 !important;
@@ -29,3 +29,4 @@
 .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"] {
   visibility: collapse;
 }
+*/
