@@ -2,22 +2,22 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
 SETUVAR --export PAGER:less
-SETUVAR --export PYTHONPYCACHEPREFIX:/home/jonathan/\x2ecache/python
-SETUVAR --export XDG_CACHE_HOME:/home/jonathan/\x2ecache
-SETUVAR --export XDG_CONFIG_HOME:/home/jonathan/\x2econfig
-SETUVAR --export XDG_DATA_HOME:/home/jonathan/\x2elocal/share
+SETUVAR --export PYTHONPYCACHEPREFIX:$HOME/\x2ecache/python
+SETUVAR --export XDG_CACHE_HOME:$HOME/\x2ecache
+SETUVAR --export XDG_CONFIG_HOME:$HOME/\x2econfig
+SETUVAR --export XDG_DATA_HOME:$HOME/\x2elocal/share
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
-SETUVAR Z_DATA:/home/jonathan/\x2elocal/share/z/data
-SETUVAR Z_DATA_DIR:/home/jonathan/\x2elocal/share/z
-SETUVAR Z_EXCLUDE:\x5e/home/jonathan\x24
+SETUVAR Z_DATA:$HOME/\x2elocal/share/z/data
+SETUVAR Z_DATA_DIR:$HOME/\x2elocal/share/z
+SETUVAR Z_EXCLUDE:\x5e$HOME\x24
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr__2D_:cd\x20\x2d
-SETUVAR _fisher_jethrokuan_2F_z_files:/home/jonathan/\x2econfig/fish/functions/__z\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_add\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_clean\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_complete\x2efish\x1e/home/jonathan/\x2econfig/fish/conf\x2ed/z\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/jonathan/\x2econfig/fish/functions/fisher\x2efish\x1e/home/jonathan/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_jethrokuan_2F_z_files:$HOME/\x2econfig/fish/functions/__z\x2efish\x1e$HOME/\x2econfig/fish/functions/__z_add\x2efish\x1e$HOME/\x2econfig/fish/functions/__z_clean\x2efish\x1e$HOME/\x2econfig/fish/functions/__z_complete\x2efish\x1e$HOME/\x2econfig/fish/conf\x2ed/z\x2efish
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:$HOME/\x2econfig/fish/functions/fisher\x2efish\x1e$HOME/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejethrokuan/z
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:\x2dr
@@ -49,4 +49,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_user_abbreviations:\x2d\x20cd\x20\x2d
-SETUVAR fish_user_paths:/home/jonathan/\x2elocal/bin\x1e/home/jonathan/\x2ego/bin\x1e/home/jonathan/\x2ecargo/bin\x1e/home/jonathan/\x2enimble/bin\x1e/home/jonathan/\x2epoetry/bin\x1e/home/jonathan/\x2edotnet/tools
+SETUVAR fish_user_paths:$HOME/\x2elocal/bin
