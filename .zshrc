@@ -22,5 +22,3 @@ unset -v config
 # Load local stuff
 [ -f "${HOME}/.zshrc.local" ] && source "${HOME}/.zshrc.local" || true
 [ -f "${HOME}/.shrc.local" ] && source "${HOME}/.shrc.local" || true
-
-source ~/.zshrc_awhtools

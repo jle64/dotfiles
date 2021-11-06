@@ -5,9 +5,6 @@
 // Enable customChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// Set UI density to normal
-user_pref("browser.uidensity", 0);
-
 // Enable SVG context-propertes
 user_pref("svg.context-properties.content.enabled", true);
 user_pref("app.normandy.api_url", "");
@@ -84,4 +81,3 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.unifiedIsOptIn", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);

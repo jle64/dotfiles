@@ -26,14 +26,14 @@ for FILE in .*; do
 	echo ln -s "$(readlink -f "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
-for FILE in config/*; do
+for FILE in .config/*; do
 	TARGET_FILE="$(basename "$FILE")"
 	TARGET_DIR="$CONFIG"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
 	echo ln -s "$(readlink -f "$FILE")" "$TARGET_DIR"/"$TARGET_FILE"
 done
 
-for FILE in local/share/*; do
+for FILE in .local/share/*; do
 	TARGET_FILE="$(basename "$FILE")"
 	TARGET_DIR="$DATA"
 	[ -e "$TARGET_DIR"/"$TARGET_FILE" ] && echo \# "$TARGET_DIR"/"$TARGET_FILE" already exists && continue
@@ -52,7 +52,7 @@ if [ -f $FIREFOX/profiles.ini ]; then
 			echo \# $TARGET_DIR/chrome/userChrome.css already exists
 		else
 			echo mkdir $TARGET_DIR/chrome
-			echo ln -s "$(readlink -f userChrome.css)" $TARGET_DIR/chrome/userChrome.css
+			echo ln -s "$(readlink -f firefox-userChrome.css)" $TARGET_DIR/chrome/userChrome.css
 		fi
 	done
 fi

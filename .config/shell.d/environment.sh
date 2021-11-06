@@ -6,7 +6,6 @@ fi
 # apps
 export EDITOR=nvim
 export PAGER=less
-export SYSTEMD_PAGER=cat
 export BROWSER=firefox
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 
