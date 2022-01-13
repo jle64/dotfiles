@@ -75,3 +75,5 @@
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
+[commit]
+	template = /home/jlestrelin/.dotfiles/gitmessage
