@@ -4,7 +4,7 @@
 
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
-	editor = nvim
+	editor = flatpak run --file-forwarding re.sonny.Commit @@
 	pager = cat
 
 [merge]
