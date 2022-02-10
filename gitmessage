@@ -1,15 +1,7 @@
-# Title: Summary, imperative, start upper case, don't end with a period
-# No more than 50 chars. #### 50 chars is here: #
+# Title, write in imperative, start upper case, don't end with a period
 
-# Remember blank line between title and body.
-
-# Body: Explain *what* and *why* (not *how*). Include task ID (tracker issue).
-# Wrap at 72 chars. ################################## which is here: #
-
-
-# At the end: Include Co-authored-by for all contributors. 
-# Include at least one empty line before it. Format: 
-# Co-authored-by: name <user@users.noreply.github.com>
+# Body, explain *what* and *why* (not *how*). Include task/issue ID.
 #
-# How to Write a Git Commit Message:
-# https://chris.beams.io/posts/git-commit/
+# Further paragraphs come after blank lines.
+
+# Co-authored-by: name <user@example.com>
