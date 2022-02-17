@@ -1,0 +1,6 @@
+cd /
+ls
+(+ 1 2)
+cd /sudo::/
+ls
+wdired-change-to-wdired-mode 

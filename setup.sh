@@ -72,10 +72,8 @@ echo -e "\\n# Add utilities"
 test -d "$EXEC" || echo mkdir -p ~/.local/bin
 test -f "$EXEC"/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O "$EXEC"/z.sh
 test -f "$EXEC"/z.fish || echo wget https://raw.githubusercontent.com/sjl/z-fish/master/z.fish -O "$EXEC"/z.fish
-test -d "$CONFIG"/base16-shell || echo "git clone https://github.com/chriskempson/base16-shell "$CONFIG"/base16-shell"
 test -d "$DATA"/nvim/site/autoload || echo mkdir -p "$DATA"/nvim/site/autoload
 test -f "$DATA"/nvim/site/autoload/plug.vim || echo wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O "$DATA"/nvim/site/autoload/plug.vim
-test -d "$CONFIG/emacs" || echo "git clone --depth 1 https://github.com/hlissner/doom-emacs $CONFIG/emacs && $CONFIG/emacs/bin/doom install"
 
 if [ ! -d "$CONFIG"/zprezto ]; then
 	echo -e "\\n# Setup zsh"
