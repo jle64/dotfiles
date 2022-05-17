@@ -75,4 +75,6 @@
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
 [commit]
-	template = /home/jlestrelin/.dotfiles/gitmessage
+	template = /home/jonathan/.dotfiles/gitmessage
+[diff]
+	external = difft
