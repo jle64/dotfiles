@@ -76,5 +76,5 @@
         insteadOf = aw:
 [commit]
 	template = /home/jonathan/.dotfiles/gitmessage
-[diff]
-	external = difft
+#[diff]
+#	external = difft

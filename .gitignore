@@ -14,3 +14,4 @@
 .config/macs/session.*
 .config/macs/tramp
 .config/macs/url
+.config/fish/conf.d/local.fish
