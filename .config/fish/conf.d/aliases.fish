@@ -1,6 +1,6 @@
 alias dmesg='dmesg -T'
 alias diff='diff --color'
-alias e="emacsclient -a '' -t"
+alias e='emacs -nw'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 alias grep='grep --color'
@@ -19,7 +19,6 @@ alias sudo='sudo '
 alias trash='gio trash'
 alias tree='tree -C'
 alias vi='nvim'
-alias private='set -gx fish_history ""'
 
 alias kcat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
