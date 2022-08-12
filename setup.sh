@@ -14,11 +14,9 @@ echo -e "\\n# Create conf symlinks"
 for FILE in *; do
 	[ -f "$FILE" ] || [ "$FILE" == "dconf" ] && continue
 	if [ "$FILE" == "firefox" ]; then
-		for FILE in firefox/*; do
-			for DIR in $FIREFOX/$(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
-				[ -d "$DIR" ] || DIR="$FIREFOX"/"$DIR"
-				echo ln -s $FILE $DIR
-			done
+		for DIR in $FIREFOX/$(awk -F = '/Path/ { print $2 }' $FIREFOX/profiles.ini); do
+			[ -d "$DIR" ] || DIR="$FIREFOX"/"$DIR"
+			echo stow $FILE -t $DIR
 		done
 	else
 		echo stow $FILE

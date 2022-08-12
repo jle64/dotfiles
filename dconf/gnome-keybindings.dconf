@@ -1,5 +1,5 @@
 [/]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/']
 home=@as []
 screenshot=['']
 
@@ -23,27 +23,17 @@ binding='<Super>c'
 command='tilix'
 name='Console'
 
-[custom-keybindings/custom4]
-binding='Print'
-command='gnome-screenshot -i'
-name='Screenshot'
-
 [custom-keybindings/custom5]
 binding='<Primary>Escape'
 command='gnome-system-monitor'
 name='System monitor'
 
 [custom-keybindings/custom6]
-binding='<Super>g'
-command='gedit'
-name='Gedit'
+binding='<Super>e'
+command='gnome-text-editor'
+name='Editor'
 
 [custom-keybindings/custom7]
-binding='<Super>s'
+binding='<Super>d'
 command="bash -c 'gio open https://duckduckgo.com/\"$(wl-paste -p)\"'"
 name='Duckduckgo'
-
-[custom-keybindings/custom8]
-binding='<Super>e'
-command='emacs'
-name='Emacs'
