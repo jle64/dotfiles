@@ -4,7 +4,6 @@
 # Source global definitions
 [ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
 
-
 # Make sure that environment is loaded
 BASHRC=1
 source ~/.profile

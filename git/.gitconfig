@@ -74,5 +74,6 @@
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
+
 [commit]
-	template = /home/jonathan/.dotfiles/gitmessage
+	template = ~/.gitmessage
