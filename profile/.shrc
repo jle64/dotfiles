@@ -2,7 +2,7 @@
 . ~/.profile
 
 # Load any supplementary scripts
-for config in ${XDG_CONFIG_HOME}/shell.d/*.sh ; do
+for config in ${XDG_CONFIG_HOME}/profile.d/*.sh; do
     . "${config}"
 done
 unset -v config

@@ -14,7 +14,7 @@ if [[ -s "${XDG_CONFIG_HOME}/zprezto/init.zsh" ]]; then
 fi
 
 # Source zsh specific and supplementary scripts
-for config in "${XDG_CONFIG_HOME}"/shell.d/*.{z,}sh ; do
+for config in "${XDG_CONFIG_HOME}"/profile.d/*.{z,}sh; do
 	source "${config}"
 done
 unset -v config
