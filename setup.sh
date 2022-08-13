@@ -34,6 +34,7 @@ test -d "$EXEC" || echo mkdir -p "$EXEC"
 test -f "$EXEC"/z.sh || echo wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O "$EXEC"/z.sh
 test -d "$DATA"/nvim/site/autoload || echo mkdir -p "$DATA"/nvim/site/autoload
 test -f "$DATA"/nvim/site/autoload/plug.vim || echo wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O "$DATA"/nvim/site/autoload/plug.vim
+test -d "$CONFIG"/emacs || (echo git clone --depth 1 https://github.com/doomemacs/doomemacs "$CONFIG"/emacs && echo "$CONFIG"/emacs/bin/doom sync)
 which fish &>/dev/null && fish -c 'type omf &>/dev/null || echo "curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish"'
 if [ ! -d "$CONFIG"/zprezto ]; then
 	echo "git clone --recursive git@github.com:sorin-ionescu/prezto.git $CONFIG/zprezto"
