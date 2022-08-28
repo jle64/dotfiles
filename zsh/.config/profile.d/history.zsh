@@ -1,5 +1,7 @@
 # History
-HISTFILE=~/.zsh_history
+HISTDIR="${XDG_CACHE_HOME}/zsh"
+mkdir -p "${HISTDIR}"
+HISTFILE="${HISTDIR}/history"
 HISTSIZE=100000
 SAVEHIST=100000
 
