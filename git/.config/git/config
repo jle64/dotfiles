@@ -4,7 +4,6 @@
 
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
-	pager = cat
 
 [merge]
 	tool = vimdiff
@@ -23,11 +22,6 @@
 	sc = "switch --create"
 	last = 'git log -1 --stat'
 	unstage = 'reset HEAD --'
-	sync = !legit sync
-	publish = !legit publish
-	unpublish = !legit unpublish
-	undo = !legit undo
-	branches = !legit branches
 
 [log]
 	date = rfc2822
@@ -74,6 +68,3 @@
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
-
-[commit]
-	template = ~/.gitmessage
