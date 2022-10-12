@@ -18,6 +18,7 @@ set hidden                      " opening a new file hides rather than closes cu
 set backup
 set writebackup
 set undofile                    " persistent undo on
+set mouse=                      " ignore mouse
 
 " don't let backup files polute current working dir
 let &backupdir=stdpath('data').'/backup'
