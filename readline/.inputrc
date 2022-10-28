@@ -17,6 +17,7 @@ set show-all-if-ambiguous on
 set show-mode-in-prompt on
 set skip-completed-text on
 set visible-stats on
+set keyseq-timeout 1200
 # history browsing with PgUp/PgDown
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
@@ -27,10 +28,12 @@ set visible-stats on
 "\e[5D": backward-word
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+# prints the last recorded macro
+"\C-xp": print-last-kbd-macro
 # enclose the current or previous word with ""
 "\C-x\"": "\eb\"\ef\""
 # enclose the current or previous word with ()
-"\C-x(": "\eb\(\ef\)"
+# "\C-x(": "\eb\(\ef\)" # conflicts with macro recording start
 $if Bash
 # enclose the current or previous word with $()
 "\C-x$": "\eb\$\(\ef\)"
@@ -48,4 +51,7 @@ $if Bash
 "\C-xb": "\C-e > /dev/null 2>&1 &\C-m"
 # open man page of current command
 "\C-xm": '\C-aman \ef\C-k\C-m'
+# wrap a command in $( .... | fzf)
+"\C-xz": "\C-e | fzf)\C-a(\C-a$\C-b\C-a"
 $endif
+# see: https://www.masteringemacs.org/article/keyboard-shortcuts-every-command-line-hacker-should-know-about-gnu-readline
