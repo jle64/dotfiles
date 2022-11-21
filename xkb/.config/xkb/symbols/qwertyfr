@@ -1,16 +1,21 @@
 default partial alphanumeric_keys modifier_keys
 xkb_symbols "basic" {
  include "us(basic)"
- name[Group1]= "Qwerty (FR)";
+ name[Group1]= "French (Qwerty)";
 
- key <AE06> { [ 6, circumflex, dead_circumflex ] };
- key <AD02> { [ w, W, egrave, Egrave ] };
- key <AD03> { [ e, E, eacute, Eacute ] };
- key <AD04> { [ r, R, ecircumflex, Ecircumflex ] };
- key <AD05> { [ t, T, ediaresis, Ediaresis ] };
- key <AD07> { [ u, U, ucircumflex, Ucircumflex ] };
- key <AD09> { [ o, O, oe, OE ] };
- key <AC01> { [ a, A, agrave, Agrave ] };
- key <AB03> { [ c, C, ccedilla, Ccedilla ] };
- key <AB09> { [ period, greater, periodcentered ] };
+ key <TLDE> {[ grave, asciitilde, acute ]};
+ key <AE04> {[ 4, dollar, EuroSign ]};
+ key <AE06> {[ 6, circumflex, dead_circumflex ]};
+ key <AD02> {[ w, W, egrave, Egrave ]};
+ key <AD03> {[ e, E, eacute, Eacute ]};
+ key <AD04> {[ r, R, ecircumflex, Ecircumflex ]};
+ key <AD05> {[ t, T, ediaresis, Ediaresis ]};
+ key <AD07> {[ u, U, ucircumflex, Ucircumflex ]};
+ key <AD09> {[ o, O, oe, OE ]};
+ key <AD11> {[ bracketleft, braceleft, UFF62, U27EA ]};
+ key <AD12> {[ bracketright, braceright, UFF63, U27EB ]};
+ key <AC01> {[ a, A, agrave, Agrave ]};
+ key <AB03> {[ c, C, ccedilla, Ccedilla ]};
+ key <AB09> {[ period, greater, periodcentered, U2022 ]};
+ key <SPCE> {[ space, nobreakspace ]};
 };
