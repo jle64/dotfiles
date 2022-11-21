@@ -1,0 +1,16 @@
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+ include "us(basic)"
+ name[Group1]= "Qwerty (FR)";
+
+ key <AE06> { [ 6, circumflex, dead_circumflex ] };
+ key <AD02> { [ w, W, egrave, Egrave ] };
+ key <AD03> { [ e, E, eacute, Eacute ] };
+ key <AD04> { [ r, R, ecircumflex, Ecircumflex ] };
+ key <AD05> { [ t, T, ediaresis, Ediaresis ] };
+ key <AD07> { [ u, U, ucircumflex, Ucircumflex ] };
+ key <AD09> { [ o, O, oe, OE ] };
+ key <AC01> { [ a, A, agrave, Agrave ] };
+ key <AB03> { [ c, C, ccedilla, Ccedilla ] };
+ key <AB09> { [ period, greater, periodcentered ] };
+};
