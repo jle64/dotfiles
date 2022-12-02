@@ -5,8 +5,8 @@
     <layout>
       <configItem>
         <name>qwertyfr</name>
-        <shortDescription>qfr</shortDescription>
-        <description>French Qwerty</description>
+        <shortDescription>fr</shortDescription>
+        <description>Français (Qwerty)</description>
       </configItem>
     </layout>
   </layoutList>
