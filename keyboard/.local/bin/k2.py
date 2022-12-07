@@ -12,17 +12,18 @@ def change_layout(device):
     try:
         if device.properties["ID_USB_MODEL"] != model:
             return
-        if device.properties["ACTION"] == "bind":
+        if device.properties["ACTION"] == "add":
             print(f"setting keyboard layouts to {layouts1}")
-            settings.set_value("sources", GLib.Variant("a(ss)", layouts1))
+            settings.set_value("mru-sources", GLib.Variant("a(ss)", layouts1))
         elif device.properties["ACTION"] == "remove":
             print(f"setting keyboard layouts to {layouts2}")
-            settings.set_value("sources", GLib.Variant("a(ss)", layouts2))
+            settings.set_value("mru-sources", GLib.Variant("a(ss)", layouts2))
     except KeyError:
         pass
 
 
 monitor = pyudev.Monitor.from_netlink(pyudev.Context())
+monitor.filter_by("input")
 
 for device in iter(monitor.poll, None):
     change_layout(device)
