@@ -1,5 +1,6 @@
-alias l="ls"
-alias ll="ls -lh"
+alias ls="ls --group-directories-first --hyperlink=auto"
+alias l="ls --group-directories-first --hyperlink=auto"
+alias ll="ls -lh --group-directories-first --hyperlink=auto"
 alias l.="ls -ld .*"
 alias la="ls -lhA"
 alias lx="ls -lhAxb"          # sort by extension
@@ -7,7 +8,7 @@ alias lk="ls -lhASr"          # sort by size, biggest last
 alias lt="ls -lhAtr"          # sort by date, most recent last
 alias lsb="ls -ail"
 alias g="egrep -i"
-alias e="emacsclient -a '' -t"
+alias e="emacs -nw"
 alias vi="nvim"
 alias vim="nvim"
 alias sudo="sudo "            # allow to perform alias expansion
