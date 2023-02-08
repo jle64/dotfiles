@@ -20,7 +20,7 @@ name='Firefox'
 
 [custom-keybindings/custom3]
 binding='<Super>c'
-command='tilix'
+command='wezterm'
 name='Console'
 
 [custom-keybindings/custom5]
