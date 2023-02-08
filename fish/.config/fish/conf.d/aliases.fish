@@ -22,6 +22,7 @@ alias vi='nvim'
 
 alias kcat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
+alias icat="wezterm imgcat"
 
 alias ..="cd .."
 alias ...="cd ../.."
