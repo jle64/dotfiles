@@ -1,4 +1,8 @@
-if status --is-interactive
+if set -q KITTY_INSTALLATION_DIR
+    set --global KITTY_SHELL_INTEGRATION enabled
+    source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+    set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+else if status --is-interactive
   set _fishprompt_aid "fish"$fish_pid
   set _fishprompt_started 0
   # empty if running; or a numeric exit code; or CANCEL
