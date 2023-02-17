@@ -23,7 +23,7 @@ alias vi='nvim'
 alias kcat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
 alias kssh="kitty +kitten ssh"
-alias krg="kitty +kitten hyperlinked_grep"
+alias rg="kitty +kitten hyperlinked_grep"
 
 alias ..="cd .."
 alias ...="cd ../.."
