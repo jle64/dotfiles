@@ -47,6 +47,7 @@
 
 [push]
 	default = simple
+        autoSetupRemote = true
 
 [gui]
 	warndetachedcommit = true

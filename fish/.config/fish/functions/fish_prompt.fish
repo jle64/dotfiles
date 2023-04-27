@@ -8,8 +8,6 @@ function fish_prompt
     set prev_status $status
     tty|grep -q tty; and set tty tty; or set tty pts
 
-    set_color normal
-    echo -n '┌─ '
     if not test $prev_status = 0
         set_color --bold white
         set_color --background red
@@ -58,6 +56,6 @@ function fish_prompt
         echo $job
     end
     set_color normal
-    echo -n '└╼ '
+    echo -n '⏵ '
     set_color normal
 end
