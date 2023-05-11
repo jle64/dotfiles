@@ -50,6 +50,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rodjek/vim-puppet'
+Plug 'm00qek/baleia.nvim', { 'tag': 'v1.3.0' }
 "Plug 'davidhalter/jedi-vim'
 call plug#end()
 
@@ -64,3 +65,26 @@ colorscheme base16-default-dark
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+" from https://old.reddit.com/r/neovim/comments/qqf4nn/psa_you_can_use_neovim_as_the_kitty_terminal/hk1nwnk/
+function! PagerMode()
+  set modifiable
+  set noconfirm
+  set nonumber
+  set ft=man
+  set nolist
+  set showtabline=0
+  set foldcolumn=0
+  " colorize buffer using ansi chars
+  let s:baleia = luaeval("require('baleia').setup { }")
+  call s:baleia.once(bufnr('%'))
+  call s:baleia.automatically(bufnr('%'))
+
+  " remove empty spaces from end
+  silent! %s/\s*$//
+  let @/ = ""
+  set rnu
+  " map q to force quit
+  cnoremap q q!
+endfunction
+command! PagerMode call PagerMode()
