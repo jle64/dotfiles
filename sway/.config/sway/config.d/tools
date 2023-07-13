@@ -10,6 +10,12 @@ bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+Space exec $menu
 
+# Lockscreen
+bindsym $mod+l exec swaylock -c '#000000'
+
+# Desktop portal
+exec /usr/libexec/xdg-desktop-portal -r
+
 #
 # Screen capture:
 #
