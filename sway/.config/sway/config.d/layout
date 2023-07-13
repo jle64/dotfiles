@@ -1,0 +1,24 @@
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Make a floating window sticky
+bindsym $mod+s sticky toggle
+
+# Switch the current container between different layout styles
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle splith splitv
+
+# Make the current focus fullscreen
+bindsym $mod_ws+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+f floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+i focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent

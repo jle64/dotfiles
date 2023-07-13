@@ -1,0 +1,34 @@
+# Move your focus around
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+	# left will shrink the containers width
+	# right will grow the containers width
+	# up will shrink the containers height
+	# down will grow the containers height
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
+
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
