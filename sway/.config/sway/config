@@ -3,8 +3,8 @@
 ### Variables
 #
 set $mod Mod4
-set $mod_win Mod1
-set $mod_ws Mod4
+set $mod_win Mod4
+set $mod_ws Mod1
 
 set $term kitty
 set $menu wofi --show drun
