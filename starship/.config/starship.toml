@@ -1,6 +1,21 @@
-[battery]
-full_symbol = "• "
-charging_symbol = "⇡ "
-discharging_symbol = "⇣ "
-unknown_symbol = "❓ "
-empty_symbol = "❗ "
+format = """
+┌─ $username$hostname:$directory$git_branch$git_commit$git_state$git_status$python$kubernetes
+└$character
+"""
+
+add_newline = false
+
+[character]
+success_symbol = '╼'
+error_symbol = '[✗](bold red)'
+
+[username]
+style_user = 'green'
+style_root = 'bold red'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@$hostname](blue)"
