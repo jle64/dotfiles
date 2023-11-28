@@ -1,5 +1,5 @@
 format = """
-┌─ $username$hostname:$directory$git_branch$git_commit$git_state$git_status$python$kubernetes
+┌─ $username$hostname:$directory$all$git_branch$git_commit$git_state$git_status
 └$character
 """
 
@@ -10,12 +10,16 @@ success_symbol = '╼'
 error_symbol = '[✗](bold red)'
 
 [username]
-style_user = 'green'
 style_root = 'bold red'
 format = '[$user]($style)'
 disabled = false
 show_always = true
 
 [hostname]
-ssh_only = false
 format = "[@$hostname](blue)"
+
+[directory]
+fish_style_pwd_dir_length =  1
+
+[line_break]
+disabled = true
