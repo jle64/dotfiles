@@ -1,5 +1,5 @@
 format = """
-┌─ $username$hostname:$directory$all$git_branch$git_commit$git_state$git_status
+┌─ $username$hostname$directory$all$git_branch$git_commit$git_state$git_status
 └$character
 """
 
@@ -11,7 +11,6 @@ error_symbol = '[✗](bold red)'
 
 [username]
 style_root = 'bold red'
-format = '[$user]($style)'
 disabled = false
 show_always = true
 
