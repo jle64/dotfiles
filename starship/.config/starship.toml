@@ -1,24 +1,57 @@
-format = """
-┌─ $username$hostname$directory$all$git_branch$git_commit$git_state$git_status
-└$character
-"""
+#format = """
+#┌─ $username$hostname$directory$all$git_branch$git_commit$git_state$git_status
+#└$character
+#"""
+
+#[character]
+#success_symbol = '╼'
+#error_symbol = '[✗](bold red)'
 
 add_newline = false
 
+format = "[](bg:#030B16 fg:#7DF9AA)[$directory$git_branch$git_status](fg:#030B16 bg:#7DF9AA)[](bg:#030B16 fg:#7DF9AA)$character"
+right_format = "[](fg:#030B16)[$username$hostname$time](bg:#030B16 fg:#7DF9AA)[](fg:#030B16)"
+
 [character]
-success_symbol = '╼'
-error_symbol = '[✗](bold red)'
+success_symbol = ''
+error_symbol = '[ ✗](#E84D44)'
 
 [username]
-style_root = 'bold red'
+style_user = "bg:#030B16 fg:#7DF9AA"
+style_root = "bg:red fg:#7DF9AA bold"
 disabled = false
 show_always = true
+format = " [$user]($style) "
 
 [hostname]
-format = "[@$hostname](blue)"
+format = " $hostname "
+ssh_only = false
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+format = '󱑍 $time'
 
 [directory]
 fish_style_pwd_dir_length =  1
+read_only = "󰌾 "
+format = "$path"
+
+[git_branch]
+format = ' $symbol$branch(:$remote_branch)'
+symbol = " "
+
+[git_status]
+format = '$all_status'
 
 [line_break]
 disabled = true
+
+[docker_context]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[nix_shell]
+symbol = " "
