@@ -1,57 +1,42 @@
-#format = """
-#┌─ $username$hostname$directory$all$git_branch$git_commit$git_state$git_status
-#└$character
-#"""
+format = """
+╭─ $directory$git_branch$git_status $fill $username$hostname$time
+╰$character
+"""
 
-#[character]
-#success_symbol = '╼'
-#error_symbol = '[✗](bold red)'
-
-add_newline = false
-
-format = "[](bg:#030B16 fg:#7DF9AA)[$directory$git_branch$git_status](fg:#030B16 bg:#7DF9AA)[](bg:#030B16 fg:#7DF9AA)$character"
-right_format = "[](fg:#030B16)[$username$hostname$time](bg:#030B16 fg:#7DF9AA)[](fg:#030B16)"
+[fill]
+symbol = ' '
 
 [character]
-success_symbol = ''
-error_symbol = '[ ✗](#E84D44)'
+success_symbol = '─'
+error_symbol = '[✗](#E84D44)'
 
 [username]
-style_user = "bg:#030B16 fg:#7DF9AA"
-style_root = "bg:red fg:#7DF9AA bold"
+style_user = "fg:#030B16 bg:#06d6a0"
+style_root = "fg:red bg:#06d6a0 bold"
 disabled = false
 show_always = true
-format = " [$user]($style) "
+format = "[](fg:#06d6a0)[](fg:#030B16 bg:#06d6a0)[$user]($style)[](fg:#06d6a0)"
 
 [hostname]
-format = " $hostname "
+format = "[](fg:#118ab2)[ $hostname](fg:#030B16 bg:#118ab2)[](fg:#118ab2)"
 ssh_only = false
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-format = '󱑍 $time'
+format = '[](fg:#073b4c)[󱑍 $time](fg:#030B16 bg:#073b4c)[](fg:#073b4c)'
 
 [directory]
-fish_style_pwd_dir_length =  1
+fish_style_pwd_dir_length = 1
 read_only = "󰌾 "
-format = "$path"
+format = "[](fg:#ef476f)[$path](fg:#030B16 bg:#ef476f)[](fg:#ef476f)"
 
 [git_branch]
-format = ' $symbol$branch(:$remote_branch)'
+format = '[](fg:#ffd166)[$symbol$branch(:$remote_branch)](fg:#030B16 bg:#ffd166)'
 symbol = " "
 
 [git_status]
-format = '$all_status'
+format = '[$all_status](fg:#030B16 bg:#ffd166)[](fg:#ffd166)'
 
 [line_break]
 disabled = true
-
-[docker_context]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[nix_shell]
-symbol = " "
