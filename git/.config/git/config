@@ -1,6 +1,7 @@
 [user]
 	name = Jonathan Lestrelin
 	email = jonathan.lestrelin@gmail.com
+	signingkey = /home/jonathan/.ssh/id_ed25519.pub
 
 [core]
 	whitespace = fix,trailing-space,tabwidth=4
@@ -62,6 +63,7 @@
 [url "git@github.com:"]
 	insteadOf = github:
 	insteadOf = gh:
+	insteadOf = https://github.com/
 
 [url "git@gitlab.com:"]
 	insteadOf = gitlab:
@@ -69,3 +71,9 @@
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
+[credential]
+	helper = /usr/libexec/git-core/git-credential-libsecret
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
