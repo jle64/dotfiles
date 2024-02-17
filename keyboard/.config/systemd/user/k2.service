@@ -1,6 +1,0 @@
-[Unit]
-Description=Change keyboard layout automatically when pluging in keychron K2
- 
-[Service]
-Type=simple
-ExecStart=/home/jonathan/.local/bin/k2.py
