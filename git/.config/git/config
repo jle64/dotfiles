@@ -8,6 +8,7 @@
 
 [merge]
 	tool = vimdiff
+	conflictstyle = zdiff3
 
 [alias]
 	cp = 'cherry-pick'
@@ -48,7 +49,8 @@
 
 [push]
 	default = simple
-        autoSetupRemote = true
+	followtags = true
+	autoSetupRemote = true
 
 [gui]
 	warndetachedcommit = true
@@ -68,12 +70,23 @@
 [url "git@gitlab.com:"]
 	insteadOf = gitlab:
 	insteadOf = gl:
+        insteadOf = https://gitlab.com/
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
+	insteadOf = https://git.alterway.fr
+
 [credential]
 	helper = /usr/libexec/git-core/git-credential-libsecret
+
 [commit]
 	gpgsign = true
+
 [gpg]
 	format = ssh
+
+[help]
+	autocorrect = prompt
+
+[diff]
+	algorithm = histogram
