@@ -1,9 +1,7 @@
+My dotfiles. Mostly deal with setting shiny colors, setting a few preferences and installing a few add-ons.
 
-My dotfiles. You probably won't find anything super exciting in here.
+Partially respect `XDG_` environment variables and work under various OS and shells.
 
-Mostly they deal with setting shiny colors, setting a few preferences and installing a few add-ons.
-
-In theory, they respect `XDG_` environment variables and work under various OS and shells, but some parts might be bitrotten or broken.
-
-To use them easily, clone the repo in your `$HOME` and use the `setup.sh` script.
-It doesn't modify anything, but it prints commands that you can use to selectively deploy them (mostly it helps you creating symlinks).
+To use easily, clone the repo in `$HOME` and run `setup.sh`.
+It doesn't modify anything, but just prints commands to selectively deploy configs.
+Requires the GNU `stow` utility.
