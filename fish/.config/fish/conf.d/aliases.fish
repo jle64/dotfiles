@@ -8,7 +8,7 @@ alias g='grep -Ei'
 alias ip='ip -c'
 if which eza >/dev/null;
     alias ls='eza --group-directories-first --hyperlink --group --git --time-style long-iso'
-    alias tree='ls --tree'
+    alias tree='ls --tree -A'
 else
     alias ls='ls --color=auto --group-directories-first --hyperlink=auto'
 end
