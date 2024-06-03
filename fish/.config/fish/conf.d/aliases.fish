@@ -26,6 +26,8 @@ alias kdiff="kitty +kitten diff"
 alias kssh="kitty +kitten ssh"
 alias rg="kitty +kitten hyperlinked_grep"
 
+alias md2pres="pandoc --to revealjs  --slide-level=2 --standalone --embed-resources --variable theme=moon"
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
