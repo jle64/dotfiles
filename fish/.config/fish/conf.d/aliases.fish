@@ -1,9 +1,11 @@
 alias dmesg='dmesg -T'
 alias diff='diff --color'
 alias e='emacs -nw'
-alias egrep='egrep --color'
-alias fgrep='fgrep --color'
-alias grep='grep --color'
+if [ "(uname)" = "Linux" ];
+	alias egrep='egrep --color'
+	alias fgrep='fgrep --color'
+	alias grep='grep --color'
+end
 alias g='grep -Ei'
 alias ip='ip -c'
 if which eza >/dev/null;
