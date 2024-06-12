@@ -1,6 +1,11 @@
-alias ls="ls --group-directories-first --hyperlink=auto"
-alias l="ls --group-directories-first --hyperlink=auto"
-alias ll="ls -lh --group-directories-first --hyperlink=auto"
+if [ "$(uname)" = "Linux" ]; then # TODO: check for gnu ls instead
+	alias ls="ls --group-directories-first --hyperlink=auto"
+	alias l="ls --group-directories-first --hyperlink=auto"
+	alias ll="ls -lh --group-directories-first --hyperlink=auto"
+else
+	alias l="ls"
+	alias ll="ls -lh"
+fi
 alias l.="ls -ld .*"
 alias la="ls -lhA"
 alias lx="ls -lhAxb"          # sort by extension
