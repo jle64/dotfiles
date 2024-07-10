@@ -11,7 +11,7 @@ alias ip='ip -c'
 if which eza >/dev/null;
     alias ls='eza --group-directories-first --hyperlink --group --git --time-style long-iso'
     alias tree='ls --tree -A'
-else
+else if [ "(uname)" = "Linux" ];
     alias ls='ls --color=auto --group-directories-first --hyperlink=auto'
 end
 alias l='ls'
