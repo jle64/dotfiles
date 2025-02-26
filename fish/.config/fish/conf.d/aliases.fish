@@ -1,13 +1,13 @@
-alias dmesg='dmesg -T'
 alias diff='diff --color'
 alias e='emacs -nw'
 if [ "(uname)" = "Linux" ];
 	alias egrep='egrep --color'
 	alias fgrep='fgrep --color'
 	alias grep='grep --color'
+	alias dmesg='dmesg -T'
+	alias ip='ip -c'
 end
 alias g='grep -Ei'
-alias ip='ip -c'
 if which eza >/dev/null;
     alias ls='eza --group-directories-first --hyperlink --group --git --time-style long-iso'
     alias tree='ls --tree -A'
@@ -26,7 +26,7 @@ alias vi='nvim'
 alias kcat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
 alias kssh="kitty +kitten ssh"
-alias rg="kitty +kitten hyperlinked_grep"
+alias krg="kitty +kitten hyperlinked_grep"
 
 alias md2pres="pandoc --to revealjs  --slide-level=2 --standalone --embed-resources --variable theme=moon"
 
