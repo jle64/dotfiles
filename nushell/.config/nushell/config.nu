@@ -72,14 +72,11 @@ $env.config = {
         format: "auto"
     }
 
-    use_grid_icons: true
-    footer_mode: "25"
     float_precision: 2
     buffer_editor: ""
     use_ansi_coloring: true
     bracketed_paste: true
     edit_mode: emacs
-    shell_integration: true
     render_right_prompt_on_last_line: false
     use_kitty_protocol: true
     highlight_resolved_externals: true
