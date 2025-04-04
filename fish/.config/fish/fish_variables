@@ -18,7 +18,7 @@ SETUVAR Z_DATA:/home/jonathan/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/home/jonathan/\x2elocal/share/z
 SETUVAR Z_EXCLUDE:\x5e/home/jonathan\x24
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3800
 SETUVAR _fish_abbr__2D_:cd\x20\x2d
 SETUVAR _fisher_jethrokuan_2F_z_files:/home/jonathan/\x2econfig/fish/functions/__z\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_add\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_clean\x2efish\x1e/home/jonathan/\x2econfig/fish/functions/__z_complete\x2efish\x1e/home/jonathan/\x2econfig/fish/conf\x2ed/z\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/jonathan/\x2econfig/fish/functions/fisher\x2efish\x1e/home/jonathan/\x2econfig/fish/completions/fisher\x2efish
@@ -43,7 +43,7 @@ SETUVAR fish_color_option:\x1d
 SETUVAR fish_color_param:7aa6da
 SETUVAR fish_color_quote:b9ca4a
 SETUVAR fish_color_redirection:70c0b1
-SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
