@@ -70,7 +70,7 @@
 [url "git@gitlab.com:"]
 	insteadOf = gitlab:
 	insteadOf = gl:
-       insteadOf = https://gitlab.com/
+       #insteadOf = https://gitlab.com/
 
 [url "git@git.alterway.fr:"]
         insteadOf = aw:
