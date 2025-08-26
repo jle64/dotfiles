@@ -68,12 +68,10 @@ vim.cmd([[
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'rodjek/vim-puppet'
 Plug 'm00qek/baleia.nvim', { 'tag': 'v1.3.0' }
 call plug#end()
 ]])

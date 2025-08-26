@@ -25,9 +25,6 @@ done
 
 echo -e "\\n# Import/update conf"
 echo "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < dconf/gnome-keybindings.dconf"
-echo "dconf load /org/gnome/terminal/legacy/profiles:/ < dconf/gnome-terminal.dconf"
-echo "dconf load /com/gexperts/Tilix/ < dconf/tilix.dconf"
-echo "xrdb -merge X/.Xresources"
 
 echo -e "\\n# Add utilities"
 test -d "$EXEC" || echo mkdir -p "$EXEC"
