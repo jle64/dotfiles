@@ -15,7 +15,7 @@ style_user = "fg:#030B16 bg:#06d6a0"
 style_root = "fg:red bg:#06d6a0 bold"
 disabled = false
 show_always = true
-format = "[](fg:#06d6a0)[](fg:#030B16 bg:#06d6a0)[$user]($style)[](fg:#06d6a0)"
+format = "[](fg:#06d6a0)[ $user](fg:#030B16 bg:#06d6a0)($style)[](fg:#06d6a0)"
 
 [hostname]
 format = "[](fg:#118ab2)[ $hostname](fg:#030B16 bg:#118ab2)[](fg:#118ab2)"
