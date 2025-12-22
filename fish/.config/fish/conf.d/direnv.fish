@@ -1,6 +1,6 @@
 
 function __direnv_export_eval --on-event fish_prompt;
-    "/usr/bin/direnv" export fish | source;
+    "direnv" export fish | source;
 
     if test "$direnv_fish_mode" != "disable_arrow";
         function __direnv_cd_hook --on-variable PWD;
@@ -16,7 +16,7 @@ end;
 function __direnv_export_eval_2 --on-event fish_preexec;
     if set -q __direnv_export_again;
         set -e __direnv_export_again;
-        "/usr/bin/direnv" export fish | source;
+        "direnv" export fish | source;
         echo;
     end;
 

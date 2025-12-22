@@ -1,23 +1,23 @@
 -- General options
-vim.opt.backspace = { "indent", "eol", "start" }    -- More powerful backspacing
-vim.opt.history = 100                                  -- Keep 100 lines of command line history
-vim.opt.ruler = true                                    -- Show the cursor position all the time
-vim.opt.smartcase = true                                -- Smart case search
-vim.opt.hlsearch = true                                -- Highlight search results
-vim.opt.incsearch = true                               -- Type-ahead-find
-vim.opt.wildmenu = true                                -- Command-line completion shows a list of matches
+vim.opt.autochdir = true                                 -- Use current working directory of a file as base path
+vim.opt.backspace = { "indent", "eol", "start" }         -- More powerful backspacing
+vim.opt.backup = true                                    -- Enable backup
+vim.opt.clipboard = "unnamedplus"                        -- Sync clipboard and Vim
+vim.opt.encoding = "utf-8"                               -- Set encoding to UTF-8
+vim.opt.foldlevel = 99                                   -- Set fold level to max
+vim.opt.foldmethod = "indent"                            -- Auto-fold based on indentation (py-friendly)
+vim.opt.hidden = true                                    -- Hide unsaved buffers when opening a new one
+vim.opt.history = 100                                    -- Keep 100 lines of command line history
+vim.opt.hlsearch = true                                  -- Highlight search results
+vim.opt.incsearch = true                                 -- Type-ahead-find
+vim.opt.mouse = ""                                       -- Disable mouse support
+vim.opt.ruler = true                                     -- Show the cursor position all the time
+vim.opt.showcmd = true                                   -- Show command in the status line while typing
+vim.opt.smartcase = true                                 -- Smart case search
+vim.opt.undofile = true                                  -- Enable persistent undo
+vim.opt.wildmenu = true                                  -- Command-line completion shows a list of matches
 vim.opt.wildmode = { "longest", "list:longest", "full" } -- Bash-like completion behavior
-vim.opt.autochdir = true                               -- Use current working directory of a file as base path
-vim.opt.encoding = "utf-8"                             -- Set encoding to UTF-8
-vim.opt.showcmd = true                                 -- Show command in the status line while typing
-vim.opt.foldmethod = "indent"                          -- Auto-fold based on indentation (py-friendly)
-vim.opt.foldlevel = 99                                 -- Set fold level to max
-vim.opt.clipboard = "unnamed"                          -- Sync clipboard and Vim
-vim.opt.hidden = true                                  -- Hide unsaved buffers when opening a new one
-vim.opt.backup = true                                  -- Enable backup
-vim.opt.writebackup = true                             -- Enable writebackup
-vim.opt.undofile = true                                -- Enable persistent undo
-vim.opt.mouse = ""                                     -- Disable mouse support
+vim.opt.writebackup = true                               -- Enable writebackup
 
 -- Set backup directory
 local backupdir = vim.fn.stdpath("data") .. "/backup"
@@ -61,9 +61,8 @@ vim.api.nvim_create_user_command("W", "w !sudo tee % > /dev/null", {})
 vim.cmd("syntax on")
 vim.opt.termguicolors = true
 vim.cmd("filetype plugin on")
--- vim.cmd("colorscheme base16-atelier-forest-light")
 
--- Plugin management with vim-plug (can be converted to a Lua-based plugin manager if needed)
+-- Plugin management with vim-plug
 vim.cmd([[
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'bling/vim-airline'
@@ -72,9 +71,13 @@ Plug 'scrooloose/syntastic'
 Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'zenbones-theme/zenbones.nvim'
+Plug 'rktjmp/lush.nvim'
 Plug 'm00qek/baleia.nvim', { 'tag': 'v1.3.0' }
 call plug#end()
 ]])
+-- vim.cmd("colorscheme base16-atelier-forest-light")
+vim.cmd("colorscheme rosebones")
 
 -- Airline configuration
 vim.opt.laststatus = 2
